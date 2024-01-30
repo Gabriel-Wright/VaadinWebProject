@@ -1,0 +1,17 @@
+
+.responsive-logo {
+    width: 50px;   /* Set the maximum width to your desired value */
+    height: auto;  /* Allow the height to scale proportionally */
+}
+
+.hyperlink-padding {
+    background-color: transparent;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.linkedin-button:hover {
+    background-color: lightgrey;
+}
