@@ -1,14 +1,11 @@
 package com.gabeWebTest.webTest.data;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Version;
+import jakarta.persistence.*;
 
-@MappedSuperclass
-public abstract class WebPage {
+import java.util.Set;
+
+@Entity
+public class WebPage {
 
 
     //This defines how the primary key Id is handled in the database.
@@ -22,6 +19,25 @@ public abstract class WebPage {
     @Version
     private int version;
 
+    private String title;
+
+    @Embedded
+    private ArticleText articleText;
+
+    @Embedded
+    private ArticleImages articleImages;
+
+    @Embedded
+    private Dates dates;
+
+    @ManyToMany
+    @JoinTable(
+            name = "webpage_tag", // custom join table name
+            joinColumns = @JoinColumn(name = "webpage_id"), // column in the join table referencing WebPage
+            inverseJoinColumns = @JoinColumn(name = "tag_id") // column in the join table referencing Tag
+    )
+    private Set<Tag> tags;
+
     public Long getId() {
         return id;
     }
@@ -32,6 +48,26 @@ public abstract class WebPage {
 
     public int getVersion() {
         return version;
+    }
+
+    public ArticleText getArticleText() {
+        return articleText;
+    }
+
+    public ArticleImages getArticleImages() {
+        return articleImages;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Dates getDates() {
+        return dates;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
     }
 
     @Override

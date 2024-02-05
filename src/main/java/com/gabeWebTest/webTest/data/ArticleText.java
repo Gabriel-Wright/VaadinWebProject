@@ -5,7 +5,7 @@ import jakarta.persistence.Lob;
 import jakarta.validation.constraints.NotBlank;
 
 @Embeddable
-public class ArticleText extends WebPage{
+public class ArticleText {
 
     @NotBlank
     @Lob

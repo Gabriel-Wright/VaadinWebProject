@@ -15,10 +15,23 @@ public class Tag {
 
     private String tagName;
 
-    @ManyToMany(mappedBy = "tags")
-    private Set<WebPage> abstractEntities = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "webpage_tag", // same join table as in WebPage entity
+            joinColumns = @JoinColumn(name = "tag_id"), // column in the join table referencing Tag
+            inverseJoinColumns = @JoinColumn(name = "webpage_id") // column in the join table referencing WebPage
+    )
+    private Set<WebPage> webPages = new HashSet<>();
 
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
+    public int getId() {
+        return id;
+    }
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    public Set<WebPage> getWebPages() {
+        return webPages;
     }
 }

@@ -9,14 +9,12 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Embeddable
-public class Dates extends WebPage {
+public class Dates  {
 
-    @NotBlank
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime timeCreated;
 
-    @NotBlank
     @UpdateTimestamp
     private LocalDateTime timeLastUpdated;
 

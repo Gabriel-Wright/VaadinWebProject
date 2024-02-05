@@ -4,7 +4,7 @@ import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;
 
 @Embeddable
-public class Title extends WebPage {
+public class Title {
 
     @NotBlank
     private String title;
