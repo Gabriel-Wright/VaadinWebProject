@@ -30,32 +30,24 @@ public class Dashboard extends AppLayout {
         addToNavbar(createNavBarContent(toggle));
         SideNav nav = getSideNav();
 
-        Scroller scroller = new Scroller(nav);
-        scroller.setClassName(LumoUtility.Padding.SMALL);
+//        Scroller scroller = new Scroller(nav);
+//        scroller.setClassName(LumoUtility.Padding.SMALL);
 
-//        Image linkedInImage = new Image("img/LI-In-Bug.png", "LinkedIn");
-//        linkedInImage.addClassName("responsive-logo");
-//        linkedInImage.getElement().getStyle().set("max-width", "8%");
-//        linkedInImage.getElement().getStyle().set("height", "auto");
-//
-//        Anchor linkedinLinkImage = new Anchor("https://www.linkedin.com/in/gabriel-wright-127b0724b/", linkedInImage);
-//        Button testButton = new Button(linkedinLinkImage);
-////        testButton.setWidthFull();
-//        // Create a div to hold the LinkedIn button and set its alignment to the right
-//        Div linkedinDiv = new Div(testButton);
-////        linkedinDiv.setClassName("hyperlink-padding");
-//        linkedinDiv.getElement().getStyle().set("margin-right", "auto");
+        addToDrawer(new SideNavItem("Home", "/",
+                VaadinIcon.HOME.create()));
+        addToDrawer(new SideNavItem("Random article","/",
+                VaadinIcon.RANDOM.create()));
 
-
-        addToDrawer(scroller);
-
-        setPrimarySection(Section.DRAWER);
+        Button testButton = new Button("TEST");
+        setContent(testButton);
     }
 
     private SideNav getSideNav() {
         SideNav nav = new SideNav();
-        nav.addItem(new SideNavItem("Dashboard", "/",
-                VaadinIcon.RANDOM.create()));
+        nav.addItem(new SideNavItem("Home", "/",
+                VaadinIcon.HOME.create()));
+        nav.addItem(new SideNavItem("Random article","/",
+                        VaadinIcon.RANDOM.create()));
         return nav;
     }
 
@@ -70,9 +62,9 @@ public class Dashboard extends AppLayout {
         // Add the drawer toggle to the layout
         layout.add(drawerToggle);
 
-        // Add the view title to the layout
-        viewTitle = new H1("Your Title"); // Replace "Your Title" with the actual title
-        layout.add(viewTitle);
+//        // Add the view title to the layout
+//        viewTitle = new H1("Your Title"); // Replace "Your Title" with the actual title
+//        layout.add(viewTitle);
 
 
         // Add the LinkedIn image and link
