@@ -38,6 +38,10 @@ public class WebPage {
     )
     private Set<Tag> tags;
 
+    @ManyToOne
+    @JoinColumn(name = "article_format_id") // This column will be created in the WebPage table
+    private ArticleFormat articleFormat;
+
     public Long getId() {
         return id;
     }

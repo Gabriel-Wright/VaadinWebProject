@@ -13,6 +13,7 @@ public class Tag {
     @SequenceGenerator(name = "idgenerator", initialValue = 1000)
     private int id;
 
+    @Column(name = "TAGNAME")
     private String tagName;
 
     @ManyToMany
