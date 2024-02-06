@@ -7,15 +7,14 @@ public class ArticleFormat {
 
     //Id of article format
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "idgenerator")
-    @SequenceGenerator(name = "idgenerator", initialValue = 1000)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_format_id") // Specify the column name here
-    private int id;
+    private Long id;
 
     @Column(name = "name")
     private String formatName;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
