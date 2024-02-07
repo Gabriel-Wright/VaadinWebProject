@@ -5,6 +5,14 @@ import jakarta.persistence.*;
 @Entity
 public class ArticleFormat {
 
+    public ArticleFormat() {
+    }
+
+    public ArticleFormat(Long id, String formatName) {
+        this.id = id;
+        this.formatName = formatName;
+    }
+
     //Id of article format
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +29,6 @@ public class ArticleFormat {
     public String getFormatName() {
         return formatName;
     }
+
+
 }

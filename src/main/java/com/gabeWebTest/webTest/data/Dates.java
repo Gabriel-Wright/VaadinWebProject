@@ -11,6 +11,14 @@ import java.time.LocalDateTime;
 @Embeddable
 public class Dates  {
 
+    public Dates() {
+    }
+
+    public Dates(LocalDateTime timeCreated, LocalDateTime timeLastUpdated) {
+        this.timeCreated = timeCreated;
+        this.timeLastUpdated = timeLastUpdated;
+    }
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime timeCreated;

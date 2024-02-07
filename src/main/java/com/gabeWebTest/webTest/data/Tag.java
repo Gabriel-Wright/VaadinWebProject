@@ -8,6 +8,14 @@ import java.util.Set;
 @Entity
 public class Tag {
 
+    public Tag() {
+    }
+
+    public Tag(int id, String tagName) {
+        this.id = id;
+        this.tagName = tagName;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idgenerator")
     @SequenceGenerator(name = "idgenerator", initialValue = 1000)

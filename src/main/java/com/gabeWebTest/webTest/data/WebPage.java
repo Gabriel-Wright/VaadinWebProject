@@ -7,6 +7,21 @@ import java.util.Set;
 @Entity
 public class WebPage {
 
+    //Default constructor needed for hibernate
+    public WebPage() {
+
+    }
+
+    public WebPage(Long id, int version, String title, ArticleText articleText, ArticleImages articleImages, Dates dates, Set<Tag> tags, ArticleFormat articleFormat) {
+        this.id = id;
+        this.version = version;
+        this.title = title;
+        this.articleText = articleText;
+        this.articleImages = articleImages;
+        this.dates = dates;
+        this.tags = tags;
+        this.articleFormat = articleFormat;
+    }
 
     //This defines how the primary key Id is handled in the database.
     //Basically just increments by 1, starting at Id = 1000
