@@ -1,10 +1,12 @@
-package com.gabeWebTest.webTest.views;
+package com.gabeWebTest.webTest.views.dashboard;
 
+import com.gabeWebTest.webTest.data.Tag;
+import com.gabeWebTest.webTest.services.TagService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.combobox.MultiSelectComboBox;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
@@ -12,20 +14,27 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.Scroller;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.lumo.LumoUtility;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Route("")
 @PageTitle("Dashboard")
-public class Dashboard extends AppLayout {
+public class DashboardView extends AppLayout {
 
     private H1 viewTitle;
+    private final TagFilter tagFilter;
 
-    public Dashboard() {
+    @Autowired
+    public DashboardView(TagFilter tagFilter) {
+        this.tagFilter = tagFilter;
         DrawerToggle toggle = new DrawerToggle();
         addToNavbar(createNavBarContent(toggle));
         SideNav nav = getSideNav();
@@ -37,7 +46,12 @@ public class Dashboard extends AppLayout {
                 VaadinIcon.HOME.create()));
         addToDrawer(new SideNavItem("Random article","/",
                 VaadinIcon.RANDOM.create()));
-
+        // Create a divider to visually separate the top and bottom sections of the drawer
+        Div divider = new Div();
+        divider.setHeight("50%"); // Adjust the height as needed
+        addToDrawer(divider);
+        addToDrawer(tagFilter.createTagFilterDropDown());
+//        createTagFilterDropDown();
         Button testButton = new Button("TEST");
         setContent(testButton);
     }
@@ -84,5 +98,30 @@ public class Dashboard extends AppLayout {
 
         return layout;
     }
+
+//    private void createTagFilterDropDown() {
+//        // Get all tags from TagService
+//        List<Tag> tags = tagService.findAllTags();
+//
+//        MultiSelectComboBox<Tag> filterDropDown = new MultiSelectComboBox<>();
+//        filterDropDown.setLabel("Filter by topic");
+//        filterDropDown.setItemLabelGenerator(Tag::getTagName);
+//        filterDropDown.setItems(tags);
+//        filterDropDown.setAutoExpand(MultiSelectComboBox.AutoExpandMode.BOTH);
+//        // Add listener to the filter dropdown
+//        filterDropDown.addValueChangeListener(event -> {
+//            //set selected tags to these
+//            Set<Tag> selectedTags = event.getValue();
+//            //Filter articles based on selected tags
+//            //WebPageService.findByTags(selectedTags);
+//            //Update display with filtered articles
+//            //updateArticleDisplay(filteredArticles);
+//
+//        });
+//
+//
+//        // Add the filter dropdown to the bottom of the drawer
+//        addToDrawer(new VerticalLayout(filterDropDown));
+//    }
 
 }

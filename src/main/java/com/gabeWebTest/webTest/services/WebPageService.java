@@ -1,21 +1,28 @@
 package com.gabeWebTest.webTest.services;
 
-import com.gabeWebTest.webTest.data.ArticleFormatRepository;
-import com.gabeWebTest.webTest.data.TagRepository;
-import com.gabeWebTest.webTest.data.WebPageRepository;
+import com.gabeWebTest.webTest.data.*;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class WebPageService {
 
     private final WebPageRepository webPageRepository;
-    private final TagRepository tagRepository;
-    private final ArticleFormatRepository articleFormatRepository;
 
-    public WebPageService(WebPageRepository webPageRepository, TagRepository tagRepository, ArticleFormatRepository articleFormatRepository) {
+    public WebPageService(WebPageRepository webPageRepository) {
         this.webPageRepository = webPageRepository;
-        this.tagRepository = tagRepository;
-        this.articleFormatRepository = articleFormatRepository;
     }
 
+    public List<WebPage> findAllWebPages() {
+        return webPageRepository.findAll();
+    }
+
+    public List<WebPage> findWebPagesByTags(List<Tag> tags) {
+        return webPageRepository.findByTagsIn(tags);
+    }
+
+    public List<WebPage> findWebPagesByTagsOrderedByDateDesc(List<Tag> tags) {
+        return webPageRepository.findByTagsInOrderByDatesTimeCreatedDesc(tags);
+    }
 }
