@@ -47,7 +47,7 @@ public class DashboardView extends AppLayout {
         //Here is where I would have articleDisplayAdded
         VirtualList<WebPage> list = new VirtualList<>();
         list.setItems(webPageService.findAllWebPages());
-        list.setRenderer(new WebPageRenderer(VerticalLayout::new));
+        list.setRenderer(new WebPageRenderer(HorizontalLayout::new));
         VerticalLayout content = new VerticalLayout();
         content.setSizeFull(); // Set the size to fill the entire available space
         content.setPadding(false); // Remove padding
