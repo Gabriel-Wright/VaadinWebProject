@@ -3,8 +3,6 @@ package com.gabeWebTest.webTest.views.dashboard;
 import com.gabeWebTest.webTest.data.Tag;
 import com.gabeWebTest.webTest.services.TagService;
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
-import com.vaadin.flow.component.html.Article;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,13 +19,13 @@ public class TagFilter {
     private final String label = "Filter by topic";
 
     //Needed to update articles within
-    private ArticleDisplay articleDisplay;
+//    private ArticlePreviewDisplay articleDisplay;
 
     @Autowired
-    public TagFilter(TagService tagService, ArticleDisplay articleDisplay){
+    public TagFilter(TagService tagService){
         selectedTags = new HashSet<>();
         this.tagService = tagService;
-        this.articleDisplay = articleDisplay;
+//        this.articleDisplay = articleDisplay;
     }
 
     public Set<Tag> getSelectedTags() {
