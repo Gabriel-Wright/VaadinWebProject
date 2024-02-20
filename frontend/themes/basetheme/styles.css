@@ -15,3 +15,15 @@
 .linkedin-button:hover {
     background-color: lightgrey;
 }
+
+.larger-font {
+    font-size: 30px;
+}
+
+.hover-effect:hover {
+    cursor: pointer;
+}
+.hover-effect:hover .larger-font{
+    color: red;
+    text-decoration: underline;
+}
