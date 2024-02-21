@@ -3,6 +3,15 @@ package com.gabeWebTest.webTest.views.dashboard;
 import com.gabeWebTest.webTest.data.Tag;
 import com.gabeWebTest.webTest.services.TagService;
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.data.provider.DataKeyMapper;
+import com.vaadin.flow.data.renderer.ComponentRenderer;
+import com.vaadin.flow.data.renderer.Renderer;
+import com.vaadin.flow.data.renderer.Rendering;
+import com.vaadin.flow.dom.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,10 +49,12 @@ public class TagFilter {
         filterDropDown.setLabel("Filter by topic");
         filterDropDown.setItemLabelGenerator(Tag::getTagName);
         filterDropDown.setItems(tags);
-        //tags have colors
-        for(Tag tag: tags) {
-            tag.getColor();
-        }
+        filterDropDown.setRenderer(createRenderer());
+//        //tags have colors
+//        for(Tag tag: tags) {
+//            tag.getColor();
+//
+
         filterDropDown.setAutoExpand(MultiSelectComboBox.AutoExpandMode.BOTH);
         // Add listener to the filter dropdown
         filterDropDown.addValueChangeListener(event -> {
@@ -53,6 +64,18 @@ public class TagFilter {
         });
 
         return filterDropDown;
+    }
+
+    private Renderer<Tag> createRenderer() {
+        return new ComponentRenderer<>(tag -> {
+            HorizontalLayout horizontalLayout = new HorizontalLayout();
+            Icon icon = VaadinIcon.GAMEPAD.create();
+            Span tagSpan = new Span(tag.getTagName());
+            //What i want to do is set the background color of the span to the value of tag.getColorHex()
+            tagSpan.getStyle().set("background-color",tag.getColorHex());
+            horizontalLayout.add(icon, tagSpan);
+            return horizontalLayout;
+        });
     }
 
     private void updateDisplayedArticles() {

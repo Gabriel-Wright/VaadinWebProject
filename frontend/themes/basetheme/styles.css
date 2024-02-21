@@ -27,3 +27,14 @@
     color: red;
     text-decoration: underline;
 }
+/* custom-multiselect-combobox.css */
+/* Define a custom property for text color */
+:host {
+    --tag-text-color: var(--vaadin-input-field-label-color); /* Default text color */
+}
+
+/* Styling for individual dropdown items */
+[part="items"] ::slotted(vaadin-combo-box-item) {
+    /* Use the value of the custom property for text color */
+    color: var(--tag-text-color);
+}
