@@ -1,6 +1,7 @@
 package com.gabeWebTest.webTest.views.dashboard;
 
 import com.gabeWebTest.webTest.data.WebPage;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
@@ -33,6 +34,9 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
 
         Paragraph paragraph = new Paragraph("This is preview text dear god please work");
         verticalText.add(image, componentTitle, paragraph);
+
+        //Publication date and tags
+        Text publicationText = new Text("Published on" + item.getDates().getTimeCreated());
 
         //Paragraph articleText = new Paragraph(item.getArticleText().getArticleText());
         // Create a vertical layout to contain the components

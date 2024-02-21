@@ -2,6 +2,7 @@ package com.gabeWebTest.webTest.data;
 
 import jakarta.persistence.*;
 
+import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,9 +12,10 @@ public class Tag {
     public Tag() {
     }
 
-    public Tag(int id, String tagName) {
+    public Tag(int id, String tagName, Color color) {
         this.id = id;
         this.tagName = tagName;
+        this.color = color;
     }
 
     @Id
@@ -24,6 +26,11 @@ public class Tag {
     @Column(name = "TAGNAME")
     private String tagName;
 
+    @Column(name = "COLOR_HEX")
+    private String colorHex;
+
+    @Transient //Not persistent in the database
+    private Color color;
     @ManyToMany
     @JoinTable(
             name = "webpage_tag", // same join table as in WebPage entity
@@ -43,4 +50,34 @@ public class Tag {
     public Set<WebPage> getWebPages() {
         return webPages;
     }
+
+    public Color getColor() {
+        if (color == null && colorHex != null) {
+            color = convertHexToColor(colorHex);
+        }
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+        this.colorHex = convertColorToHex(color);
+    }
+
+    public String getColorHex() {
+        return colorHex;
+    }
+
+    public void setColorHex(String colorHex) {
+        this.colorHex = colorHex;
+        this.color = convertHexToColor(colorHex);
+    }
+
+    private String convertColorToHex(Color color) {
+        return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
+    }
+
+    private Color convertHexToColor(String hex) {
+        return Color.decode(hex);
+    }
+
 }

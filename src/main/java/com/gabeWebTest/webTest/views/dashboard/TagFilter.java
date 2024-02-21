@@ -40,6 +40,10 @@ public class TagFilter {
         filterDropDown.setLabel("Filter by topic");
         filterDropDown.setItemLabelGenerator(Tag::getTagName);
         filterDropDown.setItems(tags);
+        //tags have colors
+        for(Tag tag: tags) {
+            tag.getColor();
+        }
         filterDropDown.setAutoExpand(MultiSelectComboBox.AutoExpandMode.BOTH);
         // Add listener to the filter dropdown
         filterDropDown.addValueChangeListener(event -> {

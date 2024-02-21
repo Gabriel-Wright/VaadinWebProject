@@ -10,6 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -47,8 +48,8 @@ public class WebPageServiceIntegrationTest {
         articleFormatRepository.save(articleFormat2);
 
         //Tag formats
-        Tag tag1 = new Tag(0, "tag1");
-        Tag tag2 = new Tag(1, "tag2");
+        Tag tag1 = new Tag(0, "tag1", Color.RED);
+        Tag tag2 = new Tag(1, "tag2", Color.GREEN);
         tagRepository.save(tag1);
         tagRepository.save(tag2);
 
@@ -76,8 +77,8 @@ public class WebPageServiceIntegrationTest {
         tagRepository.deleteAll();
 
         //Tag formats
-        Tag tag1 = new Tag(0, "tag1");
-        Tag tag2 = new Tag(1, "tag2");
+        Tag tag1 = new Tag(0, "tag1", Color.BLACK);
+        Tag tag2 = new Tag(1, "tag2", Color.BLACK);
         tagRepository.save(tag1);
         tagRepository.save(tag2);
         List<Tag> tags = tagRepository.findAll();
@@ -100,9 +101,9 @@ public class WebPageServiceIntegrationTest {
         articleFormatRepository.save(articleFormat2);
 
         //Tag formats
-        Tag tag1 = new Tag(0, "tag1");
-        Tag tag2 = new Tag(1, "tag2");
-        Tag tag3 = new Tag(2, "tag3");
+        Tag tag1 = new Tag(0, "tag1", Color.BLACK);
+        Tag tag2 = new Tag(1, "tag2", Color.BLUE);
+        Tag tag3 = new Tag(2, "tag3", Color.BLACK);
 
         tagRepository.save(tag1);
         tagRepository.save(tag2);
@@ -166,9 +167,9 @@ public class WebPageServiceIntegrationTest {
         articleFormatRepository.save(articleFormat2);
 
         // Tag formats
-        Tag tag1 = new Tag(0, "tag1");
-        Tag tag2 = new Tag(1, "tag2");
-        Tag tag3 = new Tag(2, "tag3");
+        Tag tag1 = new Tag(0, "tag1", Color.BLUE);
+        Tag tag2 = new Tag(1, "tag2", Color.BLACK);
+        Tag tag3 = new Tag(2, "tag3", Color.ORANGE);
 
         tagRepository.save(tag1);
         tagRepository.save(tag2);
