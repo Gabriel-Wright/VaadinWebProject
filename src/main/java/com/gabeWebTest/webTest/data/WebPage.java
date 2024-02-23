@@ -45,7 +45,7 @@ public class WebPage {
     @Embedded
     private Dates dates;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "webpage_tag", // custom join table name
             joinColumns = @JoinColumn(name = "webpage_id"), // column in the join table referencing WebPage

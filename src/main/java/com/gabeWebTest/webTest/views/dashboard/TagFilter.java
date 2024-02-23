@@ -2,6 +2,7 @@ package com.gabeWebTest.webTest.views.dashboard;
 
 import com.gabeWebTest.webTest.data.Tag;
 import com.gabeWebTest.webTest.services.TagService;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
@@ -50,6 +51,9 @@ public class TagFilter {
         filterDropDown.setItemLabelGenerator(Tag::getTagName);
         filterDropDown.setItems(tags);
         filterDropDown.setRenderer(createRenderer());
+        filterDropDown.getElement().getStyle().set("background-color", "transparent");
+        filterDropDown.getElement().getStyle().set("box-shadow", "none");
+
 //        //tags have colors
 //        for(Tag tag: tags) {
 //            tag.getColor();
@@ -68,14 +72,19 @@ public class TagFilter {
 
     private Renderer<Tag> createRenderer() {
         return new ComponentRenderer<>(tag -> {
-            HorizontalLayout horizontalLayout = new HorizontalLayout();
+//            HorizontalLayout horizontalLayout = new HorizontalLayout();
             Icon icon = tag.getIcon().create();
             icon.getStyle().set("color", tag.getColorHex());
-            Span tagSpan = new Span(tag.getTagName());
+//            Span tagSpan = new Span(tag.getTagName());
             //What i want to do is set the background color of the span to the value of tag.getColorHex()
-            tagSpan.getStyle().set("background-color",tag.getColorHex());
-            horizontalLayout.add(icon, tagSpan);
-            return horizontalLayout;
+//            tagSpan.getStyle().set("background-color",tag.getColorHex());
+//            horizontalLayout.add(icon, tagSpan);
+            Button button = new Button(tag.getTagName(), icon);
+            button.getStyle().set("background-color", "transparent");
+            button.getStyle().set("border", "none");
+            button.getStyle().set("cursor", "pointer");
+//            return horizontalLayout;
+            return button;
         });
     }
 
