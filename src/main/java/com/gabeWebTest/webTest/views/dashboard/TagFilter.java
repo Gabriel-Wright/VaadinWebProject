@@ -71,21 +71,20 @@ public class TagFilter {
     }
 
     private Renderer<Tag> createRenderer() {
-        return new ComponentRenderer<>(tag -> {
-//            HorizontalLayout horizontalLayout = new HorizontalLayout();
-            Icon icon = tag.getIcon().create();
-            icon.getStyle().set("color", tag.getColorHex());
-//            Span tagSpan = new Span(tag.getTagName());
-            //What i want to do is set the background color of the span to the value of tag.getColorHex()
-//            tagSpan.getStyle().set("background-color",tag.getColorHex());
-//            horizontalLayout.add(icon, tagSpan);
-            Button button = new Button(tag.getTagName(), icon);
-            button.getStyle().set("background-color", "transparent");
-            button.getStyle().set("border", "none");
-            button.getStyle().set("cursor", "pointer");
-//            return horizontalLayout;
-            return button;
-        });
+        //            HorizontalLayout horizontalLayout = new HorizontalLayout();
+        //            Icon icon = tag.getIcon().create();
+        //            icon.getStyle().set("color", tag.getColorHex());
+        ////            Span tagSpan = new Span(tag.getTagName());
+        //            //What i want to do is set the background color of the span to the value of tag.getColorHex()
+        ////            tagSpan.getStyle().set("background-color",tag.getColorHex());
+        ////            horizontalLayout.add(icon, tagSpan);
+        //            Button button = new Button(tag.getTagName(), icon);
+        //            button.getStyle().set("background-color", "transparent");
+        //            button.getStyle().set("border", "none");
+        //            button.getStyle().set("cursor", "pointer");
+        ////            return horizontalLayout;
+        //            return button;
+        return new ComponentRenderer<>(Tag::createTagComponent);
     }
 
     private void updateDisplayedArticles() {

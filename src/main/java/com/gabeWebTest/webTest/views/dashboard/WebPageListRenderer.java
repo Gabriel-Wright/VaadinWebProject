@@ -64,27 +64,11 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         Set<Tag> tags = item.getTags();
         VerticalLayout verticalLayout = new VerticalLayout();
         //Add border and rounded corners
-        verticalLayout.getStyle().set("border", "1px solid black");
-        verticalLayout.getStyle().set("border-radius", "5px");
+        verticalLayout.setWidth("20%"); // Ensure it takes up only the required space
+        verticalLayout.setPadding(false); // Disable padding to minimize extra space
 
         for(Tag tag: tags) {
-            String tagName = tag.getTagName();
-//            Span tagNameSpan = new Span(tagName);
-            Icon tagIcon = tag.getIcon().create();
-            tagIcon.getStyle().set("color", tag.getColorHex());
-
-            Button button = new Button(tagName, tagIcon);
-            button.getStyle().set("background-color", "transparent");
-            button.getStyle().set("border", "none");
-            button.getStyle().set("cursor", "pointer");
-            button.addClickListener(event -> {
-                // Add any action you want when the button is clicked
-            });
-            verticalLayout.add(button);
-
-//            Button button = new Button();
-//            button.add(tagNameSpan, tagIcon);
-//            verticalLayout.add(button);
+            verticalLayout.add(tag.createTagComponent());
         }
         return verticalLayout;
     }

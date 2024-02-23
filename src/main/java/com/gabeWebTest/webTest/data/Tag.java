@@ -1,5 +1,7 @@
 package com.gabeWebTest.webTest.data;
 
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import jakarta.persistence.*;
 
@@ -80,6 +82,11 @@ public class Tag {
         this.color = convertHexToColor(colorHex);
     }
 
+    public String getTransparentColorRGB(int alpha) {
+        Color color = getColor();
+        return String.format("rgba(%d, %d, %d, %.2f",color.getRed(), color.getGreen(), color.getBlue(), alpha / 255.0);
+    }
+
     private String convertColorToHex(Color color) {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
@@ -94,5 +101,16 @@ public class Tag {
 
     public void setIcon(VaadinIcon icon) {
         this.icon = icon;
+    }
+
+    public Component createTagComponent() {
+        Span tagSpan = new Span(tagName);
+
+        int alphaTransparency = 50;
+        tagSpan.getStyle().set("background-color",getTransparentColorRGB(alphaTransparency));
+        tagSpan.getStyle().set("color", getColorHex());
+        tagSpan.setClassName("tag-badge");
+
+        return tagSpan;
     }
 }

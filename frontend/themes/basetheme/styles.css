@@ -38,3 +38,11 @@
     /* Use the value of the custom property for text color */
     color: var(--tag-text-color);
 }
+
+.tag-badge {
+    border-radius: 9999px; /* Large value to make it pill-shaped */
+    /* Add padding to create some space around the text */
+    padding: 4px 8px; /* Adjust as needed */
+    /* Add any other styling properties as needed */
+}
+
