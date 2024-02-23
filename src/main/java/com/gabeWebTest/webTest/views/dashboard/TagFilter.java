@@ -69,7 +69,8 @@ public class TagFilter {
     private Renderer<Tag> createRenderer() {
         return new ComponentRenderer<>(tag -> {
             HorizontalLayout horizontalLayout = new HorizontalLayout();
-            Icon icon = VaadinIcon.GAMEPAD.create();
+            Icon icon = tag.getIcon().create();
+            icon.getStyle().set("color", tag.getColorHex());
             Span tagSpan = new Span(tag.getTagName());
             //What i want to do is set the background color of the span to the value of tag.getColorHex()
             tagSpan.getStyle().set("background-color",tag.getColorHex());

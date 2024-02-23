@@ -1,5 +1,6 @@
 package com.gabeWebTest.webTest.data;
 
+import com.vaadin.flow.component.icon.VaadinIcon;
 import jakarta.persistence.*;
 
 import java.awt.*;
@@ -31,12 +32,19 @@ public class Tag {
 
     @Transient //Not persistent in the database
     private Color color;
+
+    @Column(name = "ICON")
+    @Enumerated(EnumType.STRING)
+    private VaadinIcon icon;
+
     @ManyToMany
     @JoinTable(
             name = "webpage_tag", // same join table as in WebPage entity
             joinColumns = @JoinColumn(name = "tag_id"), // column in the join table referencing Tag
             inverseJoinColumns = @JoinColumn(name = "webpage_id") // column in the join table referencing WebPage
     )
+
+
     private Set<WebPage> webPages = new HashSet<>();
 
     public int getId() {
@@ -80,4 +88,11 @@ public class Tag {
         return Color.decode(hex);
     }
 
+    public VaadinIcon getIcon() {
+        return icon;
+    }
+
+    public void setIcon(VaadinIcon icon) {
+        this.icon = icon;
+    }
 }
