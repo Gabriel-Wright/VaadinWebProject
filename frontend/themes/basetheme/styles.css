@@ -20,12 +20,9 @@
     font-size: 30px;
 }
 
-.hover-effect:hover {
+/* Add the hover effect for the layout */
+.article-style:hover {
     cursor: pointer;
-}
-.hover-effect:hover .larger-font{
-    color: red;
-    text-decoration: underline;
 }
 /* custom-multiselect-combobox.css */
 /* Define a custom property for text color */
@@ -46,3 +43,42 @@
     /* Add any other styling properties as needed */
 }
 
+/* Define adaptive font sizes */
+.adaptive-title-font {
+    font-size:32px; /* Default font size */
+    font-family:"Inconsolata", sans-serif;
+}
+
+@media screen and (max-width: 600px) {
+    .adaptive-title-font {
+        font-size: 16px; /* Adjusted font size for smaller screens */
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .adaptive-title-font {
+        font-size:14px; /* Further adjusted font size for even smaller screens */
+    }
+}
+
+.article-style:hover .adaptive-title-font{
+    font-weight: bold;
+}
+
+/* Apply grayscale filter to the image by default */
+.image-container {
+    overflow: hidden;
+    filter: grayscale(50%);
+    transition: filter 0.3s ease; /* Smooth transition effect */
+    transition: transform 0.2s ease;
+}
+
+/* Adjust the image size on hover */
+.article-style:hover .image-container {
+    filter:grayscale(0%);
+    transition: blur 0.1s ease;
+    transition: filter 0.3s ease;
+    transform: scale(1.01); /* Zoom in by 10% */
+    transition: transform 0.2s ease;
+    transform-origin: 40% 20%;
+}

@@ -33,13 +33,15 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         } else {
             image = new Image(item.getThumbnailPath(),item.getTitle());
         }
+        image.addClassName("image-container");
+
 //        image.setWidth("70%"); // Set image width to 70% of parent container
 //        image.setHeight("auto"); // Maintain aspect ratio
 
         VerticalLayout verticalText = new VerticalLayout();
         // You can add more components here to display other details of the web page
         Span componentTitle = new Span(item.getTitle());
-//        componentTitle.addClassName("larger-font");
+        componentTitle.addClassName("adaptive-title-font");
         String title = item.getTitle();
         // Calculate the width of the title text
 
@@ -49,10 +51,9 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         verticalText.setSpacing(false);
         componentTitle.setHeight("30%");
         paragraph.setHeight("20%");
-
+        verticalText.setAlignItems(FlexComponent.Alignment.CENTER);
 //        // Set alignment to top for the VerticalLayout
 //         verticalText.setAlignItems(FlexComponent.Alignment.START);
-
         //Publication date and tags
         Text publicationText = new Text("Published on" + item.getDates().getTimeCreated());
 
@@ -63,8 +64,9 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         layout.setPadding(false);
         layout.setSpacing(false);
         layout.setWidthFull();
-        image.setWidth("70%");
-
+        image.setWidth("67%");
+        image.getStyle().set("height",image.getHeight());
+        image.getStyle().set("width",image.getWidth());
         verticalText.setWidth("30%");
         layout.setAlignItems(FlexComponent.Alignment.START); // Align items to the top
 
@@ -72,7 +74,7 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         // layout.setVerticalComponentAlignment(FlexComponent.Alignment.START); // Center-align items vertically
 
         // Add a CSS class for styling
-        layout.addClassName("hover-effect");
+        layout.addClassName("article-style");
 
         return layout;
     }
