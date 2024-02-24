@@ -27,34 +27,52 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
     @Override
     public HorizontalLayout createComponent(WebPage item) {
         // Create components to represent a single item
-        Image image = new Image("img/LI-In-Bug.png", "ArticleImage");
-//        image.setWidth("100px"); // Set image width
-
+        Image image;
+        if(item.getThumbnailPath()==null) {
+            image = new Image("img/LI-In-Bug.png", "ArticleImage");
+        } else {
+            image = new Image(item.getThumbnailPath(),item.getTitle());
+        }
+//        image.setWidth("70%"); // Set image width to 70% of parent container
+//        image.setHeight("auto"); // Maintain aspect ratio
 
         VerticalLayout verticalText = new VerticalLayout();
         // You can add more components here to display other details of the web page
         Span componentTitle = new Span(item.getTitle());
-        componentTitle.addClassName("larger-font");
+//        componentTitle.addClassName("larger-font");
         String title = item.getTitle();
         // Calculate the width of the title text
-        verticalText.setWidth("60%"); // Ensure the layout takes up the available width
 
         Paragraph paragraph = new Paragraph("This is preview text dear god please work");
-        verticalText.add(image, componentTitle, paragraph);
+        verticalText.add(componentTitle, paragraph, createTagDisplayComponent(item));
+        verticalText.setPadding(false);
+        verticalText.setSpacing(false);
+        componentTitle.setHeight("30%");
+        paragraph.setHeight("20%");
+
+//        // Set alignment to top for the VerticalLayout
+//         verticalText.setAlignItems(FlexComponent.Alignment.START);
 
         //Publication date and tags
         Text publicationText = new Text("Published on" + item.getDates().getTimeCreated());
 
         //Paragraph articleText = new Paragraph(item.getArticleText().getArticleText());
         // Create a vertical layout to contain the components
-        HorizontalLayout layout = new HorizontalLayout(verticalText);
-        layout.setWidthFull(); // Set layout width to fill the available space
-        layout.setAlignItems(FlexComponent.Alignment.CENTER); // Center-align items vertically
+        HorizontalLayout layout = new HorizontalLayout(verticalText, image);
+        // verticalText.setWidth("70%"); // Ensure the layout takes up the available width
+        layout.setPadding(false);
+        layout.setSpacing(false);
+        layout.setWidthFull();
+        image.setWidth("70%");
+
+        verticalText.setWidth("30%");
+        layout.setAlignItems(FlexComponent.Alignment.START); // Align items to the top
+
+        // Set layout width to fill the available space
+        // layout.setVerticalComponentAlignment(FlexComponent.Alignment.START); // Center-align items vertically
 
         // Add a CSS class for styling
         layout.addClassName("hover-effect");
-
-        layout.add(createTagDisplayComponent(item));
 
         return layout;
     }
@@ -62,15 +80,16 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
     @Transactional
     private Component createTagDisplayComponent(WebPage item) {
         Set<Tag> tags = item.getTags();
-        VerticalLayout verticalLayout = new VerticalLayout();
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
         //Add border and rounded corners
-        verticalLayout.setWidth("20%"); // Ensure it takes up only the required space
-        verticalLayout.setPadding(false); // Disable padding to minimize extra space
+        horizontalLayout.setWidth("20%"); // Ensure it takes up only the required space
+        horizontalLayout.setHeight("20%");
+        horizontalLayout.setPadding(false); // Disable padding to minimize extra space
 
         for(Tag tag: tags) {
-            verticalLayout.add(tag.createTagComponent());
+            horizontalLayout.add(tag.createTagComponent());
         }
-        return verticalLayout;
+        return horizontalLayout;
     }
 
 }

@@ -1,15 +1,22 @@
 package com.gabeWebTest.webTest.data;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
 
+import java.util.List;
 import java.util.Set;
 
 @Embeddable
 public class ArticleImages {
 
-    private Set<String> imagePaths;
+    @ElementCollection
+    private List<String> imagePaths;
 
-    public Set<String> getImagePaths() {
+    public List<String> getImagePaths() {
         return imagePaths;
+    }
+
+    public void setImagePaths(List<String> imagePaths) {
+        this.imagePaths = imagePaths;
     }
 }

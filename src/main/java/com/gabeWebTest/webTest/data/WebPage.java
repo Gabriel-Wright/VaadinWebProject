@@ -39,6 +39,9 @@ public class WebPage {
     @Embedded
     private ArticleText articleText;
 
+    @Column(name="THUMBNAIL")
+    private String thumbnailPath;
+
     @Embedded
     private ArticleImages articleImages;
 
@@ -67,6 +70,10 @@ public class WebPage {
 
     public int getVersion() {
         return version;
+    }
+
+    public String getThumbnailPath() {
+        return thumbnailPath;
     }
 
     public ArticleText getArticleText() {

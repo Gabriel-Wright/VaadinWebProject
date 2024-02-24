@@ -45,7 +45,7 @@ public class DashboardView extends AppLayout {
         VerticalLayout content = new VerticalLayout();
         content.setSizeFull(); // Set the size to fill the entire available space
         content.add(list);
-        content.setAlignItems(FlexComponent.Alignment.END);
+        content.setAlignItems(FlexComponent.Alignment.CENTER);
         setContent(content);
 
 //        // Create a FlexLayout to contain the content
