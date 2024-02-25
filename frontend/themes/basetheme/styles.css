@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'InconsolataRegular';
+    src: url('/fonts/Inconsolata-Regular.ttf') format('truetype');
+    /* Add additional font properties if needed */
+}
+
+
 
 .responsive-logo {
     width: 50px;   /* Set the maximum width to your desired value */
@@ -46,7 +53,7 @@
 /* Define adaptive font sizes */
 .adaptive-title-font {
     font-size:32px; /* Default font size */
-    font-family:Inconsolata, sans-serif;
+    font-family:'InconsolataRegular', sans-serif;
 }
 
 @media screen and (max-width:1920px) {
