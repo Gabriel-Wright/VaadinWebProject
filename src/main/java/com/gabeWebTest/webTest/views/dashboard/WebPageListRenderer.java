@@ -45,18 +45,21 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         String title = item.getTitle();
         // Calculate the width of the title text
 
-        Paragraph paragraph = new Paragraph("This is preview text dear god please work");
+        Paragraph paragraph = new Paragraph("This is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThisThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThisThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThisThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please work");
+        paragraph.addClassName("article-preview-text");
+        paragraph.setWidthFull();
         verticalText.add(componentTitle, paragraph, createTagDisplayComponent(item));
         verticalText.setPadding(false);
         verticalText.setSpacing(false);
+        verticalText.setHeightFull();
         componentTitle.setHeight("30%");
-        paragraph.setHeight("20%");
+        paragraph.setHeight("10%");
         verticalText.setAlignItems(FlexComponent.Alignment.CENTER);
+        verticalText.addClassName("article-style");
 //        // Set alignment to top for the VerticalLayout
 //         verticalText.setAlignItems(FlexComponent.Alignment.START);
         //Publication date and tags
         Text publicationText = new Text("Published on" + item.getDates().getTimeCreated());
-
         //Paragraph articleText = new Paragraph(item.getArticleText().getArticleText());
         // Create a vertical layout to contain the components
         HorizontalLayout layout = new HorizontalLayout(verticalText, image);
@@ -64,9 +67,9 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         layout.setPadding(false);
         layout.setSpacing(false);
         layout.setWidthFull();
-        image.setWidth("67%");
-        image.getStyle().set("height",image.getHeight());
-        image.getStyle().set("width",image.getWidth());
+//        image.setWidth("67%");
+//        image.getStyle().set("height",image.getHeight());
+//        image.getStyle().set("width",image.getWidth());
         verticalText.setWidth("30%");
         layout.setAlignItems(FlexComponent.Alignment.START); // Align items to the top
 

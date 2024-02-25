@@ -46,39 +46,99 @@
 /* Define adaptive font sizes */
 .adaptive-title-font {
     font-size:32px; /* Default font size */
-    font-family:"Inconsolata", sans-serif;
+    font-family:Inconsolata, sans-serif;
+}
+
+@media screen and (max-width:1920px) {
+    height:400px;
+}
+
+@media screen and (max-width: 1600px) {
+    height: 320px;
+}
+
+@media screen and (max-width: 1400px) {
+
+   .image-container {
+            height: 260px;
+   }
+
+}
+
+@media screen and (max-width:1200px) {
+    .image-container {
+        height: 240px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .image-container {
+        height:200px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+   .image-container {
+            height: 170px;
+   }
 }
 
 @media screen and (max-width: 600px) {
     .adaptive-title-font {
         font-size: 16px; /* Adjusted font size for smaller screens */
     }
+    .article-preview-text {
+        font-size:14px;
+    }
+   .image-container {
+            height: 150px;
+   }
+
 }
 
 @media screen and (max-width: 400px) {
     .adaptive-title-font {
         font-size:14px; /* Further adjusted font size for even smaller screens */
     }
+    .article-preview-text {
+        font-size: 12px;
+    }
+    .image-container {
+        height: 130px;
+    }
 }
 
 .article-style:hover .adaptive-title-font{
     font-weight: bold;
 }
-
+.article-style {
+      overflow: hidden;
+}
 /* Apply grayscale filter to the image by default */
 .image-container {
-    overflow: hidden;
-    filter: grayscale(50%);
-    transition: filter 0.3s ease; /* Smooth transition effect */
-    transition: transform 0.2s ease;
+    max-height:400px;
+    width:auto;
+    filter: grayscale(20%);
+    filter: saturate(100%);
+    transition: filter 0.5s ease; /* Smooth transition effect */
 }
 
 /* Adjust the image size on hover */
 .article-style:hover .image-container {
     filter:grayscale(0%);
-    transition: blur 0.1s ease;
-    transition: filter 0.3s ease;
-    transform: scale(1.01); /* Zoom in by 10% */
-    transition: transform 0.2s ease;
-    transform-origin: 40% 20%;
+    transition: filter 1s ease;
+    filter: saturate(200%);
+}
+
+.article-preview-text {
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    font-size: 24;
+    font-family:"Microsoft JhengHei Light",sans-serif;
+    margin: 4px;
+}
+
+.article-style:hover .article-preview-text {
+
 }
