@@ -42,21 +42,23 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         // You can add more components here to display other details of the web page
         Span componentTitle = new Span(item.getTitle());
         componentTitle.addClassName("adaptive-title-font");
+//        componentTitle.setWidthFull();
         String title = item.getTitle();
         // Calculate the width of the title text
 
         Paragraph paragraph = new Paragraph("This is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThisThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThisThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThisThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please work");
         paragraph.addClassName("article-preview-text");
-        paragraph.setWidthFull();
+//        paragraph.setHeight("3em");
+//        paragraph.setWidthFull();
         HorizontalLayout tagComponent = createTagDisplayComponent(item);
         tagComponent.setAlignItems(FlexComponent.Alignment.END);
-        verticalText.add(componentTitle, paragraph, createTagDisplayComponent(item));
+        verticalText.add(componentTitle, paragraph);
         verticalText.setPadding(false);
         verticalText.setSpacing(false);
+        verticalText.setSizeFull();
 //        componentTitle.setHeight("30%");
 //        paragraph.setHeight("10%");
-        verticalText.setAlignItems(FlexComponent.Alignment.START);
-        verticalText.addClassName("article-style");
+//        verticalText.addClassName("article-style");
         //Publication date and tags
         Text publicationText = new Text("Published on" + item.getDates().getTimeCreated());
         // Create a vertical layout to contain the components
@@ -64,9 +66,12 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         layout.setPadding(false);
         layout.setSpacing(false);
         layout.setWidthFull();
+
         layout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-        layout.setAlignItems(FlexComponent.Alignment.CENTER);
+        layout.setAlignItems(FlexComponent.Alignment.START);
         verticalText.setWidth("30%");
+//        verticalText.setWidthFull();
+        layout.expand(verticalText);
 //        layout.setAlignItems(FlexComponent.Alignment.START); // Align items to the top
 //
 //        // Set layout width to fill the available space
