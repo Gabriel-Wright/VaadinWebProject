@@ -5,13 +5,17 @@ import com.gabeWebTest.webTest.data.WebPage;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.function.SerializableSupplier;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,19 +44,18 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
 
         VerticalLayout verticalText = new VerticalLayout();
         // You can add more components here to display other details of the web page
-        Span componentTitle = new Span(item.getTitle());
+        H2 componentTitle = new H2(item.getTitle());
         componentTitle.addClassName("adaptive-title-font");
 //        componentTitle.setWidthFull();
-        String title = item.getTitle();
-        // Calculate the width of the title text
 
         Paragraph paragraph = new Paragraph("This is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThisThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThisThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThisThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please workThis is preview text dear god please work");
         paragraph.addClassName("article-preview-text");
 //        paragraph.setHeight("3em");
 //        paragraph.setWidthFull();
         HorizontalLayout tagComponent = createTagDisplayComponent(item);
-        tagComponent.setAlignItems(FlexComponent.Alignment.END);
-        verticalText.add(componentTitle, paragraph);
+        tagComponent.setAlignItems(FlexComponent.Alignment.START);
+        tagComponent.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+        verticalText.add(componentTitle, paragraph, tagComponent);
         verticalText.setPadding(false);
         verticalText.setSpacing(false);
         verticalText.setSizeFull();
@@ -87,12 +90,12 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
     private HorizontalLayout createTagDisplayComponent(WebPage item) {
         Set<Tag> tags = item.getTags();
         HorizontalLayout horizontalLayout = new HorizontalLayout();
-        //Add border and rounded corners
-//        horizontalLayout.setWidth("20%"); // Ensure it takes up only the required space
-//        horizontalLayout.setHeight("20%");
+        horizontalLayout.getStyle().set("flex-wrap","wrap");
         horizontalLayout.setPadding(false); // Disable padding to minimize extra space
 
         for(Tag tag: tags) {
+            horizontalLayout.add(tag.createTagComponent());
+            horizontalLayout.add(tag.createTagComponent());
             horizontalLayout.add(tag.createTagComponent());
         }
         return horizontalLayout;
