@@ -82,6 +82,10 @@
    .image-container {
             height: 400px;
    }
+   .date-style {
+       font-size: 14px;
+   }
+
 }
 
 @media screen and (max-width: 1600px) {
@@ -97,6 +101,10 @@
    .image-container {
             height:320px;
    }
+.date-style {
+    font-size: 13x;
+    }
+
 }
 
 @media screen and (max-width: 1400px) {
@@ -111,6 +119,9 @@
     }
    .image-container {
             height: 260px;
+   }
+   .date-style {
+       font-size:12px;
    }
 
 }
@@ -128,6 +139,10 @@
     .image-container {
         height: 240px;
     }
+    .date-style {
+        font-size: 11px;
+    }
+
 }
 
 @media screen and (max-width: 1000px) {
@@ -143,6 +158,10 @@
     .image-container {
         height:200px;
     }
+    .date-style {
+        font-size: 10px;
+    }
+
 }
 
 @media screen and (max-width: 800px) {
@@ -157,6 +176,9 @@
    }
   .tag-badge {
        ont-size: 10px;
+  }
+  .date-style {
+        font-size: 9px;
   }
 
 }
@@ -174,7 +196,9 @@
     .tag-badge {
         font-size: 9px;
     }
-
+    .date-style {
+        font-size: 8x;
+    }
 
 }
 
@@ -192,7 +216,6 @@
     .image-container {
         height: 140px;
     }
-
 }
 
 @media screen and (max-width: 400px) {
@@ -207,6 +230,9 @@
     }
     .image-container {
         height: 130px;
+    }
+    .date-style {
+        font-size: 6px;
     }
 }
 
@@ -253,4 +279,15 @@
 .article-style:active {
     background-color: rgba(162, 168, 168,0.5); /* Change background color to light gray */
     transition: background-color 0.1s ease;
+}
+
+.date-style {
+    font-family:"InconsolataRegular",sans-serif;
+    color:lightgrey;
+    transition:color 0.2s ease;
+}
+
+.article-style:hover .date-style {
+    color:black;
+    transition:color 0.2s ease;
 }
