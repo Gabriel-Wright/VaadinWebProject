@@ -2,18 +2,9 @@ package com.gabeWebTest.webTest.views.dashboard;
 
 import com.gabeWebTest.webTest.data.Tag;
 import com.gabeWebTest.webTest.services.TagService;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
-import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
-import com.vaadin.flow.data.provider.DataKeyMapper;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.renderer.Renderer;
-import com.vaadin.flow.data.renderer.Rendering;
-import com.vaadin.flow.dom.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +20,7 @@ public class TagFilter {
     private Set<Tag> selectedTags;
     private final String label = "Filter by topic";
 
+    private TagFilterListener tagFilterListener;
     //Needed to update articles within
 //    private ArticlePreviewDisplay articleDisplay;
 
@@ -37,6 +29,10 @@ public class TagFilter {
         selectedTags = new HashSet<>();
         this.tagService = tagService;
 //        this.articleDisplay = articleDisplay;
+    }
+
+    public void setTagFilterListener(TagFilterListener listener) {
+        this.tagFilterListener = listener;
     }
 
     public Set<Tag> getSelectedTags() {
@@ -64,8 +60,11 @@ public class TagFilter {
         // Add listener to the filter dropdown
         filterDropDown.addValueChangeListener(event -> {
             //set selected tags to these
-            Set<Tag> selectedTags = event.getValue();
-            updateDisplayedArticles();
+            selectedTags = event.getValue();
+            System.out.println(selectedTags.toString());
+            if(tagFilterListener !=null) {
+                tagFilterListener.onTagFilterChanged(selectedTags);
+            }
         });
 
         return filterDropDown;
@@ -74,12 +73,4 @@ public class TagFilter {
     private Renderer<Tag> createRenderer() {
         return new ComponentRenderer<>(Tag::createTagComponent);
     }
-
-    private void updateDisplayedArticles() {
-        //Filter articles based on selected tags
-        //WebPageService.findByTags(selectedTags);
-        //Update display with filtered articles
-        //updateArticleDisplay(filteredArticles);
-    }
-
 }

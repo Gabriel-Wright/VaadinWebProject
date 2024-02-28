@@ -2,17 +2,11 @@ package com.gabeWebTest.webTest.views.dashboard;
 
 import com.gabeWebTest.webTest.data.Tag;
 import com.gabeWebTest.webTest.data.WebPage;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Text;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.shared.Tooltip;
@@ -30,13 +24,14 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         super(componentSupplier);
     }
 
+    private HorizontalLayout layout;
     @Override
     public HorizontalLayout createComponent(WebPage item) {
         // Create components to represent a single item
         Image image = loadWebPagePreviewImage(item);
         VerticalLayout verticalText = loadWebPageVerticalText(item);
 
-        HorizontalLayout layout = new HorizontalLayout(verticalText, image);
+        layout = new HorizontalLayout(verticalText, image);
         layout.setPadding(false);
         layout.setSpacing(false);
         layout.setWidthFull();
@@ -46,7 +41,7 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         layout.expand(verticalText);
 
         layout.addClassName("article-style");
-
+//        layout.addClassName("fade-out");
         return layout;
     }
 
@@ -128,5 +123,9 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
                 withPosition(Tooltip.TooltipPosition.BOTTOM);
 
         return articleDate;
+    }
+
+    public HorizontalLayout getLayout() {
+        return layout;
     }
 }

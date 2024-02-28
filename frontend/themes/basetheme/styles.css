@@ -241,6 +241,18 @@
       padding: 10px;
       border-radius:5px;
       transition: background-color 0.5s ease;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+}
+
+.article-style.fade-out {
+    opacity:0;
+    transition:opacity 0.5s ease;
+}
+
+.article-style.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease;
 }
 /* Apply grayscale filter to the image by default */
 .image-container {
