@@ -3,6 +3,7 @@ package com.gabeWebTest.webTest.views.dashboard;
 import com.gabeWebTest.webTest.data.Tag;
 import com.gabeWebTest.webTest.data.WebPage;
 import com.gabeWebTest.webTest.services.WebPageService;
+import com.nimbusds.jose.shaded.gson.Gson;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -11,6 +12,7 @@ import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.virtuallist.VirtualList;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -80,6 +82,12 @@ public class DashboardView extends AppLayout implements TagFilterListener{
         return divider;
     }
 
+
+    //Check whether webPages are the same as previously - if  they are then leave it
+    //If not the same - fade out previous loaded pages.
+    //Set new pages
+    //Fade in new pages
+
     private void updateArticles() {
         List<WebPage> webPages;
         Set<Tag> selectedTags = tagFilter.getSelectedTags();
@@ -90,27 +98,31 @@ public class DashboardView extends AppLayout implements TagFilterListener{
         }
 
         // Set the className of the list to "fade-out"
-        list.getElement().executeJs("this.style.transition = 'opacity 0.5s'; this.style.opacity = '0';");
-
-        // Set a timeout to update the items and change the className back to "fade-in" after 500 milliseconds
-        UI.getCurrent().getPage().executeJs("setTimeout(function() { "
-                + "var list = document.querySelector('vaadin-virtual-list'); "
-                + "list.style.opacity = '1'; "
-                + "list.style.transition = 'opacity 0.5s';"
-                + "}, 500);");
-
-        // After a delay, set the new items
-        UI.getCurrent().getPage().executeJs("setTimeout(function() { "
-                + "var list = document.querySelector('vaadin-virtual-list'); "
-                + "list.render();"
-                + "}, 500);");
-
+        //Updates element of the list
         list.setItems(webPages);
+
+        UI.getCurrent().getPage().executeJs(
+                "function fadeOutElementAndNotifyServer() {\n" +
+                        "    // Send request to server\n" +
+                        "    fetch('/handleFadeOutCompletion', {\n" +
+                        "        method: 'POST',\n" +
+                        "        headers: {\n" +
+                        "            'Content-Type': 'application/json'\n" +
+                        "        }\n" +
+                        "    });\n" +
+                        "}\n" +
+                        "fadeOutElementAndNotifyServer();"
+        );
+
     }
 
 
+    public static void handleFadeOutCompletion() {
+        System.out.println("Please work god");
+    }
     @Override
     public void onTagFilterChanged(Set<Tag> selectedTags) {
         updateArticles();
     }
+
 }

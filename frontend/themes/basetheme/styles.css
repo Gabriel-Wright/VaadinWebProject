@@ -303,3 +303,8 @@
     color:black;
     transition:color 0.2s ease;
 }
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}

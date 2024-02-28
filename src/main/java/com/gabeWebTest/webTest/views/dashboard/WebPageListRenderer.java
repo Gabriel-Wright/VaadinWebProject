@@ -41,7 +41,6 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         layout.expand(verticalText);
 
         layout.addClassName("article-style");
-//        layout.addClassName("fade-out");
         return layout;
     }
 

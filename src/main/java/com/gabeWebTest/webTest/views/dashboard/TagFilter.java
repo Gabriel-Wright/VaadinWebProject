@@ -2,7 +2,9 @@ package com.gabeWebTest.webTest.views.dashboard;
 
 import com.gabeWebTest.webTest.data.Tag;
 import com.gabeWebTest.webTest.services.TagService;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.renderer.Renderer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,7 @@ public class TagFilter {
         return selectedTags;
     }
 
-    public MultiSelectComboBox<Tag> createTagFilterDropDown() {
+    public HorizontalLayout createTagFilterDropDown() {
         // Get all tags from TagService
         List<Tag> tags = tagService.findAllTags();
 
@@ -57,17 +59,21 @@ public class TagFilter {
 //
 
         filterDropDown.setAutoExpand(MultiSelectComboBox.AutoExpandMode.BOTH);
-        // Add listener to the filter dropdown
-        filterDropDown.addValueChangeListener(event -> {
-            //set selected tags to these
-            selectedTags = event.getValue();
-            System.out.println(selectedTags.toString());
-            if(tagFilterListener !=null) {
+        // Add listener to the filter dropdown - switching this to a confirm button
+        // Create a button for confirming the selection
+        Button confirmButton = new Button("Confirm");
+        confirmButton.addClickListener(event -> {
+             selectedTags = filterDropDown.getValue();
+//            System.out.println(selectedTags.toString());
+            if (tagFilterListener != null) {
                 tagFilterListener.onTagFilterChanged(selectedTags);
             }
         });
 
-        return filterDropDown;
+        // Create a layout to hold the dropdown and the confirm button
+        HorizontalLayout layout = new HorizontalLayout(filterDropDown, confirmButton);
+
+        return layout;
     }
 
     private Renderer<Tag> createRenderer() {
