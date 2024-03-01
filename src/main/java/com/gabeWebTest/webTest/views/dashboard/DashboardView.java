@@ -2,9 +2,10 @@ package com.gabeWebTest.webTest.views.dashboard;
 
 import com.gabeWebTest.webTest.data.Tag;
 import com.gabeWebTest.webTest.data.WebPage;
+import com.gabeWebTest.webTest.services.FadeOutCompletionEvent;
 import com.gabeWebTest.webTest.services.WebPageService;
 import com.nimbusds.jose.shaded.gson.Gson;
-import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -17,6 +18,8 @@ import com.vaadin.flow.component.virtuallist.VirtualList;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
@@ -29,17 +32,21 @@ public class DashboardView extends AppLayout implements TagFilterListener{
     private final NavigationBar navigationBar;
     private final MainDrawer mainDrawer;
     private final WebPageService webPageService;
+    private final DashboardUIChangeListener dashboardUIChangeListener;
 
     //These are needed for displaying suitable articles based on filters, and loading the new articles when necessary.
+    private List<WebPage> selectedWebPages;
     private VirtualList<WebPage> list;
 
     @Autowired
-    public DashboardView(TagFilter tagFilter, NavigationBar navigationBar, MainDrawer mainDrawer, WebPageService webPageService) {
+    public DashboardView(TagFilter tagFilter, NavigationBar navigationBar, MainDrawer mainDrawer, WebPageService webPageService, DashboardUIChangeListener dashboardUIChangeListener) {
         this.tagFilter = tagFilter;
         this.navigationBar = navigationBar;
         this.mainDrawer = mainDrawer;
         this.webPageService = webPageService;
+        this.dashboardUIChangeListener = dashboardUIChangeListener;
 
+        dashboardUIChangeListener.setDashboardView(this);
         DrawerToggle toggle = new DrawerToggle();
         addToNavbar(navigationBar.createNavBarContent(toggle));
         addToDrawer(mainDrawer.createDrawerContent());
@@ -48,11 +55,14 @@ public class DashboardView extends AppLayout implements TagFilterListener{
 
         //Here is where I would have articleDisplayAdded
         list = new VirtualList<>();
-//        list.setItems(webPageService.findAllWebPages());
+        list.getStyle().set("opacity","1");
+        list.getStyle().set("transition","opacity 0.5s ease");
+        list.setItems(webPageService.findAllWebPages());
+        System.out.println(webPageService.findAllWebPages());
         list.setRenderer(new WebPageListRenderer(HorizontalLayout::new));
         list.setHeightFull();
 
-        updateArticles();
+//        updateArticles();
 
         VerticalLayout content = new VerticalLayout();
         content.setSizeFull(); // Set the size to fill the entire available space
@@ -89,17 +99,18 @@ public class DashboardView extends AppLayout implements TagFilterListener{
     //Fade in new pages
 
     private void updateArticles() {
-        List<WebPage> webPages;
         Set<Tag> selectedTags = tagFilter.getSelectedTags();
         if (selectedTags.isEmpty()) {
-            webPages = webPageService.findAllWebPages();
+            selectedWebPages = webPageService.findAllWebPages();
         } else {
-            webPages = webPageService.findWebPagesByTags(new ArrayList<>(selectedTags));
+            selectedWebPages = webPageService.findWebPagesByTags(new ArrayList<>(selectedTags));
         }
 
         // Set the className of the list to "fade-out"
         //Updates element of the list
-        list.setItems(webPages);
+        list.getStyle().set("opacity","0");
+        list.getStyle().set("transition","opacity ease 0.5s");
+//        list.setItems(selectedWebPages);
 
         UI.getCurrent().getPage().executeJs(
                 "function fadeOutElementAndNotifyServer() {\n" +
@@ -111,14 +122,29 @@ public class DashboardView extends AppLayout implements TagFilterListener{
                         "        }\n" +
                         "    });\n" +
                         "}\n" +
-                        "fadeOutElementAndNotifyServer();"
+                        "setTimeout(fadeOutElementAndNotifyServer, 500);"
         );
 
     }
 
+    public void handleFadeOutCompletion() {
+        // Ensure that the UI access is done within UI.access()
+    }
 
-    public static void handleFadeOutCompletion() {
-        System.out.println("Please work god");
+    @EventListener
+    public void handleFadeOutCompletion(FadeOutCompletionEvent event) {
+        System.out.println("DashboardView listens");
+        //        list.setItems(selectedWebPages);
+//        list.getStyle().set("opacity","1");
+//        list.getStyle().set("transition","opacity 0.5s ease");
+    }
+
+    public void testSound() {
+        getUI().ifPresent(ui -> ui.access(() -> {
+            list.setItems(selectedWebPages);
+            list.getStyle().set("opacity","1");
+            list.getStyle().set("transition","opacity 0.5s ease");
+        }));
     }
     @Override
     public void onTagFilterChanged(Set<Tag> selectedTags) {
