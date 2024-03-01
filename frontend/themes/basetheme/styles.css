@@ -240,9 +240,8 @@
       overflow: hidden;
       padding: 10px;
       border-radius:5px;
+      background-color: rgba(0, 0, 0, 0); /* Completely transparent black */
       transition: background-color 0.5s ease;
-      opacity: 1;
-      transition: opacity 0.5s ease;
 }
 
 .article-style.fade-out {

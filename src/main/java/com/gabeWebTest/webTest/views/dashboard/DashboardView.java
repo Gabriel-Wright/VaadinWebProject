@@ -2,29 +2,26 @@ package com.gabeWebTest.webTest.views.dashboard;
 
 import com.gabeWebTest.webTest.data.Tag;
 import com.gabeWebTest.webTest.data.WebPage;
-import com.gabeWebTest.webTest.services.FadeOutCompletionEvent;
 import com.gabeWebTest.webTest.services.WebPageService;
-import com.nimbusds.jose.shaded.gson.Gson;
-import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.dependency.JavaScript;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.virtuallist.VirtualList;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Route("")
 @PageTitle("Dashboard")
+@JavaScript("js/custom.js")
 public class DashboardView extends AppLayout implements TagFilterListener{
 
     private H1 viewTitle;
@@ -32,14 +29,14 @@ public class DashboardView extends AppLayout implements TagFilterListener{
     private final NavigationBar navigationBar;
     private final MainDrawer mainDrawer;
     private final WebPageService webPageService;
-    private final DashboardUIChangeListener dashboardUIChangeListener;
+    private final UIChangeEventListener dashboardUIChangeListener;
 
     //These are needed for displaying suitable articles based on filters, and loading the new articles when necessary.
     private List<WebPage> selectedWebPages;
     private VirtualList<WebPage> list;
 
     @Autowired
-    public DashboardView(TagFilter tagFilter, NavigationBar navigationBar, MainDrawer mainDrawer, WebPageService webPageService, DashboardUIChangeListener dashboardUIChangeListener) {
+    public DashboardView(TagFilter tagFilter, NavigationBar navigationBar, MainDrawer mainDrawer, WebPageService webPageService, UIChangeEventListener dashboardUIChangeListener) {
         this.tagFilter = tagFilter;
         this.navigationBar = navigationBar;
         this.mainDrawer = mainDrawer;
@@ -53,35 +50,11 @@ public class DashboardView extends AppLayout implements TagFilterListener{
         addToDrawer(createDivider());
         addToDrawer(tagFilter.createTagFilterDropDown());
 
-        //Here is where I would have articleDisplayAdded
-        list = new VirtualList<>();
-        list.getStyle().set("opacity","1");
-        list.getStyle().set("transition","opacity 0.5s ease");
-        list.setItems(webPageService.findAllWebPages());
-        System.out.println(webPageService.findAllWebPages());
-        list.setRenderer(new WebPageListRenderer(HorizontalLayout::new));
-        list.setHeightFull();
+        initialiseVirtualListView();
+        initialiseContentView();
 
-//        updateArticles();
-
-        VerticalLayout content = new VerticalLayout();
-        content.setSizeFull(); // Set the size to fill the entire available space
-        content.add(list);
-        content.setAlignItems(FlexComponent.Alignment.CENTER);
-        setContent(content);
 
         tagFilter.setTagFilterListener(this);
-
-//        // Create a FlexLayout to contain the content
-//        FlexLayout flexLayout = new FlexLayout();
-//        flexLayout.setSizeFull();
-//        flexLayout.setFlexDirection(FlexLayout.FlexDirection.COLUMN);
-//        flexLayout.setAlignItems(FlexComponent.Alignment.STRETCH);
-//        flexLayout.add(content);
-//
-//        // Set the content of the AppLayout
-//        setContent(flexLayout);
-
     }
 
 
@@ -92,60 +65,83 @@ public class DashboardView extends AppLayout implements TagFilterListener{
         return divider;
     }
 
+    private void initialiseContentView() {
+        VerticalLayout content = new VerticalLayout();
+        content.setSizeFull(); // Set the size to fill the entire available space
+        content.add(list);
+        content.setAlignItems(FlexComponent.Alignment.CENTER);
+        setContent(content);
+    }
+
+    private void initialiseVirtualListView() {
+        //Here is where I would have articleDisplayAdded
+        list = new VirtualList<>();
+//        list.getStyle().set("opacity","1");
+//        list.getStyle().set("transition","opacity 0.5s ease");
+        selectedWebPages = webPageService.findAllWebPages();
+        list.setItems(selectedWebPages);
+        list.setRenderer(new WebPageListRenderer(HorizontalLayout::new));
+        list.setHeightFull();
+    }
 
     //Check whether webPages are the same as previously - if  they are then leave it
     //If not the same - fade out previous loaded pages.
-    //Set new pages
-    //Fade in new pages
+    //Call javascript function which has a callback once articles are faded out - to fade in new articles
 
     private void updateArticles() {
         Set<Tag> selectedTags = tagFilter.getSelectedTags();
+        List<WebPage> newWebPageSelection;
         if (selectedTags.isEmpty()) {
-            selectedWebPages = webPageService.findAllWebPages();
+            newWebPageSelection = webPageService.findAllWebPages();
         } else {
-            selectedWebPages = webPageService.findWebPagesByTags(new ArrayList<>(selectedTags));
+            newWebPageSelection = webPageService.findWebPagesByTags(new ArrayList<>(selectedTags));
         }
 
-        // Set the className of the list to "fade-out"
-        //Updates element of the list
+        if(!updateNecessary(newWebPageSelection)) {
+            return;
+        }
+
+        selectedWebPages = newWebPageSelection;
+        fadeOutVirtualList();
+    }
+
+    //If newWebPageSelection is not the same as selectedWebPages then it is necessary if not then it isnt
+    private boolean updateNecessary(List<WebPage> newWebPageSelection) {
+        return !newWebPageSelection.equals(selectedWebPages);
+    }
+
+
+    private void fadeOutVirtualList() {
+        //Fade out old list
         list.getStyle().set("opacity","0");
         list.getStyle().set("transition","opacity ease 0.5s");
-//        list.setItems(selectedWebPages);
 
-        UI.getCurrent().getPage().executeJs(
-                "function fadeOutElementAndNotifyServer() {\n" +
-                        "    // Send request to server\n" +
-                        "    fetch('/handleFadeOutCompletion', {\n" +
-                        "        method: 'POST',\n" +
-                        "        headers: {\n" +
-                        "            'Content-Type': 'application/json'\n" +
-                        "        }\n" +
-                        "    });\n" +
-                        "}\n" +
-                        "setTimeout(fadeOutElementAndNotifyServer, 500);"
-        );
-
+        //Execute javaScript to get callback on fadein and set new list once 500 milliseconds pass
+//        UI.getCurrent().getPage().executeJs(
+//                "function fadeOutElementAndNotifyServer() {\n" +
+//                        "    // Send request to server\n" +
+//                        "    fetch('/handleFadeOutCompletion', {\n" +
+//                        "        method: 'POST',\n" +
+//                        "        headers: {\n" +
+//                        "            'Content-Type': 'application/json'\n" +
+//                        "        }\n" +
+//                        "    });\n" +
+//                        "}\n" +
+//                        "setTimeout(fadeOutElementAndNotifyServer, 500);"
+//        );
+        UI.getCurrent().getPage().executeJs("fadeOutElementAndNotifyServer();");
     }
 
-    public void handleFadeOutCompletion() {
-        // Ensure that the UI access is done within UI.access()
-    }
-
-    @EventListener
-    public void handleFadeOutCompletion(FadeOutCompletionEvent event) {
-        System.out.println("DashboardView listens");
-        //        list.setItems(selectedWebPages);
-//        list.getStyle().set("opacity","1");
-//        list.getStyle().set("transition","opacity 0.5s ease");
-    }
-
-    public void testSound() {
+    //Lock UI thread to then set new webpages and set opacity style
+    public void fadeInNewList() {
         getUI().ifPresent(ui -> ui.access(() -> {
             list.setItems(selectedWebPages);
             list.getStyle().set("opacity","1");
             list.getStyle().set("transition","opacity 0.5s ease");
         }));
     }
+
+    //If TagFilters changed then updateArticles
     @Override
     public void onTagFilterChanged(Set<Tag> selectedTags) {
         updateArticles();

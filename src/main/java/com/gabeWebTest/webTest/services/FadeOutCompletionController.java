@@ -17,7 +17,7 @@ public class FadeOutCompletionController {
     public FadeOutCompletionController(ApplicationEventPublisher eventPublisher) {
         this.eventPublisher = eventPublisher;
     }
-
+    //This is used to call out a FadeOutCompletionEvent - needed for allowing the articles to fade in after initially fading out
     @PostMapping("/handleFadeOutCompletion")
     @ResponseBody
     public String handleFadeOutCompletion() {

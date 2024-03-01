@@ -22,18 +22,13 @@ public class TagFilter {
 
     private TagService tagService;
     private Set<Tag> selectedTags;
-    private final String label = "Filter by topic";
-    int numListens =0;
 
     private TagFilterListener tagFilterListener;
-    //Needed to update articles within
-//    private ArticlePreviewDisplay articleDisplay;
 
     @Autowired
     public TagFilter(TagService tagService){
         selectedTags = new HashSet<>();
         this.tagService = tagService;
-//        this.articleDisplay = articleDisplay;
     }
 
     public void setTagFilterListener(TagFilterListener listener) {
@@ -65,29 +60,12 @@ public class TagFilter {
         });
 
         filterDropDown.setAutoExpand(MultiSelectComboBox.AutoExpandMode.BOTH);
-        // Add listener to the filter dropdown - switching this to a confirm button
-//        // Create a button for confirming the selection
-//        Button confirmButton = new Button("Confirm");
-//        confirmButton.addClickListener(event -> {
-//             selectedTags = filterDropDown.getValue();
-////            System.out.println(selectedTags.toString());
-//            if (tagFilterListener != null) {
-//                tagFilterListener.onTagFilterChanged(selectedTags);
-//            }
-//        });
-
 
         return filterDropDown;
     }
 
     private Renderer<Tag> createRenderer() {
         return new ComponentRenderer<>(Tag::createTagComponent);
-    }
-
-    @EventListener
-    public void handleFadeOutCompletion(FadeOutCompletionEvent event) {
-        numListens++;
-        System.out.println("Taglistener listened:"+numListens);
     }
 
 }

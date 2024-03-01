@@ -5,7 +5,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DashboardUIChangeListener {
+public class UIChangeEventListener {
 
     private DashboardView dashboardView;
 
@@ -15,7 +15,7 @@ public class DashboardUIChangeListener {
 
     @EventListener
     public void handleFadeOutCompletion(FadeOutCompletionEvent event) {
-        dashboardView.testSound();
+        dashboardView.fadeInNewList();
     }
 
 }
