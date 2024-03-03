@@ -15,6 +15,7 @@ public class MainDrawer extends DrawerToggle{
 
     public com.vaadin.flow.component.Component createDrawerContent() {
         Div drawerContent = new Div();
+        drawerContent.addClassName("drawer-content");
         drawerContent.add(new SideNavItem("Home", "/", VaadinIcon.HOME.create()));
         drawerContent.add(new SideNavItem("Random article", "/", VaadinIcon.RANDOM.create()));
 

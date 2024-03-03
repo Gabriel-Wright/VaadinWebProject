@@ -3,12 +3,16 @@ package com.gabeWebTest.webTest.views.dashboard;
 import com.gabeWebTest.webTest.data.Tag;
 import com.gabeWebTest.webTest.data.WebPage;
 import com.gabeWebTest.webTest.services.WebPageService;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -45,6 +49,7 @@ public class DashboardView extends AppLayout implements TagFilterListener{
 
         dashboardUIChangeListener.setDashboardView(this);
         DrawerToggle toggle = new DrawerToggle();
+
         addToNavbar(navigationBar.createNavBarContent(toggle));
         addToDrawer(mainDrawer.createDrawerContent());
         addToDrawer(createDivider());
@@ -53,6 +58,7 @@ public class DashboardView extends AppLayout implements TagFilterListener{
         initialiseVirtualListView();
         initialiseContentView();
 
+        setPrimarySection(Section.DRAWER);
 
         tagFilter.setTagFilterListener(this);
     }
@@ -69,6 +75,11 @@ public class DashboardView extends AppLayout implements TagFilterListener{
         VerticalLayout content = new VerticalLayout();
         content.setSizeFull(); // Set the size to fill the entire available space
         content.add(list);
+//        DrawerToggle toggle = new DrawerToggle();
+//        Icon icon = new Icon(VaadinIcon.ARROW_DOWN);
+//        toggle.setIcon(icon);
+////        toggle.getStyle().set("position","fixed");
+//        content.add(toggle);
         content.setAlignItems(FlexComponent.Alignment.CENTER);
         setContent(content);
     }
