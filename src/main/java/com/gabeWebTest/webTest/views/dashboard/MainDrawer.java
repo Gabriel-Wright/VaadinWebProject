@@ -20,9 +20,10 @@ public class MainDrawer {
 
         SideNav drawerContent = new SideNav();
 //        drawerContent.addClassName("drawer-buttons");
-        drawerContent.addItemAsFirst(createSideNavButton("Home", "/", VaadinIcon.HOME));
+        drawerContent.addItemAsFirst(createSideNavButton("Main view", "/", VaadinIcon.HOME));
         drawerContent.addItem(createSideNavButton("Random article","/", VaadinIcon.RANDOM));
-
+        drawerContent.addItem(createSideNavButton("What is this site?", "/",null));
+        drawerContent.addItem(createSideNavButton("About me", "/", null));
 //        // Create a divider to visually separate the top and bottom sections of the drawer
 //        Div divider = new Div();
 //        divider.setHeight("50%"); // Adjust the height as needed

@@ -336,13 +336,16 @@
 .dashboard-layout {
 }
 
+vaadin-side-nav-item.drawer {
+    background-color:transparent;
+}
 
 vaadin-side-nav-item.drawer::part(link) {
     font-family: "InconsolataRegular",sans-serif;
     color: #ffffff;
-    background-color:#transparent;
-    transition: background-color 0.2s ease;
-    font-size: 20px; /* Adjust font size as needed */
+/*    background-color:#transparent;
+    transition: background-color 0.2s ease; */
+    font-size: 22px; /* Adjust font size as needed */
     padding: 15px 20px; /* Adjust padding as needed */
 }
 
@@ -351,3 +354,35 @@ vaadin-side-nav-item.drawer::part(link):hover {
     background-color: rgba(235, 231, 223,0.1);
     transition: background-color 0.2s ease;
 }
+
+vaadin-multi-select-combo-box.custom-multiselect::part(label){
+    color:#ffffff;
+    font-family: "InconsolataRegular",sans-serif;
+    font-size: 20px;
+}
+
+vaadin-multi-select-combo-box.custom-multiselect::part(input-field) {
+    background-color: #5b7369;
+}
+
+vaadin-multi-select-combo-box-chip::part(label) {
+    font-size:17px;
+    font-family: "InconsolataRegular",sans-serif;
+    color: #ffffff;
+}
+
+vaadin-multi-select-combo-box-chip {
+    background-color:;
+}
+vaadin-multi-select-combo-box-overlay::part(overlay) {
+    background-color:#000000;
+}
+
+vaadin-multi-select-combo-box-item::part(checkmark) {
+    color:#ffffff;
+}
+
+vaadin-multi-select-combo-box-item[selected] {
+    color:#ffffff;
+}
+

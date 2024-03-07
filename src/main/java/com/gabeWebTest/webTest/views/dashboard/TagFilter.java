@@ -44,6 +44,7 @@ public class TagFilter {
         List<Tag> tags = tagService.findAllTags();
 
         MultiSelectComboBox<Tag> filterDropDown = new MultiSelectComboBox<>();
+        filterDropDown.addClassName("custom-multiselect");
         filterDropDown.setLabel("Filter by topic");
         filterDropDown.setItemLabelGenerator(Tag::getTagName);
         filterDropDown.setItems(tags);
