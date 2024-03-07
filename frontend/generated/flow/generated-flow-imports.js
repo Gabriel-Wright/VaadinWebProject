@@ -1,14 +1,14 @@
 import '@vaadin/polymer-legacy-adapter/style-modules.js';
 import '@vaadin/app-layout/theme/lumo/vaadin-app-layout.js';
-import '@vaadin/button/theme/lumo/vaadin-button.js';
-import 'Frontend/generated/jar-resources/buttonFunctions.js';
-import '@vaadin/app-layout/theme/lumo/vaadin-drawer-toggle.js';
 import 'Frontend/generated/jar-resources/lit-renderer.ts';
 import 'Frontend/generated/jar-resources/flow-component-renderer.js';
 import '@vaadin/common-frontend/ConnectionIndicator.js';
 import '@vaadin/accordion/theme/lumo/vaadin-accordion.js';
 import '@vaadin/details/theme/lumo/vaadin-details.js';
 import '@vaadin/accordion/theme/lumo/vaadin-accordion-panel.js';
+import '@vaadin/button/theme/lumo/vaadin-button.js';
+import 'Frontend/generated/jar-resources/buttonFunctions.js';
+import '@vaadin/app-layout/theme/lumo/vaadin-drawer-toggle.js';
 import '@vaadin/avatar/theme/lumo/vaadin-avatar.js';
 import '@vaadin/avatar-group/theme/lumo/vaadin-avatar-group.js';
 import '@vaadin/checkbox/theme/lumo/vaadin-checkbox.js';

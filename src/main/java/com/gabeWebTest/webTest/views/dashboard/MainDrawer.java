@@ -3,7 +3,10 @@ package com.gabeWebTest.webTest.views.dashboard;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
+import org.hibernate.metamodel.mapping.ForeignKeyDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,13 +14,14 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class MainDrawer extends DrawerToggle{
+public class MainDrawer {
 
     public com.vaadin.flow.component.Component createDrawerContent() {
-        Div drawerContent = new Div();
-        drawerContent.addClassName("drawer-content");
-        drawerContent.add(new SideNavItem("Home", "/", VaadinIcon.HOME.create()));
-        drawerContent.add(new SideNavItem("Random article", "/", VaadinIcon.RANDOM.create()));
+
+        SideNav drawerContent = new SideNav();
+//        drawerContent.addClassName("drawer-buttons");
+        drawerContent.addItemAsFirst(createSideNavButton("Home", "/", VaadinIcon.HOME));
+        drawerContent.addItem(createSideNavButton("Random article","/", VaadinIcon.RANDOM));
 
 //        // Create a divider to visually separate the top and bottom sections of the drawer
 //        Div divider = new Div();
@@ -25,5 +29,11 @@ public class MainDrawer extends DrawerToggle{
 //        drawerContent.add(divider);
 
         return drawerContent;
+    }
+
+    private SideNavItem createSideNavButton(String name, String path, VaadinIcon icon) {
+        SideNavItem sideNavItem = new SideNavItem(name, path);
+        sideNavItem.setClassName("drawer");
+        return sideNavItem;
     }
 }

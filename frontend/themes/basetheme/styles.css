@@ -11,13 +11,13 @@
     height: auto;  /* Allow the height to scale proportionally */
 }
 
-.hyperlink-padding {
+/*.hyperlink-padding {
     background-color: transparent;
     border: 1px solid grey;
     border-radius: 5px;
     padding: 5px;
     transition: background-color 0.3s ease;
-}
+} */
 
 .linkedin-button:hover {
     background-color: lightgrey;
@@ -35,9 +35,9 @@
 }
 /* custom-multiselect-combobox.css */
 /* Define a custom property for text color */
-:host {
+/*:host {
     --tag-text-color: var(--vaadin-input-field-label-color); /* Default text color */
-}
+/*}
 
 /* Styling for individual dropdown items */
 [part="items"] ::slotted(vaadin-combo-box-item) {
@@ -326,5 +326,28 @@
 
 .drawer-toggle:active {
     background-color: rgba(162, 168, 168,0.5);
+    transition: background-color 0.2s ease;
+}
+
+.dashboard-layout::part(drawer) {
+    background-color: #628074;
+}
+
+.dashboard-layout {
+}
+
+
+vaadin-side-nav-item.drawer::part(link) {
+    font-family: "InconsolataRegular",sans-serif;
+    color: #ffffff;
+    background-color:#transparent;
+    transition: background-color 0.2s ease;
+    font-size: 20px; /* Adjust font size as needed */
+    padding: 15px 20px; /* Adjust padding as needed */
+}
+
+
+vaadin-side-nav-item.drawer::part(link):hover {
+    background-color: rgba(235, 231, 223,0.1);
     transition: background-color 0.2s ease;
 }

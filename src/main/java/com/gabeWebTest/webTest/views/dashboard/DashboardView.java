@@ -41,6 +41,8 @@ public class DashboardView extends AppLayout implements TagFilterListener{
 
     @Autowired
     public DashboardView(TagFilter tagFilter, NavigationBar navigationBar, MainDrawer mainDrawer, WebPageService webPageService, UIChangeEventListener dashboardUIChangeListener) {
+        addClassName("dashboard-layout");
+
         this.tagFilter = tagFilter;
         this.navigationBar = navigationBar;
         this.mainDrawer = mainDrawer;
@@ -49,7 +51,6 @@ public class DashboardView extends AppLayout implements TagFilterListener{
 
         dashboardUIChangeListener.setDashboardView(this);
         DrawerToggle toggle = new DrawerToggle();
-
         addToNavbar(navigationBar.createNavBarContent(toggle));
         addToDrawer(mainDrawer.createDrawerContent());
         addToDrawer(createDivider());
