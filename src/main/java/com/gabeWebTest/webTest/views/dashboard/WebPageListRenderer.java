@@ -2,6 +2,8 @@ package com.gabeWebTest.webTest.views.dashboard;
 
 import com.gabeWebTest.webTest.data.Tag;
 import com.gabeWebTest.webTest.data.WebPage;
+import com.gabeWebTest.webTest.views.article.ArticleView;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
@@ -12,11 +14,12 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.function.SerializableSupplier;
+import com.vaadin.flow.router.QueryParameters;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Set;
+import java.util.*;
 
 public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, WebPage> {
 
@@ -41,6 +44,12 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         layout.expand(verticalText);
 
         layout.addClassName("article-style");
+
+        layout.addClickListener(event -> {
+            Map<String, String> parameters = new HashMap<>();
+            parameters.put("webPageId", String.valueOf(item.getId()));
+            UI.getCurrent().navigate(ArticleView.class, QueryParameters.simple(parameters));
+        });
         return layout;
     }
 

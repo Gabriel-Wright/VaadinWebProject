@@ -4,6 +4,7 @@ import com.gabeWebTest.webTest.data.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WebPageService {
@@ -24,5 +25,11 @@ public class WebPageService {
 
     public List<WebPage> findWebPagesByTagsOrderedByDateDesc(List<Tag> tags) {
         return webPageRepository.findByTagsInOrderByDatesTimeCreatedDesc(tags);
+    }
+
+
+    //Will not receieve a webPage if id is null
+    public Optional<WebPage> findWebPageById(long id) {
+        return webPageRepository.findById(id);
     }
 }
