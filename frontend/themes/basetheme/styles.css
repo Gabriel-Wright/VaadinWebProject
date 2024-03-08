@@ -386,3 +386,12 @@ vaadin-multi-select-combo-box-item[selected] {
     color:#ffffff;
 }
 
+.articlelist-style::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar in WebKit browsers (e.g., Chrome, Safari) */
+}
+
+.articlelist-style {
+    scrollbar-width: none; /* Hide the scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hide the scrollbar in Internet Explorer */
+    overflow-y: scroll; /* Ensure the element is scrollable even without a visible scrollbar */
+}

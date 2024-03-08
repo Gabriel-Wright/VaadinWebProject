@@ -94,6 +94,7 @@ public class DashboardView extends AppLayout implements TagFilterListener{
         list.setItems(selectedWebPages);
         list.setRenderer(new WebPageListRenderer(HorizontalLayout::new));
         list.setHeightFull();
+        list.addClassName("articlelist-style");
     }
 
     //Check whether webPages are the same as previously - if  they are then leave it
