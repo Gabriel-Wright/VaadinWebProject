@@ -309,12 +309,12 @@
 }
 .drawer-toggle-right {
     transform: rotate(180deg); /* Rotate element by 180 degrees */
-    transition: transform 1s ease;
+    transition: transform 0.5s ease;
 }
 
 .drawer-toggle-left {
     transform: rotate(0deg); /* Original orientation */
-    transition: transform 1s ease;
+    transition: transform 0.5s ease;
 }
 
 .drawer-toggle:hover {
@@ -333,14 +333,12 @@
     background-color: #628074;
 }
 
-.dashboard-layout {
-}
 
-vaadin-side-nav-item.drawer {
+vaadin-side-nav-item.drawer-Content {
     background-color:transparent;
 }
 
-vaadin-side-nav-item.drawer::part(link) {
+vaadin-side-nav-item.drawer-Content::part(link) {
     font-family: "InconsolataRegular",sans-serif;
     color: #ffffff;
 /*    background-color:#transparent;
@@ -350,7 +348,7 @@ vaadin-side-nav-item.drawer::part(link) {
 }
 
 
-vaadin-side-nav-item.drawer::part(link):hover {
+vaadin-side-nav-item.drawer-Content::part(link):hover {
     background-color: rgba(235, 231, 223,0.1);
     transition: background-color 0.2s ease;
 }
@@ -371,9 +369,6 @@ vaadin-multi-select-combo-box-chip::part(label) {
     color: #ffffff;
 }
 
-vaadin-multi-select-combo-box-chip {
-    background-color:;
-}
 vaadin-multi-select-combo-box-overlay::part(overlay) {
     background-color:#000000;
 }

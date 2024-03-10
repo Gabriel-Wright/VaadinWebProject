@@ -34,7 +34,7 @@ public class MainDrawer {
 
     private SideNavItem createSideNavButton(String name, String path, VaadinIcon icon) {
         SideNavItem sideNavItem = new SideNavItem(name, path);
-        sideNavItem.setClassName("drawer");
+        sideNavItem.setClassName("drawer-Content");
         return sideNavItem;
     }
 }

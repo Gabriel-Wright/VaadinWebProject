@@ -67,7 +67,7 @@ public class DashboardView extends AppLayout implements TagFilterListener{
 
     private Div createDivider() {
         Div divider = new Div();
-        divider.setHeight("50%"); // Adjust the height as needed
+        divider.setHeight("20%"); // Adjust the height as needed
 
         return divider;
     }

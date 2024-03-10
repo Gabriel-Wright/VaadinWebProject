@@ -38,11 +38,6 @@ public class NavigationBar {
     private void setupDrawerToggle(DrawerToggle drawerToggle) {
         toggleIcon = new Icon(VaadinIcon.ANGLE_DOUBLE_RIGHT);
         toggleIcon.getStyle().set("color","black");
-        // Create a text label for the DrawerToggle
-        Span text = new Span("Filters");
-        text.getStyle().set("color", "black");
-
-//        toggleContent.setAlignItems(FlexComponent.Alignment.CENTER);
 
         // Set the content of the DrawerToggle to the horizontal layout
         drawerToggle.setIcon(toggleIcon);
