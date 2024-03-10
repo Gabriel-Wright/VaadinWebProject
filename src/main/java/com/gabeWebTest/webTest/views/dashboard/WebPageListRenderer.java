@@ -46,9 +46,7 @@ public class WebPageListRenderer extends ComponentRenderer<HorizontalLayout, Web
         layout.addClassName("article-style");
 
         layout.addClickListener(event -> {
-            Map<String, String> parameters = new HashMap<>();
-            parameters.put("webPageId", String.valueOf(item.getId()));
-            UI.getCurrent().navigate(ArticleView.class, QueryParameters.simple(parameters));
+            UI.getCurrent().navigate(ArticleView.class, item.getId());
         });
         return layout;
     }
