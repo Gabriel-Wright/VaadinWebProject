@@ -390,3 +390,17 @@ vaadin-multi-select-combo-box-item[selected] {
     -ms-overflow-style: none; /* Hide the scrollbar in Internet Explorer */
     overflow-y: scroll; /* Ensure the element is scrollable even without a visible scrollbar */
 }
+
+.article-thumbnail {
+    width: 70%;
+    margin:auto;
+}
+
+.article-title {
+    font-family:"InconsolataRegular",sans-serif;
+    color:#628073;
+    margin:auto
+}
+.linkedin-anchor {
+    width:50px;
+}

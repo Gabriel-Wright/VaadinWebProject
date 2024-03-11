@@ -1,13 +1,17 @@
 package com.gabeWebTest.webTest.views.dashboard;
 
+import com.gabeWebTest.webTest.data.Title;
+import com.gabeWebTest.webTest.data.WebPage;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Anchor;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.dom.Style;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,12 +28,31 @@ public class NavigationBar {
         setupDrawerToggle(drawerToggle);
 //        // Add the drawer toggle to the layout
         layout.add(drawerToggle);
-        addDrawerLinks(layout);
+        layout.add(createLinkedInAnchor());
         return layout;
+    }
+
+    public HorizontalLayout createNavBarContentArticle(DrawerToggle drawerToggle, WebPage webPage) {
+        HorizontalLayout layout = new HorizontalLayout();
+        setupLayout(layout);
+        setupDrawerToggle(drawerToggle);
+        layout.add(drawerToggle);
+        layout.add(createTitle(webPage));
+        layout.add(createLinkedInAnchor());
+
+        return layout;
+    }
+
+    private H2 createTitle(WebPage webPage) {
+        H2 title = new H2(webPage.getTitle());
+        title.addClassName("article-title");
+
+        return title;
     }
 
     private void setupLayout(HorizontalLayout layout) {
         layout.setId("header");
+        layout.setPadding(false);
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
         layout.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
         layout.setWidthFull();
@@ -49,10 +72,10 @@ public class NavigationBar {
         });
     }
 
-    private void addDrawerLinks(HorizontalLayout layout) {
+    private Anchor createDrawerLinks () {
         Anchor linkedINAnchor = createLinkedInAnchor();
 
-        layout.add(linkedINAnchor);
+        return linkedINAnchor;
     }
 
     private void setDrawerToggleStyle(DrawerToggle drawerToggle) {
@@ -71,7 +94,13 @@ public class NavigationBar {
         linkedInImage.addClassName("responsive-logo");
         linkedInImage.getElement().getStyle().set("max-width", "100%");
         linkedInImage.getElement().getStyle().set("height", "auto");
-        return new Anchor(this.linkedINLink, linkedInImage);
+        Anchor linkedInAnchor = new Anchor(linkedINLink, linkedInImage);
+        // Add a class to the anchor for styling (if needed)
+        linkedInAnchor.addClassName("linkedin-anchor");
+        // Set the anchor's alignment to the right
+        linkedInAnchor.getElement().getStyle().set("margin-left", "auto");
+        linkedInImage.setWidth("auto");
+        return linkedInAnchor;
     }
 
 }

@@ -29,8 +29,6 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
         this.navigationBar = navigationBar;
         this.mainDrawer = mainDrawer;
 
-        DrawerToggle toggle = new DrawerToggle();
-        addToNavbar(navigationBar.createNavBarContent(toggle));
         addToDrawer(mainDrawer.createDrawerContent());
         setPrimarySection(Section.DRAWER);
     }
@@ -38,7 +36,13 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
     @Override
     public void setParameter(BeforeEvent beforeEvent, Long aLong) {
         webPage = webPageService.findWebPageById(aLong).orElse(null);
+        loadNavBar();
         loadPage();
+    }
+
+    private void loadNavBar() {
+        DrawerToggle toggle = new DrawerToggle();
+        addToNavbar(navigationBar.createNavBarContentArticle(toggle, webPage));
     }
 
     private void loadPage() {
@@ -57,7 +61,9 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
         } else {
             image = new Image(webPage.getThumbnailPath(),webPage.getTitle());
         }
-        image.addClassName("image-container");
+
+        image.addClassName("article-thumbnail");
+
         return image;
     }
 
