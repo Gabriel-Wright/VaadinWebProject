@@ -401,6 +401,39 @@ vaadin-multi-select-combo-box-item[selected] {
     color:#628073;
     margin:auto
 }
-.linkedin-anchor {
-    width:50px;
+.linkedin-anchor, .github-anchor, .youtube-anchor {
+    padding: 5px;
+    border-radius: 5px;
+    width:45px;
+    height:auto;
+    margin-left:auto;
+    transition: background-color 0.2s ease;
+}
+
+.linkedin-anchor:hover {
+    background-color: rgba(41, 161, 227,0.1);
+    transition: background-color 0.2s ease;
+}
+
+.linkedin-anchor:active {
+    background-color:rgba(41,161,277,0.5);
+}
+
+.github-anchor:hover {
+    background-color: rgba(162, 168, 168,0.1);
+    transition: background-color 0.2s ease;
+}
+
+.github-anchor:active {
+    background-color: rgba(162,168,168,0.7);
+}
+
+.youtube-anchor:hover {
+    background-color:rgba(255,0,0,0.1);
+    transition:background-color 0.2 ease;
+}
+
+.youtube-anchor:active {
+    background-color:rgba(255,0,0,0.5);
+    transition:background-color 0.2s ease;
 }

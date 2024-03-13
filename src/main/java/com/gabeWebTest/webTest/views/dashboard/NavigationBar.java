@@ -19,6 +19,13 @@ public class NavigationBar {
 
     private final String linkedINImagePath = "img/LI-In-Bug.png";
     private final String linkedINLink = "https://www.linkedin.com/in/gabriel-wright-127b0724b/";
+
+    private final String gitHubImagePath = "img/github-mark.png";
+    private final String gitHubLink = "https://www.github.com/Gabriel-Wright";
+
+    private final String youtubeImagePath = "img/youtube_social_icon_red.png";
+    private final String youtubeLink = "https://www.youtube.com/channel/UCe7dUfsqsBkSxSgRizG9XoQ";
+
     private boolean drawToggleRight = true;
 
     private Icon toggleIcon;
@@ -28,7 +35,7 @@ public class NavigationBar {
         setupDrawerToggle(drawerToggle);
 //        // Add the drawer toggle to the layout
         layout.add(drawerToggle);
-        layout.add(createLinkedInAnchor());
+        layout.add(createDrawerLinks());
         return layout;
     }
 
@@ -38,7 +45,7 @@ public class NavigationBar {
         setupDrawerToggle(drawerToggle);
         layout.add(drawerToggle);
         layout.add(createTitle(webPage));
-        layout.add(createLinkedInAnchor());
+        layout.add(createDrawerLinks());
 
         return layout;
     }
@@ -72,10 +79,15 @@ public class NavigationBar {
         });
     }
 
-    private Anchor createDrawerLinks () {
+    private HorizontalLayout createDrawerLinks() {
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
         Anchor linkedINAnchor = createLinkedInAnchor();
+        Anchor gitHubAnchor = createGitHubAnchor();
+        Anchor youtubeAnchor = createYoutubeAnchor();
+        horizontalLayout.add(youtubeAnchor, linkedINAnchor, gitHubAnchor);
+        horizontalLayout.setAlignItems(FlexComponent.Alignment.CENTER);
 
-        return linkedINAnchor;
+        return horizontalLayout;
     }
 
     private void setDrawerToggleStyle(DrawerToggle drawerToggle) {
@@ -88,19 +100,39 @@ public class NavigationBar {
         }
     }
 
+    private Anchor createGitHubAnchor() {
+        Image gitHubImage = new Image(gitHubImagePath, "Github");
+        gitHubImage.addClassName("github-anchor");
+        Anchor gitHubAnchor = new Anchor(gitHubLink, gitHubImage);
+        gitHubAnchor.setTarget("_blank");
+        return gitHubAnchor;
+    }
+
     private Anchor createLinkedInAnchor() {
         // Add the LinkedIn image and link
         Image linkedInImage = new Image(linkedINImagePath, "LinkedIn");
-        linkedInImage.addClassName("responsive-logo");
-        linkedInImage.getElement().getStyle().set("max-width", "100%");
-        linkedInImage.getElement().getStyle().set("height", "auto");
+        linkedInImage.addClassName("linkedin-anchor");
+
+//        linkedInImage.addClassName("responsive-logo");
+//        linkedInImage.getElement().getStyle().set("max-width", "100%");
+//        linkedInImage.getElement().getStyle().set("height", "auto");
         Anchor linkedInAnchor = new Anchor(linkedINLink, linkedInImage);
+        linkedInAnchor.setTarget("_blank");
         // Add a class to the anchor for styling (if needed)
-        linkedInAnchor.addClassName("linkedin-anchor");
+//        linkedInAnchor.addClassName("linkedin-anchor");
         // Set the anchor's alignment to the right
-        linkedInAnchor.getElement().getStyle().set("margin-left", "auto");
-        linkedInImage.setWidth("auto");
+//        linkedInAnchor.getElement().getStyle().set("margin-left", "auto");
+//        linkedInImage.setWidth("auto");
         return linkedInAnchor;
+    }
+
+    private Anchor createYoutubeAnchor() {
+        Image youtubeImage = new Image(youtubeImagePath, "Youtube");
+        youtubeImage.addClassName("youtube-anchor");
+
+        Anchor youtubeAnchor = new Anchor(youtubeLink, youtubeImage);
+        youtubeAnchor.setTarget("_blank");
+        return youtubeAnchor;
     }
 
 }
