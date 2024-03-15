@@ -54,6 +54,10 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
         setContent(articleLayout);
     }
 
+    private VerticalLayout loadTitleOfArticle() {
+        return null;
+    }
+
     private Image loadThumbnail() {
         Image image;
         if(webPage.getThumbnailPath()==null) {

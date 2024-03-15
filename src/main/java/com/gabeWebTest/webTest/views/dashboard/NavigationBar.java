@@ -35,6 +35,7 @@ public class NavigationBar {
         setupDrawerToggle(drawerToggle);
 //        // Add the drawer toggle to the layout
         layout.add(drawerToggle);
+        layout.add(createTitle("Projects & Thoughts"));
         layout.add(createDrawerLinks());
         return layout;
     }
@@ -44,14 +45,14 @@ public class NavigationBar {
         setupLayout(layout);
         setupDrawerToggle(drawerToggle);
         layout.add(drawerToggle);
-        layout.add(createTitle(webPage));
+        layout.add(createTitle(webPage.getTitle()));
         layout.add(createDrawerLinks());
 
         return layout;
     }
 
-    private H2 createTitle(WebPage webPage) {
-        H2 title = new H2(webPage.getTitle());
+    private H2 createTitle(String titleString) {
+        H2 title = new H2(titleString);
         title.addClassName("article-title");
 
         return title;

@@ -27,6 +27,10 @@
     font-size: 30px;
 }
 
+.article-style {
+    width:20%
+}
+
 /* Add the hover effect for the layout */
 .article-style:hover {
     background-color: rgba(208, 214, 214,0.5); /* Change background color to light gray */
@@ -69,6 +73,11 @@
 }
 
 @media screen and (max-width:1920px) {
+    .article-thumbnail {
+        width: 50%;
+        margin:auto;
+    }
+
     .linkedin-anchor, .github-anchor, .youtube-anchor {
         width:50px;
         padding: 5px;
@@ -78,24 +87,21 @@
     .article-title {
             font-size:32px;
     }
-
     .adaptive-title-font {
-        font-size:36px;
+       font-size:32px;
     }
-
     .article-preview-text {
-        font-size: 20px;
+       font-size: 18px;
     }
     .tag-badge {
-        font-size:19px;
+      font-size: 17px;
     }
-   .image-container {
-            height: 400px;
+    .image-container {
+      height:320px;
    }
    .date-style {
-       font-size: 14px;
+       font-size: 13x;
    }
-
 }
 
 @media screen and (max-width: 1600px) {
@@ -357,9 +363,13 @@
     filter: saturate(200%);
 }
 
+.article-preview-layout {
+    width:70%;
+}
+
 .article-preview-text {
     display: -webkit-box;
-    -webkit-line-clamp:2; /* Number of lines to show */
+    -webkit-line-clamp:4; /* Number of lines to show */
     -webkit-box-orient: vertical;
     white-space: normal;
     overflow:hidden;
@@ -479,10 +489,10 @@ vaadin-multi-select-combo-box-item[selected] {
     overflow-y: scroll; /* Ensure the element is scrollable even without a visible scrollbar */
 }
 
-.article-thumbnail {
+/*.article-thumbnail {
     width: 70%;
     margin:auto;
-}
+} */
 
 .article-title {
     font-family:"InconsolataRegular",sans-serif;
