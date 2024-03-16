@@ -11,7 +11,7 @@ public class ArticleText {
     @Lob
     private String articleText;
 
-    public String getArticleText() {
+    public String getArticleTextAsString() {
         return articleText;
     }
 }

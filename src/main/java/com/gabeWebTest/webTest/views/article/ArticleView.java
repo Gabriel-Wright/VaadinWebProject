@@ -9,10 +9,14 @@ import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @Route("article")
@@ -47,15 +51,40 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
 
     private void loadPage() {
         VerticalLayout articleLayout = new VerticalLayout();
-        H1 titleOfArticle = new H1(webPage.getTitle());
-        titleOfArticle.setSizeFull();
+//        H1 titleOfArticle = new H1(webPage.getTitle());
+//        titleOfArticle.setSizeFull();
         articleLayout.add(loadThumbnail());
-        articleLayout.add(titleOfArticle);
+        articleLayout.add(loadTitleOfArticle());
+        ArticleTextBlockGenerator articleTextBlockGenerator = new ArticleTextBlockGenerator(webPage);
+        articleLayout.add(articleTextBlockGenerator.loadArticleTextBlock());
         setContent(articleLayout);
     }
 
     private VerticalLayout loadTitleOfArticle() {
-        return null;
+        VerticalLayout titleBlock = new VerticalLayout();
+        H1 titleOfArticle = new H1(webPage.getTitle());
+        titleOfArticle.addClassName("article-text-block-title");
+        titleBlock.add(titleOfArticle);
+        titleBlock.add(loadWebPageDate());
+        titleBlock.addClassName("title-block");
+        return titleBlock;
+    }
+
+    private Span loadWebPageDate() {
+        LocalDate webPageCreationDate = webPage.getDates().getTimeCreated().toLocalDate();
+        LocalTime webPageCreationTime = webPage.getDates().getTimeCreated().toLocalTime();
+        LocalDate webPageLastUpdateDate = webPage.getDates().getTimeLastUpdated().toLocalDate();
+        LocalTime webPageLastUpdateTime = webPage.getDates().getTimeLastUpdated().toLocalTime();
+
+        Span articleDate = new Span(webPageCreationDate.toString());
+        articleDate.addClassName("article-date");
+
+        String dateTimeCreated = "Article created:" +webPageCreationDate.toString() +" " +webPageCreationTime.toString();
+        String dateLastUpdated = "Article last Updated:" + webPageLastUpdateDate.toString() + " " + webPageLastUpdateTime.toString();
+        Tooltip dateTip = Tooltip.forComponent(articleDate).
+                withText(dateTimeCreated +"\n"+dateLastUpdated).
+                withPosition(Tooltip.TooltipPosition.BOTTOM);
+        return articleDate;
     }
 
     private Image loadThumbnail() {

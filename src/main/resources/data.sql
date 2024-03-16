@@ -38,3 +38,9 @@ INSERT INTO "WEBPAGE_TAG" (WEBPAGE_ID, TAG_ID) VALUES (-1002, 3);
 UPDATE "WEB_PAGE" SET THUMBNAIL = 'img/thumbnails/memoriesOfMurderThumbnail.jpg' WHERE id = -1000;
 UPDATE "WEB_PAGE" SET THUMBNAIL = 'img/thumbnails/gameTest.png' WHERE id = -1001;
 UPDATE "WEB_PAGE" SET THUMBNAIL = 'img/thumbnails/wiiParty.png' where id = -1002;
+
+--Insert Text of articles
+
+UPDATE "WEB_PAGE" SET ARTICLE_TEXT = 'Hello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brah' WHERE id = -1000;
+UPDATE "WEB_PAGE" SET ARTICLE_TEXT = 'Hello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brah' WHERE id = -1001;
+UPDATE "WEB_PAGE" SET ARTICLE_TEXT = 'Hello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brah' WHERE id = -1002;
