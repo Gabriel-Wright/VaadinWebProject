@@ -3,11 +3,15 @@ package com.gabeWebTest.webTest.views.article;
 import com.gabeWebTest.webTest.data.WebPage;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.*;
 
 public class ArticleTextBlockGenerator {
 
@@ -36,16 +40,23 @@ public class ArticleTextBlockGenerator {
     }
 
     private Component loadParagraph(String paragraph) {
-        if(paragraph.contains("<") && paragraph.contains(">")) {
-            int startIndex = paragraph.indexOf("<") + 1;
-            int endIndex = paragraph.indexOf(">");
-            String indicator = paragraph.substring(startIndex, endIndex);
+        int paragraphFormat = GET_FORMAT(paragraph);
+        return switch(paragraphFormat) {
+            case HORIZONTAL -> loadHorizontalParagraph(paragraph);
+            default -> loadVerticalParagraph(paragraph);
+        };
+    }
 
-            //Remove indicator from paragraph
+    private HorizontalLayout loadHorizontalParagraph(String paragraph) {
+        int sourceID = GET_SOURCE_ID(paragraph);
+        paragraph = REMOVE_PATTERN(paragraph);
+        return null;
+    }
 
-            paragraph = paragraph.replace("<" + indicator + ">", "");
-            System.out.println(paragraph);
-        }
+    private VerticalLayout loadVerticalParagraph(String paragraph) {
+        int sourceID = GET_SOURCE_ID(paragraph);
+        paragraph = REMOVE_PATTERN(paragraph);
+
         return null;
     }
 }
