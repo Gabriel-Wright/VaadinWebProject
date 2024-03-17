@@ -5,11 +5,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.theme.lumo.LumoUtility;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 
 import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.*;
 
@@ -17,29 +12,28 @@ public class ArticleTextBlockGenerator {
 
     private final WebPage webPage;
     private String articleRawText;
-    private List<Component> paragraphBlocks;
+    private VerticalLayout textBlock;
 
     public ArticleTextBlockGenerator(WebPage webPage) {
         this.webPage = webPage;
     }
 
     public VerticalLayout loadArticleTextBlock() {
-        VerticalLayout layout = new VerticalLayout();
         articleRawText = webPage.getArticleText().getArticleTextAsString();
-        separateParagraphs();
-        return layout;
+        separateAndFormatParagraphs();
+        return textBlock;
     }
 
-    private void separateParagraphs() {
-        String[] paragraphArray = articleRawText.split("\\n");
-        paragraphBlocks = new ArrayList<>();
+    private void separateAndFormatParagraphs() {
+        String[] paragraphArray = SPLIT_TEXT(articleRawText);
+        textBlock = new VerticalLayout();
 
         for(String paragraphText: paragraphArray) {
-            paragraphBlocks.add(loadParagraph(paragraphText));
+            textBlock.add(loadParagraphByFormat(paragraphText));
         }
     }
 
-    private Component loadParagraph(String paragraph) {
+    private Component loadParagraphByFormat(String paragraph) {
         int paragraphFormat = GET_FORMAT(paragraph);
         return switch(paragraphFormat) {
             case HORIZONTAL -> loadHorizontalParagraph(paragraph);
@@ -48,15 +42,18 @@ public class ArticleTextBlockGenerator {
     }
 
     private HorizontalLayout loadHorizontalParagraph(String paragraph) {
+        HorizontalLayout layout = new HorizontalLayout();
         int sourceID = GET_SOURCE_ID(paragraph);
         paragraph = REMOVE_PATTERN(paragraph);
-        return null;
+        layout.add(new Paragraph(paragraph));
+        return layout;
     }
 
     private VerticalLayout loadVerticalParagraph(String paragraph) {
+        VerticalLayout layout = new VerticalLayout();
         int sourceID = GET_SOURCE_ID(paragraph);
         paragraph = REMOVE_PATTERN(paragraph);
-
-        return null;
+        layout.add(new Paragraph(paragraph));
+        return layout;
     }
 }

@@ -10,9 +10,9 @@ public class ParagraphParserTests {
 
     @Test
     public void testGetParagraphFormat() {
-        String paragraphTextV = "<v,img/test.png> hello this is a paragraph whats going on guys";
-        String paragraphTextH = "<h,img/test.png> hello this is a paragraph watsas";
-        String paragraphTextD = "<a,img/tests.png> blah blah";
+        String paragraphTextV = "<v,3> hello this is a paragraph whats going on guys";
+        String paragraphTextH = "<h,> hello this is a paragraph watsas";
+        String paragraphTextD = "<a,4> blah blah";
 
         Assertions.assertEquals(VERTICAL, GET_FORMAT(paragraphTextV));
         Assertions.assertEquals(HORIZONTAL, GET_FORMAT(paragraphTextH));
@@ -21,8 +21,8 @@ public class ParagraphParserTests {
 
     @Test
     public void testGetSourceID() {
-        String paragraphText2 = "<v, 2>";
-        String paragraphText4 = "<h, 4>";
+        String paragraphText2 = "<v,2>";
+        String paragraphText4 = "<h,4>";
 
         Assertions.assertEquals(2, GET_SOURCE_ID(paragraphText2));
         Assertions.assertEquals(4, GET_SOURCE_ID(paragraphText4));
@@ -30,13 +30,22 @@ public class ParagraphParserTests {
 
     @Test
     public void testRemovePattern() {
-        String paragraphTest = "<v, 4>This is an excellent test paragraph";
+        String paragraphTest = "<v,4>This is an excellent test paragraph";
         String expectedParagraph = "This is an excellent test paragraph";
 
-        String paragraphTest2 = "<h, 6> Yay lets test thisone lol";
+        String paragraphTest2 = "<h,6> Yay lets test thisone lol";
         String expectedParagraph2 = " Yay lets test thisone lol";
 
         Assertions.assertEquals(expectedParagraph, REMOVE_PATTERN(paragraphTest));
         Assertions.assertEquals(expectedParagraph2, REMOVE_PATTERN(paragraphTest2));
+    }
+
+    @Test
+    public void testSplitText() {
+        String text = "Hello this is the text [p] whats going on lol xd lets see[p] wahoo [p] blah";
+        String[] paragraphs = SPLIT_TEXT(text);
+        Assertions.assertEquals(4, paragraphs.length);
+        Assertions.assertEquals(" whats going on lol xd lets see", paragraphs[1]);
+        Assertions.assertEquals("Hello this is the text ", paragraphs[0]);
     }
 }

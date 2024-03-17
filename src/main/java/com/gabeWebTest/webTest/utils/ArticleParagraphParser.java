@@ -1,5 +1,7 @@
 package com.gabeWebTest.webTest.utils;
 
+import com.vaadin.flow.component.html.Paragraph;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,7 +12,7 @@ public class ArticleParagraphParser {
     public final static int HORIZONTAL = 1;
 
 //    private static Pattern pattern = Pattern.compile("<([vh]),\\s*\\w+\\/\\w+\\.\\w+>");
-    private static Pattern pattern = Pattern.compile("<([vh]),\\s*([^>]+)>");
+    private static Pattern pattern = Pattern.compile("<([a-z]),(\\s*\\d*)>");
 
 
     private static Matcher matcher;
@@ -19,13 +21,17 @@ public class ArticleParagraphParser {
 
         if(matcher.find()) {
             String format = matcher.group(1);
-            if(format.equals("v")) {
-                return VERTICAL;
-            } else if(format.equals("h")) {
-                return HORIZONTAL;
-            }
+            return matchFormatCode(format);
         }
         return DEFAULT;
+    }
+
+    private static int matchFormatCode(String formatCode) {
+        return switch(formatCode) {
+            case("v") -> VERTICAL;
+            case("h") -> HORIZONTAL;
+            default -> DEFAULT;
+        };
     }
 
     //Realise maybe inefficient to do these both separately - but for code it is easier to read
@@ -46,5 +52,9 @@ public class ArticleParagraphParser {
 
     public static String REMOVE_PATTERN(String paragraphText) {
         return paragraphText.replaceAll("<[^>]+>", "");
+    }
+
+    public static String[] SPLIT_TEXT(String rawText) {
+        return rawText.split("\\[p\\]");
     }
 }
