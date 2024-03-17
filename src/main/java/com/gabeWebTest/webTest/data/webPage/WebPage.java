@@ -1,5 +1,7 @@
-package com.gabeWebTest.webTest.data;
+package com.gabeWebTest.webTest.data.webPage;
 
+import com.gabeWebTest.webTest.data.webPage.articleFormat.ArticleFormat;
+import com.gabeWebTest.webTest.data.webPage.tags.Tag;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -12,12 +14,11 @@ public class WebPage {
 
     }
 
-    public WebPage(Long id, int version, String title, ArticleText articleText, ArticleImages articleImages, Dates dates, Set<Tag> tags, ArticleFormat articleFormat) {
+    public WebPage(Long id, int version, String title, ArticleText articleText, Dates dates, Set<Tag> tags, ArticleFormat articleFormat) {
         this.id = id;
         this.version = version;
         this.title = title;
         this.articleText = articleText;
-        this.articleImages = articleImages;
         this.dates = dates;
         this.tags = tags;
         this.articleFormat = articleFormat;
@@ -41,9 +42,6 @@ public class WebPage {
 
     @Column(name="THUMBNAIL")
     private String thumbnailPath;
-
-    @Embedded
-    private ArticleImages articleImages;
 
     @Embedded
     private Dates dates;
@@ -80,9 +78,6 @@ public class WebPage {
         return articleText;
     }
 
-    public ArticleImages getArticleImages() {
-        return articleImages;
-    }
 
     public String getTitle() {
         return title;

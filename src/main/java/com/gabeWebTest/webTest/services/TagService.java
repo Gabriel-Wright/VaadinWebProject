@@ -1,7 +1,7 @@
 package com.gabeWebTest.webTest.services;
 
-import com.gabeWebTest.webTest.data.Tag;
-import com.gabeWebTest.webTest.data.TagRepository;
+import com.gabeWebTest.webTest.data.webPage.tags.Tag;
+import com.gabeWebTest.webTest.data.webPage.tags.TagRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

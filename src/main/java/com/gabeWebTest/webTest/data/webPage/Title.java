@@ -1,4 +1,4 @@
-package com.gabeWebTest.webTest.data;
+package com.gabeWebTest.webTest.data.webPage;
 
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;

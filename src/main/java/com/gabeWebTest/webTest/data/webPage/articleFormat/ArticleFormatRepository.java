@@ -1,4 +1,4 @@
-package com.gabeWebTest.webTest.data;
+package com.gabeWebTest.webTest.data.webPage.articleFormat;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

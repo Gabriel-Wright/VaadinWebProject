@@ -1,4 +1,4 @@
-package com.gabeWebTest.webTest.views.dashboard;
+package com.gabeWebTest.webTest.views.dashboard.mainDrawer;
 
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Div;

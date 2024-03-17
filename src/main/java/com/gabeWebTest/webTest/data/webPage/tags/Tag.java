@@ -1,5 +1,6 @@
-package com.gabeWebTest.webTest.data;
+package com.gabeWebTest.webTest.data.webPage.tags;
 
+import com.gabeWebTest.webTest.data.webPage.WebPage;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;

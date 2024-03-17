@@ -1,13 +1,12 @@
 package com.gabeWebTest.webTest.views.article;
 
-import com.gabeWebTest.webTest.data.WebPage;
+import com.gabeWebTest.webTest.data.webPage.WebPage;
 import com.gabeWebTest.webTest.services.WebPageService;
-import com.gabeWebTest.webTest.views.dashboard.MainDrawer;
-import com.gabeWebTest.webTest.views.dashboard.NavigationBar;
+import com.gabeWebTest.webTest.views.dashboard.mainDrawer.MainDrawer;
+import com.gabeWebTest.webTest.views.dashboard.navigationBar.NavigationBar;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.router.BeforeEvent;

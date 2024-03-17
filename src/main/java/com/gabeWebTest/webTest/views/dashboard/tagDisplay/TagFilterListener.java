@@ -1,6 +1,6 @@
-package com.gabeWebTest.webTest.views.dashboard;
+package com.gabeWebTest.webTest.views.dashboard.tagDisplay;
 
-import com.gabeWebTest.webTest.data.Tag;
+import com.gabeWebTest.webTest.data.webPage.tags.Tag;
 
 import java.util.Set;
 

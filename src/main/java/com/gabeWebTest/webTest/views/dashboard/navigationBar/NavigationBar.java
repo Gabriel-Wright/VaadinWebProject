@@ -1,17 +1,14 @@
-package com.gabeWebTest.webTest.views.dashboard;
+package com.gabeWebTest.webTest.views.dashboard.navigationBar;
 
-import com.gabeWebTest.webTest.data.Title;
-import com.gabeWebTest.webTest.data.WebPage;
+import com.gabeWebTest.webTest.data.webPage.WebPage;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.dom.Style;
 import org.springframework.stereotype.Component;
 
 @Component

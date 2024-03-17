@@ -1,18 +1,19 @@
 package com.gabeWebTest.webTest.views.dashboard;
 
-import com.gabeWebTest.webTest.data.Tag;
-import com.gabeWebTest.webTest.data.WebPage;
+import com.gabeWebTest.webTest.data.webPage.tags.Tag;
+import com.gabeWebTest.webTest.data.webPage.WebPage;
 import com.gabeWebTest.webTest.services.WebPageService;
-import com.vaadin.flow.component.Component;
+import com.gabeWebTest.webTest.views.dashboard.content.UIChangeEventListener;
+import com.gabeWebTest.webTest.views.dashboard.content.WebPageListRenderer;
+import com.gabeWebTest.webTest.views.dashboard.mainDrawer.MainDrawer;
+import com.gabeWebTest.webTest.views.dashboard.navigationBar.NavigationBar;
+import com.gabeWebTest.webTest.views.dashboard.tagDisplay.TagFilter;
+import com.gabeWebTest.webTest.views.dashboard.tagDisplay.TagFilterListener;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.JavaScript;
-import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -26,7 +27,7 @@ import java.util.*;
 @Route("")
 @PageTitle("Dashboard")
 @JavaScript("js/custom.js")
-public class DashboardView extends AppLayout implements TagFilterListener{
+public class DashboardView extends AppLayout implements TagFilterListener {
 
     private H1 viewTitle;
     private final TagFilter tagFilter;

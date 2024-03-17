@@ -1,6 +1,7 @@
-package com.gabeWebTest.webTest.views.dashboard;
+package com.gabeWebTest.webTest.views.dashboard.content;
 
 import com.gabeWebTest.webTest.services.FadeOutCompletionEvent;
+import com.gabeWebTest.webTest.views.dashboard.DashboardView;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 

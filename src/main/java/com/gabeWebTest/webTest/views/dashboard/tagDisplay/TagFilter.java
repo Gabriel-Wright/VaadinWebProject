@@ -1,15 +1,11 @@
-package com.gabeWebTest.webTest.views.dashboard;
+package com.gabeWebTest.webTest.views.dashboard.tagDisplay;
 
-import com.gabeWebTest.webTest.data.Tag;
-import com.gabeWebTest.webTest.services.FadeOutCompletionEvent;
+import com.gabeWebTest.webTest.data.webPage.tags.Tag;
 import com.gabeWebTest.webTest.services.TagService;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.MultiSelectComboBox;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.renderer.Renderer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;

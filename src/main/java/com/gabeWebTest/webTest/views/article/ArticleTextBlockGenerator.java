@@ -1,6 +1,6 @@
 package com.gabeWebTest.webTest.views.article;
 
-import com.gabeWebTest.webTest.data.WebPage;
+import com.gabeWebTest.webTest.data.webPage.WebPage;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;

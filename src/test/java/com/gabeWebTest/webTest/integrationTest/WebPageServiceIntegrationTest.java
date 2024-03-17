@@ -1,17 +1,16 @@
 package com.gabeWebTest.webTest.integrationTest;
-import com.gabeWebTest.webTest.data.*;
-import org.hibernate.cfg.Environment;
+import com.gabeWebTest.webTest.data.webPage.*;
+import com.gabeWebTest.webTest.data.webPage.articleFormat.ArticleFormat;
+import com.gabeWebTest.webTest.data.webPage.articleFormat.ArticleFormatRepository;
+import com.gabeWebTest.webTest.data.webPage.tags.Tag;
+import com.gabeWebTest.webTest.data.webPage.tags.TagRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -56,10 +55,10 @@ public class WebPageServiceIntegrationTest {
         //Web pages
         Dates webPage1Dates = new Dates(LocalDateTime.of(2023, 1, 1, 10, 0, 0),
                 LocalDateTime.of(2023, 1, 1, 10, 0, 0));
-        WebPage webPage1 = new WebPage(1L,0,"webpage1",new ArticleText(),null,webPage1Dates, null, articleFormat1);
+        WebPage webPage1 = new WebPage(1L,0,"webpage1",new ArticleText(),webPage1Dates, null, articleFormat1);
 
         Dates webPage2Dates = new Dates(LocalDateTime.of(2023, 1, 2, 10, 0,0), LocalDateTime.of(2023,1,2,10,0,0));
-        WebPage webPage2 = new WebPage(2L, 0, "webpage2", new ArticleText(), null, webPage2Dates, null, articleFormat2);
+        WebPage webPage2 = new WebPage(2L, 0, "webpage2", new ArticleText(), webPage2Dates, null, articleFormat2);
         webPageRepository.save(webPage1);
         webPageRepository.save(webPage2);
         List<WebPage> webPages = webPageRepository.findAllByOrderByDates_TimeCreatedDesc();
@@ -114,18 +113,18 @@ public class WebPageServiceIntegrationTest {
         tagSet1.add(tag1);
         Dates webPage1Dates = new Dates(LocalDateTime.of(2023, 1, 1, 10, 0, 0),
                 LocalDateTime.of(2023, 1, 1, 10, 0, 0));
-        WebPage webPage1 = new WebPage(1L,0,"webpage1",new ArticleText(),null,webPage1Dates, tagSet1, articleFormat1);
+        WebPage webPage1 = new WebPage(1L,0,"webpage1",new ArticleText(),webPage1Dates, tagSet1, articleFormat1);
 
         Set<Tag> tagSet2 = new HashSet<>();
         tagSet2.add(tag1);
         tagSet2.add(tag2);
         Dates webPage2Dates = new Dates(LocalDateTime.of(2023, 1, 2, 10, 0,0), LocalDateTime.of(2023,1,2,10,0,0));
-        WebPage webPage2 = new WebPage(2L, 0, "webpage2", new ArticleText(), null, webPage2Dates, tagSet2, articleFormat2);
+        WebPage webPage2 = new WebPage(2L, 0, "webpage2", new ArticleText(), webPage2Dates, tagSet2, articleFormat2);
 
         Set<Tag> tagSet3 = new HashSet<>();
         tagSet3.add(tag3);
         Dates webPage3Dates = new Dates(LocalDateTime.of(2023, 1, 3, 10, 0,0), LocalDateTime.of(2023,1,2,10,0,0));
-        WebPage webPage3 = new WebPage(3L, 0, "webpage3", new ArticleText(), null, webPage3Dates, tagSet3, articleFormat1);
+        WebPage webPage3 = new WebPage(3L, 0, "webpage3", new ArticleText(), webPage3Dates, tagSet3, articleFormat1);
 
         webPageRepository.save(webPage1);
         webPageRepository.save(webPage2);
@@ -180,18 +179,18 @@ public class WebPageServiceIntegrationTest {
         tagSet1.add(tag1);
         Dates webPage1Dates = new Dates(LocalDateTime.of(2023, 1, 1, 10, 0, 0),
                 LocalDateTime.of(2023, 1, 1, 10, 0, 0));
-        WebPage webPage1 = new WebPage(1L,0,"webpage1",new ArticleText(),null,webPage1Dates, tagSet1, articleFormat1);
+        WebPage webPage1 = new WebPage(1L,0,"webpage1",new ArticleText(),webPage1Dates, tagSet1, articleFormat1);
 
         Set<Tag> tagSet2 = new HashSet<>();
         tagSet2.add(tag1);
         tagSet2.add(tag2);
         Dates webPage2Dates = new Dates(LocalDateTime.of(2023, 1, 2, 10, 0,0), LocalDateTime.of(2023,1,2,10,0,0));
-        WebPage webPage2 = new WebPage(2L, 0, "webpage2", new ArticleText(), null, webPage2Dates, tagSet2, articleFormat2);
+        WebPage webPage2 = new WebPage(2L, 0, "webpage2", new ArticleText(), webPage2Dates, tagSet2, articleFormat2);
 
         Set<Tag> tagSet3 = new HashSet<>();
         tagSet3.add(tag3);
         Dates webPage3Dates = new Dates(LocalDateTime.of(2023, 1, 3, 10, 0,0), LocalDateTime.of(2023,1,2,10,0,0));
-        WebPage webPage3 = new WebPage(3L, 0, "webpage3", new ArticleText(), null, webPage3Dates, tagSet3, articleFormat1);
+        WebPage webPage3 = new WebPage(3L, 0, "webpage3", new ArticleText(), webPage3Dates, tagSet3, articleFormat1);
 
         webPageRepository.save(webPage1);
         webPageRepository.save(webPage2);

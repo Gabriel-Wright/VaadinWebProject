@@ -1,7 +1,7 @@
-package com.gabeWebTest.webTest.views.dashboard;
+package com.gabeWebTest.webTest.views.dashboard.content;
 
-import com.gabeWebTest.webTest.data.Tag;
-import com.gabeWebTest.webTest.data.WebPage;
+import com.gabeWebTest.webTest.data.webPage.tags.Tag;
+import com.gabeWebTest.webTest.data.webPage.WebPage;
 import com.gabeWebTest.webTest.views.article.ArticleView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.H2;
@@ -14,7 +14,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.function.SerializableSupplier;
-import com.vaadin.flow.router.QueryParameters;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;

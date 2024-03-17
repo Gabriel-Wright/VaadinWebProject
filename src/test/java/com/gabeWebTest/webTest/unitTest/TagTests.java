@@ -1,6 +1,6 @@
 package com.gabeWebTest.webTest.unitTest;
 
-import com.gabeWebTest.webTest.data.Tag;
+import com.gabeWebTest.webTest.data.webPage.tags.Tag;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
