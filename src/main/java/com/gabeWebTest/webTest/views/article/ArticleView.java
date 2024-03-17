@@ -1,6 +1,7 @@
 package com.gabeWebTest.webTest.views.article;
 
 import com.gabeWebTest.webTest.data.webPage.WebPage;
+import com.gabeWebTest.webTest.services.VisualSourceService;
 import com.gabeWebTest.webTest.services.WebPageService;
 import com.gabeWebTest.webTest.views.dashboard.mainDrawer.MainDrawer;
 import com.gabeWebTest.webTest.views.dashboard.navigationBar.NavigationBar;
@@ -23,12 +24,16 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
 
     @Autowired
     private final WebPageService webPageService;
+    @Autowired
+    private final VisualSourceService visualSourceService;
+
     private final NavigationBar navigationBar;
     private final MainDrawer mainDrawer;
     private WebPage webPage;
-    public ArticleView(WebPageService webPageService, NavigationBar navigationBar, MainDrawer mainDrawer) {
+    public ArticleView(WebPageService webPageService, VisualSourceService visualSourceService, NavigationBar navigationBar, MainDrawer mainDrawer) {
         addClassName("dashboard-layout");
         this.webPageService = webPageService;
+        this.visualSourceService = visualSourceService;
         this.navigationBar = navigationBar;
         this.mainDrawer = mainDrawer;
 
@@ -54,7 +59,7 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
 //        titleOfArticle.setSizeFull();
         articleLayout.add(loadThumbnail());
         articleLayout.add(loadTitleOfArticle());
-        ArticleTextBlockGenerator articleTextBlockGenerator = new ArticleTextBlockGenerator(webPage);
+        ArticleTextBlockGenerator articleTextBlockGenerator = new ArticleTextBlockGenerator(webPage, visualSourceService);
         articleLayout.add(articleTextBlockGenerator.loadArticleTextBlock());
         setContent(articleLayout);
     }

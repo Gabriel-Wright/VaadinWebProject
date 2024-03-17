@@ -1,10 +1,15 @@
 package com.gabeWebTest.webTest.views.article;
 
+import com.gabeWebTest.webTest.data.visualSource.VisualSource;
 import com.gabeWebTest.webTest.data.webPage.WebPage;
+import com.gabeWebTest.webTest.services.VisualSourceService;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+
+import java.util.Optional;
 
 import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.*;
 
@@ -13,9 +18,13 @@ public class ArticleTextBlockGenerator {
     private final WebPage webPage;
     private String articleRawText;
     private VerticalLayout textBlock;
+    private VisualSourceService visualSourceService;
 
-    public ArticleTextBlockGenerator(WebPage webPage) {
+    private final String DEFAULT_IMAGE_PATH = "img/thumbnails/memoriesOfMurderThumbnail.jpg";
+
+    public ArticleTextBlockGenerator(WebPage webPage, VisualSourceService visualSourceService) {
         this.webPage = webPage;
+        this.visualSourceService = visualSourceService;
     }
 
     public VerticalLayout loadArticleTextBlock() {
@@ -55,5 +64,16 @@ public class ArticleTextBlockGenerator {
         paragraph = REMOVE_PATTERN(paragraph);
         layout.add(new Paragraph(paragraph));
         return layout;
+    }
+
+    private Image loadImage(int sourceID) {
+        Optional<VisualSource> visualSourceOptional = visualSourceService.findVisualSource(sourceID);
+        String imagePath;
+        if(visualSourceOptional.isPresent()) {
+            imagePath = visualSourceOptional.get().getImagePath();
+        } else {
+            imagePath =DEFAULT_IMAGE_PATH;
+        }
+        return new Image(imagePath, imagePath);
     }
 }

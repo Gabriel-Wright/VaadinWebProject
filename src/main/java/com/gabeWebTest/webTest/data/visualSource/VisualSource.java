@@ -19,4 +19,8 @@ public class VisualSource {
 
     @Column(name = "IMAGE_PATH")
     private String imagePath;
+
+    public String getImagePath() {
+        return imagePath;
+    }
 }
