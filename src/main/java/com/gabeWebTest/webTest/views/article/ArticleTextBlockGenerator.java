@@ -53,16 +53,24 @@ public class ArticleTextBlockGenerator {
     private HorizontalLayout loadHorizontalParagraph(String paragraph) {
         HorizontalLayout layout = new HorizontalLayout();
         int sourceID = GET_SOURCE_ID(paragraph);
+        Image sourceImage = loadImage(sourceID);
+        sourceImage.setWidth("50%");
         paragraph = REMOVE_PATTERN(paragraph);
         layout.add(new Paragraph(paragraph));
+        layout.add(sourceImage);
         return layout;
     }
 
     private VerticalLayout loadVerticalParagraph(String paragraph) {
         VerticalLayout layout = new VerticalLayout();
+        layout.setPadding(false);
         int sourceID = GET_SOURCE_ID(paragraph);
+        Image sourceImage = loadImage(sourceID);
+        sourceImage.setWidth("70%");
+        sourceImage.getStyle().set("margin","auto");
         paragraph = REMOVE_PATTERN(paragraph);
         layout.add(new Paragraph(paragraph));
+        layout.add(sourceImage);
         return layout;
     }
 

@@ -45,5 +45,5 @@ UPDATE "WEB_PAGE" SET ARTICLE_TEXT = '<v,1>Hello welcome to this article brahHel
 UPDATE "WEB_PAGE" SET ARTICLE_TEXT = '<v,0>Hello welcome to this article brahHello welcome t[p]<,>o this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brah' WHERE id = -1001;
 UPDATE "WEB_PAGE" SET ARTICLE_TEXT = 'Hello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brah' WHERE id = -1002;
 
-INSERT INTO "VISUAL_SOURCE" (SOUCE_ID, IMAGE_PATH) VALUES (0,'img/thumbnails/memoriesOfMurderThumbnail.jpg');
-INSERT INTO "VISUAL_SOURCE" (SOUCE_ID, IMAGE_PATH) VALUES (1, 'img/thumbnails/gameTest.png');
+INSERT INTO "VISUAL_SOURCE" (SOURCE_ID, IMAGE_PATH) VALUES (0,'img/thumbnails/memoriesOfMurderThumbnail.jpg');
+INSERT INTO "VISUAL_SOURCE" (SOURCE_ID, IMAGE_PATH) VALUES (1, 'img/thumbnails/gameTest.png');
