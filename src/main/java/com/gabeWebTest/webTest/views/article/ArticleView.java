@@ -57,7 +57,7 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
         VerticalLayout articleLayout = new VerticalLayout();
 //        H1 titleOfArticle = new H1(webPage.getTitle());
 //        titleOfArticle.setSizeFull();
-        articleLayout.add(loadThumbnail());
+//        articleLayout.add(loadThumbnail());
         articleLayout.add(loadTitleOfArticle());
         ArticleTextBlockGenerator articleTextBlockGenerator = new ArticleTextBlockGenerator(webPage, visualSourceService);
         articleLayout.add(articleTextBlockGenerator.loadArticleTextBlock());

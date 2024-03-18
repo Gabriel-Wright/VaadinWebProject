@@ -56,7 +56,9 @@ public class ArticleTextBlockGenerator {
         Image sourceImage = loadImage(sourceID);
         sourceImage.setWidth("50%");
         paragraph = REMOVE_PATTERN(paragraph);
-        layout.add(new Paragraph(paragraph));
+        Paragraph paragraphToAdd = new Paragraph(paragraph);
+        paragraphToAdd.addClassName("article-text");
+        layout.add(paragraphToAdd);
         layout.add(sourceImage);
         return layout;
     }
@@ -69,7 +71,9 @@ public class ArticleTextBlockGenerator {
         sourceImage.setWidth("70%");
         sourceImage.getStyle().set("margin","auto");
         paragraph = REMOVE_PATTERN(paragraph);
-        layout.add(new Paragraph(paragraph));
+        Paragraph paragraphToAdd = new Paragraph(paragraph);
+        paragraphToAdd.addClassName("article-text");
+        layout.add(paragraphToAdd);
         layout.add(sourceImage);
         return layout;
     }

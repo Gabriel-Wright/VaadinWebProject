@@ -554,3 +554,9 @@ vaadin-multi-select-combo-box-item[selected] {
     color:black;
     transition: color 0.2s ease;
 }
+
+.article-text {
+    font-family:"InconsolataRegular",sans-serif;
+    font-size:24px;
+    color:black;
+}
