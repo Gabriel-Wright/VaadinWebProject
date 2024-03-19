@@ -15,12 +15,17 @@ import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 
 @Route("article")
 public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
+
+    private static final Logger logger = LoggerFactory.getLogger(ArticleView.class);
 
     @Autowired
     private final WebPageService webPageService;
@@ -39,6 +44,7 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
 
         addToDrawer(mainDrawer.createDrawerContent());
         setPrimarySection(Section.DRAWER);
+        logger.info("loaded new page");
     }
 
     @Override
@@ -94,6 +100,7 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
     private Image loadThumbnail() {
         Image image;
         if(webPage.getThumbnailPath()==null) {
+
             image = new Image("img/LI-In-Bug.png", "ArticleImage");
         } else {
             image = new Image(webPage.getThumbnailPath(),webPage.getTitle());
