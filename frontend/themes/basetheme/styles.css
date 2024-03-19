@@ -560,3 +560,7 @@ vaadin-multi-select-combo-box-item[selected] {
     font-size:24px;
     color:black;
 }
+
+.about-me::part(navbar) {
+    background-color: #11111;
+}
