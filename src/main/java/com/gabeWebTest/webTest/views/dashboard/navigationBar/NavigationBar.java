@@ -29,6 +29,8 @@ public class NavigationBar {
     public HorizontalLayout createNavBarContent(String title) {
         HorizontalLayout layout = new HorizontalLayout();
         setupLayout(layout);
+//        setupDrawerToggle(drawerToggle);
+//        layout.add(drawerToggle);
         layout.add(createTitle(title));
         layout.add(createDrawerLinks());
         return layout;

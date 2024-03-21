@@ -531,6 +531,7 @@ vaadin-multi-select-combo-box-item[selected] {
 .youtube-anchor:hover {
     background-color:rgba(255,0,0,0.1);
     transition:background-color 0.2 ease;
+    cursor:pointer;
 }
 
 .youtube-anchor:active {
@@ -564,3 +565,32 @@ vaadin-multi-select-combo-box-item[selected] {
 .about-me::part(navbar) {
     background-color: #11111;
 }
+
+.cv-title {
+    font-family:"InconsolataRegular",sans-serif;
+    font-size:35px;
+    color:#628073;
+    font-weight:700;
+    margin:auto;
+}
+
+.cv-note1, .cv-note2 {
+    font-family:"InconsolataRegular",sans-serif;
+    margin:auto;
+
+}
+.about-me-block {
+    width: 70%;
+    margin:auto;
+}
+
+/*.cv-block {
+    width: 50px;
+    margin: auto;
+}
+
+.pdf-viewer {
+    width: 50%;
+    margin:auto;
+}
+
