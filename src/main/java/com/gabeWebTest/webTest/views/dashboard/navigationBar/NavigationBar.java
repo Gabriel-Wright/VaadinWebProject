@@ -26,11 +26,11 @@ public class NavigationBar {
     private boolean drawToggleRight = true;
 
     private Icon toggleIcon;
-    public HorizontalLayout createNavBarContent(String title) {
+    public HorizontalLayout createNavBarContent(DrawerToggle drawerToggle, String title) {
         HorizontalLayout layout = new HorizontalLayout();
         setupLayout(layout);
-//        setupDrawerToggle(drawerToggle);
-//        layout.add(drawerToggle);
+        setupDrawerToggle(drawerToggle);
+        layout.add(drawerToggle);
         layout.add(createTitle(title));
         layout.add(createDrawerLinks());
         return layout;

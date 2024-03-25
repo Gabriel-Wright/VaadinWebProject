@@ -17,6 +17,8 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static com.gabeWebTest.webTest.utils.AgeCalculator.CALCULATE_AGE;
+
 @Route("about-me")
 public class AboutMeView extends AppLayout {
 
@@ -29,7 +31,8 @@ public class AboutMeView extends AppLayout {
         setPrimarySection(Section.DRAWER);
         this.navigationBar = navigationbar;
         this.mainDrawer = mainDrawer;
-        addToNavbar(navigationbar.createNavBarContent("About me"));
+        DrawerToggle drawerToggle = new DrawerToggle();
+        addToNavbar(navigationbar.createNavBarContent(drawerToggle,"About me"));
         addToDrawer(mainDrawer.createDrawerContent());
         VerticalLayout contentView = new VerticalLayout();
         contentView.add(getAboutMeBlock());
@@ -61,18 +64,21 @@ public class AboutMeView extends AppLayout {
         VerticalLayout titleAndTextBlock = new VerticalLayout();
         H1 title = new H1("Gabriel Magnus Wright");
         title.addClassName("about-me-title");
-        Paragraph paragraph = new Paragraph("Hello! My name is [Your Name], and I'm passionate about [Your Passion or Interest]. With [Number] years of experience in [Your Field or Industry], I've developed a strong foundation in [Key Skills or Expertise]. My journey in [Your Field] has allowed me to [Achievement or Milestone], which has shaped me into a [Your Positive Attribute] professional.\n" +
-                "\n" +
-                "I thrive in [Describe Work Environment or Situation], where I can [Action or Goal]. My approach to [Your Field] is driven by [Your Approach or Philosophy], always striving for excellence and innovation. I enjoy [Hobbies or Interests] in my free time, as they allow me to [Benefit or Personal Growth].\n" +
-                "\n" +
-                "I believe in the power of [Your Belief or Principle], and I'm committed to [Your Commitment or Goal]. Whether it's [Specific Goal or Objective], I'm always eager to [Your Motivation or Drive]. I'm excited about the opportunity to [Your Aspiration or Future Endeavor], and I look forward to [Your Hope or Expectation].\n" +
-                "\n" +
-                "Thank you for taking the time to learn a little about me. I'm eager to connect and explore how we can [Mutual Benefit or Collaboration].\n" +
-                "\n");
+        String age = Integer.toString(CALCULATE_AGE());
+        String intoText = "My name is Gabriel and I'm a " + age+ " year old from the UK with a strong dsire to build and create." +
+                "I've had what always felt like a split of interests between STEM and ";
+        Paragraph paragraph = new Paragraph(intoText);
         paragraph.addClassName("about-me-text");
         titleAndTextBlock.add(title);
         titleAndTextBlock.add(paragraph);
         return titleAndTextBlock;
+    }
+
+    private VerticalLayout getEducationBlock() {
+        VerticalLayout verticalLayout = new VerticalLayout();
+        H1 title = new H1("Educational Background");
+        title.addClassName("about-me-title");
+        return verticalLayout;
     }
 
     private VerticalLayout getCVBlock() {
