@@ -579,12 +579,21 @@ vaadin-multi-select-combo-box-item[selected] {
     margin:auto;
 
 }
-.about-me-block, .education-block {
-    width: 70%;
+
+.about-me-block, .education-block, .hobby-block {
+    width: 80%;
     margin:auto;
+    padding:10px;
+    border-radius: 10px; /* Rounded corners */
+    transition: background-color 0.5s ease;
 }
 
-.education-image, .profile-image {
+.about-me-block:hover, .education-block:hover, .hobby-block:hover {
+    background-color: rgba(208, 214, 214,0.5); /* Change background color to light gray */
+    transition: background-color 0.5s ease;
+}
+
+.education-image, .profile-image, .hobby-image {
     width:50%;
 }
 

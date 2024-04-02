@@ -38,6 +38,7 @@ public class AboutMeView extends AppLayout {
         contentView.addClassName("about-me-content");
         contentView.add(getAboutMeBlock());
         contentView.add(getEducationBlock());
+        contentView.add(getHobbyBlock());
         contentView.add(getCVBlock());
         setContent(contentView);
     }
@@ -105,6 +106,34 @@ public class AboutMeView extends AppLayout {
         String educationText = "";
         Paragraph paragraph = new Paragraph();
         paragraph.add(educationText);
+        paragraph.addClassName("about-me-text");
+        titleAndTextBlock.add(title, paragraph);
+        return titleAndTextBlock;
+    }
+
+    private HorizontalLayout getHobbyBlock() {
+        HorizontalLayout hobbyBlock = new HorizontalLayout();
+        hobbyBlock.addClassName("hobby-block");
+        hobbyBlock.getStyle().set("margin","auto");
+        hobbyBlock.add(getHobbyImage());
+        hobbyBlock.add(getHobbyTextBlock());
+        return hobbyBlock;
+    }
+
+    private Image getHobbyImage() {
+        Image hobbyImage = new Image("img/aboutMe/smashPlaying.png","Gabriel playing smash");
+        hobbyImage.addClassName("hobby-image");
+        return hobbyImage;
+    }
+
+    private VerticalLayout getHobbyTextBlock() {
+        VerticalLayout titleAndTextBlock = new VerticalLayout();
+        H1 title = new H1("Hobbies & Side projects");
+        title.addClassName("about-me-title");
+        String hobbiesText = "";
+        Paragraph paragraph = new Paragraph();
+        paragraph.add(hobbiesText);
+        paragraph.addClassName("about-me-text");
         titleAndTextBlock.add(title, paragraph);
         return titleAndTextBlock;
     }
