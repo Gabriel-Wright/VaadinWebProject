@@ -65,26 +65,51 @@ public class AboutMeView extends AppLayout {
         H1 title = new H1("Gabriel Magnus Wright");
         title.addClassName("about-me-title");
         String age = Integer.toString(CALCULATE_AGE());
-        String intoText = "My name is Gabriel and I'm a " + age+ " year old from the UK with a strong dsire to build and create." +
-                "I've had what always felt like a split of interests between STEM and ";
-        Paragraph paragraph = new Paragraph(intoText);
+        String introText = "My name is Gabriel and I'm a " + age+ " year old from the UK with a strong desire to build and create." +
+                " I've always harbored a passion for both STEM and the arts." +
+                " While I'm currently specialising in Software Development for my career,  I am equally committed to nurturing my for artistic pursuits with separate projects." +
+                " This website serves as a log of my journey, documenting progress across all my interests. For more details on the site's contents, please refer to ";
+        Html htmlContent = new Html("<a href=\"/what-is-this-site\">\"What is this site\"</a>");
+
+        Paragraph paragraph = new Paragraph();
+        paragraph.add(introText);
+        paragraph.add(htmlContent);
         paragraph.addClassName("about-me-text");
         titleAndTextBlock.add(title);
         titleAndTextBlock.add(paragraph);
         return titleAndTextBlock;
     }
 
-    private VerticalLayout getEducationBlock() {
-        VerticalLayout verticalLayout = new VerticalLayout();
+    private HorizontalLayout getEducationBlock() {
+        HorizontalLayout educationBlock = new HorizontalLayout();
+        educationBlock.addClassName("education-block");
+        educationBlock.getStyle().set("margin","auto");
+        educationBlock.add(getEducationImage());
+        educationBlock.add(getEducationTextBlock());
+        return educationBlock;
+    }
+
+    private Image getEducationImage() {
+        Image educationImage = new Image();
+
+        return educationImage;
+    }
+
+    private VerticalLayout getEducationTextBlock() {
+        VerticalLayout titleAndTextBlock = new VerticalLayout();
         H1 title = new H1("Educational Background");
         title.addClassName("about-me-title");
-        return verticalLayout;
+        String educationText = "";
+        Paragraph paragraph = new Paragraph();
+        paragraph.add(educationText);
+        titleAndTextBlock.add(title, paragraph);
+        return titleAndTextBlock;
     }
 
     private VerticalLayout getCVBlock() {
         VerticalLayout cvBlock = new VerticalLayout();
         cvBlock.addClassName("cv-block");
-        cvBlock.getStyle().set("margin","auto");
+//        cvBlock.getStyle().set("margin","auto");
         H1 cvTitle = new H1("CV");
         H2 cvNote = new H2("Attached below is a copy of my current CV, for queries contact me at:");
         H2 cvNote2 = new H2("gabriel.magnus.wright@gmail.com");

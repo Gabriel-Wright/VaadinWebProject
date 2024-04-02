@@ -566,7 +566,7 @@ vaadin-multi-select-combo-box-item[selected] {
     background-color: #11111;
 }
 
-.cv-title {
+.cv-title, .education-title {
     font-family:"InconsolataRegular",sans-serif;
     font-size:35px;
     color:#628073;
@@ -584,11 +584,16 @@ vaadin-multi-select-combo-box-item[selected] {
     margin:auto;
 }
 
-/*.cv-block {
+.cv-block {
     width: 50px;
     margin: auto;
 }
 
+
+.about-me-title, .about-me-text {
+   font-family:"InconsolataRegular",sans-serif;
+
+}
 .pdf-viewer {
     width: 50%;
     margin:auto;
