@@ -579,9 +579,13 @@ vaadin-multi-select-combo-box-item[selected] {
     margin:auto;
 
 }
-.about-me-block {
+.about-me-block, .education-block {
     width: 70%;
     margin:auto;
+}
+
+.education-image, .profile-image {
+    width:50%;
 }
 
 .cv-block {
@@ -589,6 +593,9 @@ vaadin-multi-select-combo-box-item[selected] {
     margin: auto;
 }
 
+.about-me-content {
+    padding: 20px;
+}
 
 .about-me-title, .about-me-text {
    font-family:"InconsolataRegular",sans-serif;

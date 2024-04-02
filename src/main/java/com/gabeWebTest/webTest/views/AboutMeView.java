@@ -35,7 +35,9 @@ public class AboutMeView extends AppLayout {
         addToNavbar(navigationbar.createNavBarContent(drawerToggle,"About me"));
         addToDrawer(mainDrawer.createDrawerContent());
         VerticalLayout contentView = new VerticalLayout();
+        contentView.addClassName("about-me-content");
         contentView.add(getAboutMeBlock());
+        contentView.add(getEducationBlock());
         contentView.add(getCVBlock());
         setContent(contentView);
     }
@@ -65,9 +67,9 @@ public class AboutMeView extends AppLayout {
         H1 title = new H1("Gabriel Magnus Wright");
         title.addClassName("about-me-title");
         String age = Integer.toString(CALCULATE_AGE());
-        String introText = "My name is Gabriel and I'm a " + age+ " year old from the UK with a strong desire to build and create." +
-                " I've always harbored a passion for both STEM and the arts." +
-                " While I'm currently specialising in Software Development for my career,  I am equally committed to nurturing my for artistic pursuits with separate projects." +
+        String introText = "My name is Gabriel. I am " + age+ ", from the UK and have a strong desire to build and create." +
+                " I've always harboured a passion for both STEM and the arts." +
+                " While I'm currently specialising in Software Development for my career,  I am equally committed to nurturing my artistic pursuits with separate projects." +
                 " This website serves as a log of my journey, documenting progress across all my interests. For more details on the site's contents, please refer to ";
         Html htmlContent = new Html("<a href=\"/what-is-this-site\">\"What is this site\"</a>");
 
@@ -90,7 +92,8 @@ public class AboutMeView extends AppLayout {
     }
 
     private Image getEducationImage() {
-        Image educationImage = new Image();
+        Image educationImage = new Image("img/aboutMe/education-picture.jpg", "Gabriel University picture");
+        educationImage.addClassName("education-image");
 
         return educationImage;
     }
