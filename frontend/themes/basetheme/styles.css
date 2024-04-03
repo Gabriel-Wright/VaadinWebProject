@@ -597,6 +597,10 @@ vaadin-multi-select-combo-box-item[selected] {
     width:50%;
 }
 
+.education-image {
+    width:50;
+}
+
 .cv-block {
     width: 50px;
     margin: auto;
