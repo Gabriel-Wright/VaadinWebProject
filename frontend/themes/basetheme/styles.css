@@ -79,10 +79,6 @@
     .education-block {
         width:95%;
     }
-    .education-image {
-        width:400px;
-        height:600px;
-    }
     .profile-image, .hobby-image {
         width:50%;
         height:50%;
@@ -634,7 +630,7 @@ vaadin-multi-select-combo-box-item[selected] {
     background-color: #11111;
 }
 
-.cv-title, .education-title {
+.cv-title {
     font-family:"InconsolataRegular",sans-serif;
     font-size:35px;
     color:#628073;
@@ -682,7 +678,6 @@ vaadin-multi-select-combo-box-item[selected] {
 
 .about-me-title, .about-me-text {
    font-family:"InconsolataRegular",sans-serif;
-   white-space: normal;
 }
 .pdf-viewer {
     width: 50%;
@@ -690,13 +685,21 @@ vaadin-multi-select-combo-box-item[selected] {
 }
 
 .container {
+    width:80%;
+    margin:auto;
 }
 
+.education-image {
+    float: left;
+    margin-right:20px;
+    width:50%;
+    height:50%;
+}
 .image {
     float: left;
     margin-right: 20px;
 }
 
 .text {
-    font-size: 50px;
+    font-size: 20px;
 }

@@ -5,6 +5,7 @@ import com.gabeWebTest.webTest.views.dashboard.mainDrawer.MainDrawer;
 import com.gabeWebTest.webTest.views.dashboard.navigationBar.NavigationBar;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Html;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.*;
@@ -93,24 +94,27 @@ public class AboutMeView extends AppLayout {
         imageDiv.addClassName("image");
 
         // Text
+        Div paragraphs = new Div();
         Paragraph testParagraph = new Paragraph();
         testParagraph.addClassName("text");
         testParagraph.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odio.");
+        Paragraph testParagraph2 = new Paragraph();
+        testParagraph2.addClassName("text");
+        testParagraph2.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odio.");
+
+        paragraphs.add(testParagraph, testParagraph2);
         // Add the image and text divs to the container
-        container.add(imageDiv, testParagraph);
+        container.add(imageDiv, paragraphs);
 
         return container;
     }
 
-    private HorizontalLayout getEducationBlock() {
-        HorizontalLayout educationBlock = new HorizontalLayout();
+    private Div getEducationBlock() {
+        Div educationBlock = new Div();
         educationBlock.addClassName("education-block");
         educationBlock.getStyle().set("margin","auto");
         educationBlock.add(getEducationImage());
-        Div textContainer = new Div();
-        textContainer.add(getEducationTextBlock()); // Add the VerticalLayout containing the text
-        educationBlock.add(textContainer);
-        textContainer.addClassName("text-container");
+        educationBlock.add(getEducationTextBlock());
 
         return educationBlock;
     }
@@ -122,8 +126,8 @@ public class AboutMeView extends AppLayout {
         return educationImage;
     }
 
-    private VerticalLayout getEducationTextBlock() {
-        VerticalLayout titleAndTextBlock = new VerticalLayout();
+    private Div getEducationTextBlock() {
+        Div titleAndTextBlock = new Div();
         H1 title = new H1("Educational Background");
         title.addClassName("about-me-title");
         String educationText1 = "I completed my Undergraduate degree at the University of Warwick between September 2018 and July 2021. Initially, I pursued a joint degree in Maths and Philosophy, "+
@@ -134,9 +138,9 @@ public class AboutMeView extends AppLayout {
         String educationText3 = "Following my undergraduate degree I started on a master's program between October 2021 and September 2022. During the summer of 2021, before the start of my next academic year, I found myself increasingly drawn to the fields of computer science and artificial intelligence. " +
                 "Recognizing the growing importance and applications of these disciplines, I decided to pivot towards a more hands-on researched based MSc in Data Analytics. "+
                 "Throughout my MSc program, I learnt various data analytic techniques including but not limited to: ";
-        Span paragraph1 = new Span();
-        Span paragraph2 = new Span();
-        Span paragraph3 = new Span();
+        Paragraph paragraph1 = new Paragraph();
+        Paragraph paragraph2 = new Paragraph();
+        Paragraph paragraph3 = new Paragraph();
 
         paragraph1.add(educationText1);
         paragraph1.addClassName("about-me-text");
@@ -145,11 +149,11 @@ public class AboutMeView extends AppLayout {
         paragraph3.add(educationText3);
         paragraph3.addClassName("about-me-text");
         titleAndTextBlock.add(title, paragraph1, paragraph2, paragraph3);
-        Span bullet1 = new Span("• Data pre-processing and cleaning techniques.");
-        Span bullet2 = new Span("• Machine learning algorithms such as regression, classification, clustering and neural networks.");
-        Span bullet3 = new Span("• Statistical modelling, including hypothesis testing and utilising probabilistic modelling techniques to predict future outcomes.");
-        Span bullet4 = new Span("• Current applications and implementations of Natural Language Processing, such as in Sentiment Analysis, Information Extraction and Recommender Systems.");
-        Span bullet5 = new Span("• Algorithmic Game Theory approaches to solving game theoretic problems efficiently.");
+        Paragraph bullet1 = new Paragraph("• Data pre-processing and cleaning techniques.");
+        Paragraph bullet2 = new Paragraph("• Machine learning algorithms such as regression, classification, clustering and neural networks.");
+        Paragraph bullet3 = new Paragraph("• Statistical modelling, including hypothesis testing and utilising probabilistic modelling techniques to predict future outcomes.");
+        Paragraph bullet4 = new Paragraph("• Current applications and implementations of Natural Language Processing, such as in Sentiment Analysis, Information Extraction and Recommender Systems.");
+        Paragraph bullet5 = new Paragraph("• Algorithmic Game Theory approaches to solving game theoretic problems efficiently.");
         bullet1.addClassName("about-me-text");
         bullet2.addClassName("about-me-text");
         bullet3.addClassName("about-me-text");
