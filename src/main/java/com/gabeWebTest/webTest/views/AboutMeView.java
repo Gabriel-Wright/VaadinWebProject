@@ -33,6 +33,7 @@ public class AboutMeView extends AppLayout {
         addToDrawer(mainDrawer.createDrawerContent());
         VerticalLayout contentView = new VerticalLayout();
         contentView.addClassName("about-me-content");
+        contentView.add(testContainer());
         contentView.add(getAboutMeBlock());
         contentView.add(getEducationBlock());
         contentView.add(getHobbyBlock());
@@ -46,7 +47,7 @@ public class AboutMeView extends AppLayout {
         return pdfViewer;
     }
     private Image getProfileImage() {
-        Image profileImage = new Image("img/aboutMe/gabrielZoo.jpg", "Gabriel Profile picture");
+        Image profileImage = new Image("img/aboutMe/gabeCyprus.jpg", "Gabriel Profile picture");
         profileImage.addClassName("profile-image");
         return profileImage;
     }
@@ -80,12 +81,37 @@ public class AboutMeView extends AppLayout {
         return titleAndTextBlock;
     }
 
+    private Div testContainer() {
+        // Create a container for the image and text
+        Div container = new Div();
+        container.addClassName("container");
+
+        // Image
+        Image image = getProfileImage();
+        image.setWidth("150px"); // Set width of the image
+        Div imageDiv = new Div(image);
+        imageDiv.addClassName("image");
+
+        // Text
+        Paragraph testParagraph = new Paragraph();
+        testParagraph.addClassName("text");
+        testParagraph.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odio.");
+        // Add the image and text divs to the container
+        container.add(imageDiv, testParagraph);
+
+        return container;
+    }
+
     private HorizontalLayout getEducationBlock() {
         HorizontalLayout educationBlock = new HorizontalLayout();
         educationBlock.addClassName("education-block");
         educationBlock.getStyle().set("margin","auto");
         educationBlock.add(getEducationImage());
-        educationBlock.add(getEducationTextBlock());
+        Div textContainer = new Div();
+        textContainer.add(getEducationTextBlock()); // Add the VerticalLayout containing the text
+        educationBlock.add(textContainer);
+        textContainer.addClassName("text-container");
+
         return educationBlock;
     }
 
@@ -107,11 +133,10 @@ public class AboutMeView extends AppLayout {
                 "In the later years of my degree I specialised within Mathematical Analysis and Abstract Algebra.";
         String educationText3 = "Following my undergraduate degree I started on a master's program between October 2021 and September 2022. During the summer of 2021, before the start of my next academic year, I found myself increasingly drawn to the fields of computer science and artificial intelligence. " +
                 "Recognizing the growing importance and applications of these disciplines, I decided to pivot towards a more hands-on researched based MSc in Data Analytics. "+
-                "Throughout my MSc program, I learnt various data analytic techniques including but not limited to: .";
-        Paragraph paragraph1 = new Paragraph();
-        Paragraph paragraph2 = new Paragraph();
-        Paragraph paragraph3 = new Paragraph();
-        Paragraph paragraph4 = new Paragraph();
+                "Throughout my MSc program, I learnt various data analytic techniques including but not limited to: ";
+        Span paragraph1 = new Span();
+        Span paragraph2 = new Span();
+        Span paragraph3 = new Span();
 
         paragraph1.add(educationText1);
         paragraph1.addClassName("about-me-text");
@@ -144,7 +169,7 @@ public class AboutMeView extends AppLayout {
     }
 
     private Image getHobbyImage() {
-        Image hobbyImage = new Image("img/aboutMe/smashPlaying.png","Gabriel playing smash");
+        Image hobbyImage = new Image("img/aboutMe/smashTournament.jpg","Gabriel playing smash");
         hobbyImage.addClassName("hobby-image");
         return hobbyImage;
     }
