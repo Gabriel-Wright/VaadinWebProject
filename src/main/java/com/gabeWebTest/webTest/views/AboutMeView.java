@@ -153,11 +153,24 @@ public class AboutMeView extends AppLayout {
         VerticalLayout titleAndTextBlock = new VerticalLayout();
         H1 title = new H1("Hobbies & Side projects");
         title.addClassName("about-me-title");
-        String hobbiesText = "";
-        Paragraph paragraph = new Paragraph();
-        paragraph.add(hobbiesText);
-        paragraph.addClassName("about-me-text");
-        titleAndTextBlock.add(title, paragraph);
+        String hobbiesText1 = "I am a huge fan of gaming, film and story-telling in general. I try to engage with these areas through various means. During my time at Warwick I became involved in the Super Smash Bros Ultimate competitive scene. I both competed and took on a role organising tournaments within our community.";
+        String hobbiesText2 = "Outside of competitive gaming, I channel my love for games into amateur game development. I collaborate with a dedicated group of friends to build games within Unity Engine and additionally have individual game development projects I am working on.";
+        String hobbiesText3 = "Within the world of film, I love engaging in discussions about cinematic techniques, storytelling and thematic exploration. I try my best to read around the content I consume and keep myself open to new ideas and genres. " +
+                "I participate in discussions and book clubs to expand my perspectives and insights.";
+        String hobbiesText4 = "Inspired from my interest in competing through smash, I sometimes follow sports like boxing and since the start of lockdown I have been regularly working out and attending the gym when I can.";
+        Paragraph paragraph1 = new Paragraph();
+        Paragraph paragraph2 = new Paragraph();
+        Paragraph paragraph3 = new Paragraph();
+        Paragraph paragraph4 = new Paragraph();
+        paragraph1.add(hobbiesText1);
+        paragraph1.addClassName("about-me-text");
+        paragraph2.add(hobbiesText2);
+        paragraph2.addClassName("about-me-text");
+        paragraph3.add(hobbiesText3);
+        paragraph3.addClassName("about-me-text");
+        paragraph4.add(hobbiesText4);
+        paragraph4.addClassName("about-me-text");
+        titleAndTextBlock.add(title, paragraph1, paragraph2, paragraph3, paragraph4);
         return titleAndTextBlock;
     }
 
