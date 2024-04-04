@@ -78,10 +78,10 @@
         height:30%;
     }
 
-    .about-me-title {
+    .about-me-title, .wit-title {
         font-size:40px;
     }
-    .about-me-text {
+    .about-me-text,.wit-text {
         font-size:18px;
     }
     .cv-note1, .cv-note2 {
@@ -126,10 +126,10 @@
         width:30%;
         height:30%;
     }
-    .about-me-title {
+    .about-me-title, .wit-title {
         font-size: 38px;
     }
-    .about-me-text {
+    .about-me-text, .wit-title {
         font-size:18px;
     }
     .cv-note1, .cv-note2 {
@@ -170,10 +170,10 @@
         height:30%;
     }
 
-    .about-me-title {
+    .about-me-title, .wit-title {
         font-size: 36px;
     }
-    .about-me-text {
+    .about-me-text, .wit-text {
         font-size:18px;
     }
     .pdf-viewer {
@@ -220,10 +220,10 @@
         height:30%;
     }
 
-    .about-me-title {
+    .about-me-title, .wit-title {
         font-size: 32px;
     }
-    .about-me-text {
+    .about-me-text, .wit-text {
         font-size:16px;
     }
     .cv-note1, .cv-note2 {
@@ -271,10 +271,10 @@
         height:30%;
     }
 
-    .about-me-title {
+    .about-me-title, .wit-title {
         font-size: 30px;
     }
-    .about-me-text {
+    .about-me-text, .wit-text {
         font-size:15px;
     }
     .pdf-viewer {
@@ -322,10 +322,10 @@
         height:50%;
     }
 
-    .about-me-title {
+    .about-me-title, .wit-title {
         font-size: 26px;
     }
-    .about-me-text {
+    .about-me-text, .wit-text {
         font-size:14px;
     }
     .pdf-viewer {
@@ -371,10 +371,10 @@
         width:50%;
         height:50%;
     }
-    .about-me-title {
+    .about-me-title, .wit-title {
         font-size: 24px;
     }
-    .about-me-text {
+    .about-me-text, .wit-text {
         font-size:14px;
     }
     .cv-note1, .cv-note2 {
@@ -406,6 +406,11 @@
         font-size: 8x;
     }
 
+    .youtube-embed {
+        width: 448;
+        height:252;
+    }
+
 }
 
 @media screen and (max-width: 500px) {
@@ -417,10 +422,10 @@
         height:50%;
     }
 
-    .about-me-title {
+    .about-me-title, .wit-title {
         font-size: 24px;
     }
-    .about-me-text {
+    .about-me-text, .wit-text {
         font-size:13px;
     }
     .cv-note1, .cv-note2 {
@@ -434,13 +439,13 @@
         border-radius: 3px;
     }
 
-    .article-title {
+    .article-title, .wit-title {
             font-size:14px;
     }
     .adaptive-title-font {
         font-size:13px; /* Further adjusted font size for even smaller screens */
     }
-    .article-preview-text {
+    .article-preview-text, .wit-text {
         font-size: 9px;
     }
     .tag-badge {
@@ -450,6 +455,11 @@
     .image-container {
         height: 140px;
     }
+    .youtube-embed {
+        width: 392;
+        height:220;
+    }
+
 }
 
 @media screen and (max-width: 400px) {
@@ -460,10 +470,10 @@
         width:50%;
         height:50%;
     }
-    .about-me-title {
+    .about-me-title, .wit-title {
         font-size: 20px;
     }
-    .about-me-text {
+    .about-me-text, .wit-text {
         font-size:13px;
     }
     .cv-note1, .cv-note2 {
@@ -493,6 +503,11 @@
     .date-style {
         font-size: 6px;
     }
+    .youtube-embed {
+        width: 336;
+        height:189;
+    }
+
 }
 
 @media screen and (max-width: 300px) {
@@ -504,10 +519,10 @@
             height:50%;
         }
 
-        .about-me-title {
+        .about-me-title, .wit-title {
             font-size: 18px;
         }
-        .about-me-text {
+        .about-me-text, .wit-text {
             font-size:12px;
         }
         .cv-note1 {
@@ -516,6 +531,11 @@
         .cv-note2 {
             font-size:14px;
         }
+        .youtube-embed {
+            width: 224;
+            height:126;
+        }
+
 
 }
 .article-style {
@@ -795,9 +815,14 @@ vaadin-multi-select-combo-box-item[selected] {
     padding: 20px;
 }
 
-.about-me-title, .about-me-text {
+.about-me-title, .about-me-text, .wit-text  {
    font-family:"InconsolataRegular",sans-serif;
 }
+.wit-title {
+    font-family:"InconsolataRegular",sans-serif;
+    margin-bottom: 5px;
+}
+
 .pdf-viewer {
     margin:auto;
 }
@@ -827,4 +852,28 @@ vaadin-multi-select-combo-box-item[selected] {
 
 .text {
     font-size: 20px;
+}
+
+.wit-content {
+    width:80%;
+    margin:auto;
+    padding:10px;
+    border-radius: 10px; /* Rounded corners */
+}
+
+.youtube-embed {
+    margin:auto;
+    display:block;
+    padding:20px;
+}
+
+.tech-stack {
+    padding:10px;
+    border-radius: 10px; /* Rounded corners */
+    transition: background-color 0.5s ease;
+}
+
+.tech-stack:hover {
+    background-color: rgba(208, 214, 214,0.5); /* Change background color to light gray */
+    transition: background-color 0.5s ease;
 }

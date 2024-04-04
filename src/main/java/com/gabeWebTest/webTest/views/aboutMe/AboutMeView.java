@@ -45,11 +45,6 @@ public class AboutMeView extends AppLayout {
         setContent(contentView);
     }
 
-    private Html getPdfViewer() {
-        Html pdfViewer = new Html("<embed src='pdf/CVGabrielWrightOct2023.pdf' type='application/pdf' width='50%' height='600px' />");
-        pdfViewer.addClassName("pdf-viewer");
-        return pdfViewer;
-    }
     private Image getProfileImage() {
         Image profileImage = new Image("img/aboutMe/gabeCyprus.jpg", "Gabriel Profile picture");
         profileImage.addClassName("profile-image");
@@ -205,4 +200,11 @@ public class AboutMeView extends AppLayout {
 
         return cvBlock;
     }
+
+    private Html getPdfViewer() {
+        Html pdfViewer = new Html("<embed src='pdf/CVGabrielWrightOct2023.pdf' type='application/pdf' width='50%' height='600px' />");
+        pdfViewer.addClassName("pdf-viewer");
+        return pdfViewer;
+    }
+
 }
