@@ -89,7 +89,6 @@ public class WhatIsThisSiteView extends AppLayout {
 
     private Div createTechStackExplanation() {
         Div techStack = new Div();
-        techStack.addClassName("tech-stack");
 
         Div backEnd = createBackEndSection();
         techStack.add(backEnd);
