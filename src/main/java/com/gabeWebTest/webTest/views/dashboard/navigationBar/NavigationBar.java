@@ -143,4 +143,7 @@ public class NavigationBar {
         return youtubeAnchor;
     }
 
+    public void setDrawToggleRight(boolean drawToggleRight) {
+        this.drawToggleRight = drawToggleRight;
+    }
 }

@@ -50,6 +50,8 @@ public class DashboardView extends AppLayout implements TagFilterListener {
         this.webPageService = webPageService;
         this.dashboardUIChangeListener = dashboardUIChangeListener;
 
+        setDrawerOpened(true);
+        navigationBar.setDrawToggleRight(true);
         dashboardUIChangeListener.setDashboardView(this);
         DrawerToggle toggle = new DrawerToggle();
         addToNavbar(navigationBar.createNavBarContent(toggle));

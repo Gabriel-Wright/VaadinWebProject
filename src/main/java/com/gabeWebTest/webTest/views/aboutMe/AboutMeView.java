@@ -31,6 +31,8 @@ public class AboutMeView extends AppLayout {
         setPrimarySection(Section.DRAWER);
         this.navigationBar = navigationbar;
         this.mainDrawer = mainDrawer;
+        setDrawerOpened(true);
+        navigationBar.setDrawToggleRight(true);
         DrawerToggle drawerToggle = new DrawerToggle();
         addToNavbar(navigationbar.createNavBarContent(drawerToggle,"About me"));
         addToDrawer(mainDrawer.createDrawerContent());

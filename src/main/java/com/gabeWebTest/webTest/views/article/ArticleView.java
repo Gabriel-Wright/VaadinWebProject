@@ -46,6 +46,8 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long>, Has
         this.visualSourceService = visualSourceService;
         this.navigationBar = navigationBar;
         this.mainDrawer = mainDrawer;
+        setDrawerOpened(true);
+        navigationBar.setDrawToggleRight(true);
 
         addToDrawer(mainDrawer.createDrawerContent());
         setPrimarySection(Section.DRAWER);
