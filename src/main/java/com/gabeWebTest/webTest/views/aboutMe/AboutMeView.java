@@ -1,4 +1,4 @@
-package com.gabeWebTest.webTest.views;
+package com.gabeWebTest.webTest.views.aboutMe;
 
 import com.gabeWebTest.webTest.views.dashboard.mainDrawer.MainDrawer;
 import com.gabeWebTest.webTest.views.dashboard.navigationBar.NavigationBar;
