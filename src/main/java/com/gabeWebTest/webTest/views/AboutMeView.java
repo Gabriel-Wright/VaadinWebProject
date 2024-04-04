@@ -34,7 +34,7 @@ public class AboutMeView extends AppLayout {
         addToDrawer(mainDrawer.createDrawerContent());
         VerticalLayout contentView = new VerticalLayout();
         contentView.addClassName("about-me-content");
-        contentView.add(testContainer());
+//        contentView.add(testContainer());
         contentView.add(getAboutMeBlock());
         contentView.add(getEducationBlock());
         contentView.add(getHobbyBlock());
@@ -53,8 +53,8 @@ public class AboutMeView extends AppLayout {
         return profileImage;
     }
 
-    private HorizontalLayout getAboutMeBlock() {
-        HorizontalLayout aboutMeBlock = new HorizontalLayout();
+    private Div getAboutMeBlock() {
+        Div aboutMeBlock = new Div();
         aboutMeBlock.addClassName("about-me-block");
         aboutMeBlock.getStyle().set("margin","auto");
         aboutMeBlock.add(getProfileImage());
@@ -62,8 +62,8 @@ public class AboutMeView extends AppLayout {
         return aboutMeBlock;
     }
 
-    private VerticalLayout getAboutMeTextBlock() {
-        VerticalLayout titleAndTextBlock = new VerticalLayout();
+    private Div getAboutMeTextBlock() {
+        Div titleAndTextBlock = new Div();
         H1 title = new H1("Gabriel Magnus Wright");
         title.addClassName("about-me-title");
         String age = Integer.toString(CALCULATE_AGE());
@@ -128,7 +128,7 @@ public class AboutMeView extends AppLayout {
 
     private Div getEducationTextBlock() {
         Div titleAndTextBlock = new Div();
-        H1 title = new H1("Educational Background");
+        H1 title = new H1("Education Background");
         title.addClassName("about-me-title");
         String educationText1 = "I completed my Undergraduate degree at the University of Warwick between September 2018 and July 2021. Initially, I pursued a joint degree in Maths and Philosophy, "+
                "due to my split interest in both subjects and their interconnectedness. Particularly intriguing to me was the exploration of mathematical logic and its implications on metaphysical concepts of truth.";
@@ -163,8 +163,8 @@ public class AboutMeView extends AppLayout {
         return titleAndTextBlock;
     }
 
-    private HorizontalLayout getHobbyBlock() {
-        HorizontalLayout hobbyBlock = new HorizontalLayout();
+    private Div getHobbyBlock() {
+        Div hobbyBlock = new Div();
         hobbyBlock.addClassName("hobby-block");
         hobbyBlock.getStyle().set("margin","auto");
         hobbyBlock.add(getHobbyImage());
@@ -178,8 +178,8 @@ public class AboutMeView extends AppLayout {
         return hobbyImage;
     }
 
-    private VerticalLayout getHobbyTextBlock() {
-        VerticalLayout titleAndTextBlock = new VerticalLayout();
+    private Div getHobbyTextBlock() {
+        Div titleAndTextBlock = new Div();
         H1 title = new H1("Hobbies & Side projects");
         title.addClassName("about-me-title");
         String hobbiesText1 = "I am a huge fan of gaming, film and story-telling in general. I try to engage with these areas through various means. During my time at Warwick I became involved in the Super Smash Bros Ultimate competitive scene. I both competed and took on a role organising tournaments within our community.";
@@ -208,7 +208,13 @@ public class AboutMeView extends AppLayout {
         cvBlock.addClassName("cv-block");
 //        cvBlock.getStyle().set("margin","auto");
         H1 cvTitle = new H1("CV");
-        H2 cvNote = new H2("Attached below is a copy of my current CV, for queries contact me at:");
+        H1 cvNote = new H1();
+        String introText = "Attached is a copy of my current ";
+        Html htmlContent = new Html("<a href=\"/pdf/CVGabrielWrightOct2023.pdf\" target=\"_blank\">CV</a>");
+        String addOnText = ", for queries contact me at:";
+        cvNote.add(introText);
+        cvNote.add(htmlContent);
+        cvNote.add(addOnText);
         H2 cvNote2 = new H2("gabriel.magnus.wright@gmail.com");
 
         cvTitle.addClassName("cv-title");

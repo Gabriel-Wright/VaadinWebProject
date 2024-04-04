@@ -73,25 +73,21 @@
 }
 
 @media screen and (max-width:1920px) {
-    .about-me-block, .hobby-block {
-        width:85%;
-    }
-    .education-block {
-        width:95%;
-    }
     .profile-image, .hobby-image {
-        width:50%;
-        height:50%;
+        width:30%;
+        height:30%;
     }
 
-    .text-container {
-        width:100%;
-        flex-shrink: 1;
-        flex-grow: 1;
+    .about-me-title {
+        font-size:40px;
     }
-    .about-me-title, .about-me-text {
+    .about-me-text {
         font-size:18px;
     }
+    .cv-note1, .cv-note2 {
+        font-size:36px;
+    }
+
     .article-thumbnail {
         width: 50%;
         margin:auto;
@@ -102,7 +98,9 @@
         padding: 5px;
         border-radius: 5px;
     }
-
+    .pdf-viewer {
+        width:75%;
+    }
     .article-title {
             font-size:32px;
     }
@@ -124,16 +122,20 @@
 }
 
 @media screen and (max-width: 1600px) {
-    .about-me-block, .hobby-block {
-        width:80%;
+    .profile-image, .hobby-image {
+        width:30%;
+        height:30%;
     }
-    .education-block {
-        width:95%;
+    .about-me-title {
+        font-size: 38px;
+    }
+    .about-me-text {
+        font-size:18px;
+    }
+    .cv-note1, .cv-note2 {
+        font-size:36px;
     }
 
-    .about-me-title, .about-me-text {
-        font-size:16px;
-    }
     .linkedin-anchor, .github-anchor, .youtube-anchor {
         width:45px;
         padding: 5px;
@@ -163,11 +165,22 @@
 }
 
 @media screen and (max-width: 1400px) {
-    .about-me-block, .education-block, .hobby-block {
-        width:87%;
+    .profile-image, .hobby-image {
+        width:30%;
+        height:30%;
     }
-    .about-me-title, .about-me-text {
-        font-size:15px;
+
+    .about-me-title {
+        font-size: 36px;
+    }
+    .about-me-text {
+        font-size:18px;
+    }
+    .pdf-viewer {
+        width:80%;
+    }
+    .cv-note1, .cv-note2 {
+        font-size:34px;
     }
 
     .linkedin-anchor, .github-anchor, .youtube-anchor {
@@ -199,11 +212,26 @@
 }
 
 @media screen and (max-width:1200px) {
-    .about-me-block, .education-block, .hobby-block {
-        width:90%;
+    .education-block, .profile-block, .hobby-block {
+        width:85%;
     }
-    .about-me-title, .about-me-text {
-        font-size:14px;
+    .profile-image, .hobby-image {
+        width:30%;
+        height:30%;
+    }
+
+    .about-me-title {
+        font-size: 32px;
+    }
+    .about-me-text {
+        font-size:16px;
+    }
+    .cv-note1, .cv-note2 {
+        font-size:32px;
+    }
+
+    .pdf-viewer {
+        width:85%;
     }
 
     .linkedin-anchor, .github-anchor, .youtube-anchor {
@@ -235,11 +263,25 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .about-me-block, .education-block, .hobby-block {
-        width:92%;
+    .education-block, .profile-block, .hobby-block {
+        width:85%;
     }
-    .about-me-title, .about-me-text {
-        font-size:13px;
+    .profile-image, .hobby-image {
+        width:30%;
+        height:30%;
+    }
+
+    .about-me-title {
+        font-size: 30px;
+    }
+    .about-me-text {
+        font-size:15px;
+    }
+    .pdf-viewer {
+        width:90%;
+    }
+    .cv-note1, .cv-note2 {
+        font-size:26px;
     }
 
 
@@ -272,11 +314,25 @@
 }
 
 @media screen and (max-width: 800px) {
-    .about-me-block, .education-block, .hobby-block {
-        width:94%;
+    .education-block, .profile-block, .hobby-block {
+        width:90%;
     }
-    .about-me-title, .about-me-text {
-        font-size:11px;
+    .profile-image, .hobby-image {
+        width:50%;
+        height:50%;
+    }
+
+    .about-me-title {
+        font-size: 26px;
+    }
+    .about-me-text {
+        font-size:14px;
+    }
+    .pdf-viewer {
+        width:95%;
+    }
+    .cv-note1, .cv-note2 {
+        font-size:24px;
     }
 
     .linkedin-anchor, .github-anchor, .youtube-anchor {
@@ -308,13 +364,22 @@
 }
 
 @media screen and (max-width: 600px) {
-    .about-me-block, .education-block, .hobby-block {
-        width:96%;
+    .education-block, .profile-block, .hobby-block {
+        width:90%;
     }
-    .about-me-title, .about-me-text {
-        font-size:11px;
+    .profile-image, .hobby-image {
+        width:50%;
+        height:50%;
     }
-
+    .about-me-title {
+        font-size: 24px;
+    }
+    .about-me-text {
+        font-size:14px;
+    }
+    .cv-note1, .cv-note2 {
+        font-size:22px;
+    }
     .linkedin-anchor, .github-anchor, .youtube-anchor {
         width:28px;
         padding: 3px;
@@ -344,6 +409,25 @@
 }
 
 @media screen and (max-width: 500px) {
+    .education-block, .profile-block, .hobby-block {
+        width:90%;
+    }
+    .profile-image, .hobby-image {
+        width:50%;
+        height:50%;
+    }
+
+    .about-me-title {
+        font-size: 24px;
+    }
+    .about-me-text {
+        font-size:13px;
+    }
+    .cv-note1, .cv-note2 {
+        font-size:20px;
+    }
+
+
     .linkedin-anchor, .github-anchor, .youtube-anchor {
         width:25px;
         padding: 2px;
@@ -369,6 +453,23 @@
 }
 
 @media screen and (max-width: 400px) {
+    .education-block, .profile-block, .hobby-block {
+        width:100%;
+    }
+    .profile-image, .hobby-image {
+        width:50%;
+        height:50%;
+    }
+    .about-me-title {
+        font-size: 20px;
+    }
+    .about-me-text {
+        font-size:13px;
+    }
+    .cv-note1, .cv-note2 {
+        font-size:18px;
+    }
+
     .linkedin-anchor, .github-anchor, .youtube-anchor {
         width:20px;
         padding: 2px;
@@ -394,6 +495,29 @@
     }
 }
 
+@media screen and (max-width: 300px) {
+        .education-block, .profile-block, .hobby-block {
+            width:100%;
+        }
+        .profile-image, .hobby-image {
+            width:50%;
+            height:50%;
+        }
+
+        .about-me-title {
+            font-size: 18px;
+        }
+        .about-me-text {
+            font-size:12px;
+        }
+        .cv-note1 {
+            font-size:16px;
+        }
+        .cv-note2 {
+            font-size:14px;
+        }
+
+}
 .article-style {
       overflow: hidden;
       padding: 10px;
@@ -645,7 +769,7 @@ vaadin-multi-select-combo-box-item[selected] {
 }
 
 .about-me-block, .education-block, .hobby-block {
-    /*width: 80%;*/
+    width: 85%;
     margin:auto;
     padding:10px;
     border-radius: 10px; /* Rounded corners */
@@ -662,11 +786,6 @@ vaadin-multi-select-combo-box-item[selected] {
     height:50%;
 } */
 
- .text-container {
-        flex-grow:1;
-        display:flex;
-
-        }
 .cv-block {
     width: 50px;
     margin: auto;
@@ -680,7 +799,6 @@ vaadin-multi-select-combo-box-item[selected] {
    font-family:"InconsolataRegular",sans-serif;
 }
 .pdf-viewer {
-    width: 50%;
     margin:auto;
 }
 
@@ -689,9 +807,16 @@ vaadin-multi-select-combo-box-item[selected] {
     margin:auto;
 }
 
-.education-image {
+.profile-image, .hobby-image {
     float: left;
     margin-right:20px;
+    /*width:30%;
+    height:30%;*/
+}
+
+.education-image {
+    float: right;
+    margin-left:10px;
     width:50%;
     height:50%;
 }
