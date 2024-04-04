@@ -25,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 
 @Route("")
-@PageTitle("Dashboard")
+@PageTitle("Welcome | Projects & Thoughts")
 @JavaScript("js/custom.js")
 public class DashboardView extends AppLayout implements TagFilterListener {
 

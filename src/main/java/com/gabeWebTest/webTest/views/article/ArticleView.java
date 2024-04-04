@@ -11,8 +11,12 @@ import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasDynamicTitle;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinRequest;
+import com.vaadin.flow.server.VaadinServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.slf4j.Logger;
@@ -23,7 +27,7 @@ import java.time.LocalTime;
 
 
 @Route("article")
-public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
+public class ArticleView extends AppLayout implements HasUrlParameter<Long>, HasDynamicTitle {
 
     private static final Logger logger = LoggerFactory.getLogger(ArticleView.class);
 
@@ -34,6 +38,7 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
 
     private final NavigationBar navigationBar;
     private final MainDrawer mainDrawer;
+    private String title;
     private WebPage webPage;
     public ArticleView(WebPageService webPageService, VisualSourceService visualSourceService, NavigationBar navigationBar, MainDrawer mainDrawer) {
         addClassName("dashboard-layout");
@@ -52,8 +57,16 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
         webPage = webPageService.findWebPageById(aLong).orElse(null);
         loadNavBar();
         loadPage();
+        if(webPage!=null) {
+            setPageTitle();
+        } else {
+            title = "Article";
+        }
     }
 
+    private void setPageTitle() {
+        title = webPage.getTitle();
+    }
     private void loadNavBar() {
         DrawerToggle toggle = new DrawerToggle();
         addToNavbar(navigationBar.createNavBarContentArticle(toggle, webPage));
@@ -111,4 +124,8 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long> {
         return image;
     }
 
+    @Override
+    public String getPageTitle() {
+        return title;
+    }
 }

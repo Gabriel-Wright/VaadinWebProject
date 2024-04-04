@@ -1,24 +1,26 @@
 package com.gabeWebTest.webTest.views;
 
-import com.gabeWebTest.webTest.data.webPage.Title;
 import com.gabeWebTest.webTest.views.dashboard.mainDrawer.MainDrawer;
 import com.gabeWebTest.webTest.views.dashboard.navigationBar.NavigationBar;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Html;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.gabeWebTest.webTest.utils.AgeCalculator.CALCULATE_AGE;
 
 @Route("about-me")
+@PageTitle("Gabriel Magnus Wright")
+
 public class AboutMeView extends AppLayout {
+
+
+    //I recognise for this that I could create a method that reads in String[] paragraphs or just pass the text by a .txt and have it be parsed,
+    //But the formatting for each one is fairly unique and for now it feels okay to leave it, since this isnt an article page and will remain static.
 
     private final NavigationBar navigationBar;
     private final MainDrawer mainDrawer;
@@ -34,7 +36,6 @@ public class AboutMeView extends AppLayout {
         addToDrawer(mainDrawer.createDrawerContent());
         VerticalLayout contentView = new VerticalLayout();
         contentView.addClassName("about-me-content");
-//        contentView.add(testContainer());
         contentView.add(getAboutMeBlock());
         contentView.add(getEducationBlock());
         contentView.add(getHobbyBlock());
@@ -80,33 +81,6 @@ public class AboutMeView extends AppLayout {
         titleAndTextBlock.add(title);
         titleAndTextBlock.add(paragraph);
         return titleAndTextBlock;
-    }
-
-    private Div testContainer() {
-        // Create a container for the image and text
-        Div container = new Div();
-        container.addClassName("container");
-
-        // Image
-        Image image = getProfileImage();
-        image.setWidth("150px"); // Set width of the image
-        Div imageDiv = new Div(image);
-        imageDiv.addClassName("image");
-
-        // Text
-        Div paragraphs = new Div();
-        Paragraph testParagraph = new Paragraph();
-        testParagraph.addClassName("text");
-        testParagraph.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odio.");
-        Paragraph testParagraph2 = new Paragraph();
-        testParagraph2.addClassName("text");
-        testParagraph2.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odioLorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget felis sed nisi ullamcorper hendrerit vel vel odio.");
-
-        paragraphs.add(testParagraph, testParagraph2);
-        // Add the image and text divs to the container
-        container.add(imageDiv, paragraphs);
-
-        return container;
     }
 
     private Div getEducationBlock() {
