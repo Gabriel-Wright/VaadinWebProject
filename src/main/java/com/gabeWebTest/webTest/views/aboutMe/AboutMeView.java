@@ -157,7 +157,7 @@ public class AboutMeView extends AppLayout {
         String hobbiesText2 = "Outside of competitive gaming, I channel my love for games into amateur game development. I collaborate with a dedicated group of friends to build games within Unity Engine and additionally have individual game development projects I am working on.";
         String hobbiesText3 = "Within the world of film, I love engaging in discussions about cinematic techniques, storytelling and thematic exploration. I try my best to read around the content I consume and keep myself open to new ideas and genres. " +
                 "I participate in discussions and book clubs to expand my perspectives and insights.";
-        String hobbiesText4 = "Inspired from my interest in competing through smash, I sometimes follow sports like boxing and since the start of lockdown I have been regularly working out and attending the gym when I can.";
+        String hobbiesText4 = "Inspired from my interest in competing through smash, I sometimes follow sports like boxing and since the start of lockdown I have been regularly working out and attending the gym.";
         Paragraph paragraph1 = new Paragraph();
         Paragraph paragraph2 = new Paragraph();
         Paragraph paragraph3 = new Paragraph();
