@@ -95,7 +95,7 @@ public class DashboardView extends AppLayout implements TagFilterListener {
 //        list.getStyle().set("transition","opacity 0.5s ease");
         selectedWebPages = webPageService.findAllWebPages();
         list.setItems(selectedWebPages);
-        list.setRenderer(new WebPageListRenderer(HorizontalLayout::new));
+        list.setRenderer(new WebPageListRenderer(Div::new));
         list.setHeightFull();
         list.addClassName("articlelist-style");
     }
