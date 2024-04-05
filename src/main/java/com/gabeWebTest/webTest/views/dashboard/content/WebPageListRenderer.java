@@ -70,17 +70,11 @@ public class WebPageListRenderer extends ComponentRenderer<Div, WebPage> {
 
     private Div loadWebPageVerticalText(WebPage item) {
         Div verticalText = new Div();
-        verticalText.addClassName("article-preview-block");
         H1 componentTitle = loadWebPagePreviewTitle(item);
         Paragraph paragraph = loadWebPagePreviewParagraph(item);
         Div tagComponent = loadWebPageTags(item);
         Paragraph articleDate = loadWebPageDate(item);
-//        verticalText.add(componentTitle);
-//        verticalText.add(articleDate);
-//        verticalText.add(paragraph);
         verticalText.add(componentTitle, articleDate,paragraph, tagComponent);
-//        verticalText.setSizeFull();
-//        verticalText.setWidth("30%");
 
         return verticalText;
     }
@@ -103,8 +97,6 @@ public class WebPageListRenderer extends ComponentRenderer<Div, WebPage> {
 
     private Div loadWebPageTags(WebPage item) {
         Div tagsComponent = createTagDisplayComponent(item);
-//        tagsComponent.setAlignItems(FlexComponent.Alignment.START);
-//        tagsComponent.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
 
         return tagsComponent;
     }

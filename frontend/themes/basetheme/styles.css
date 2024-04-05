@@ -99,23 +99,27 @@
     .pdf-viewer {
         width:75%;
     }
+    .article-style {
+        padding:10px;
+    }
     .article-title {
             font-size:32px;
     }
     .adaptive-title-font {
-       font-size:32px;
+       font-size:40px;
     }
     .article-preview-text {
-       font-size: 18px;
+       font-size: 24px;
     }
     .tag-badge {
-      font-size: 17px;
+      font-size: 28px;
     }
     .image-preview-container {
+      float: right;
       height:320px;
    }
    .date-style {
-       font-size: 13x;
+       font-size: 20x;
    }
 }
 
@@ -141,23 +145,28 @@
     }
 
     .article-title {
-            font-size:30px;
+            font-size:40px;
     }
 
     .adaptive-title-font {
-        font-size:32px;
+        font-size:36px;
     }
+
     .article-preview-text {
-        font-size: 18px;
+        font-size: 22px;
     }
+
     .tag-badge {
-        font-size: 17px;
+        font-size: 24px;
     }
+
    .image-preview-container {
+       float: right;
             height:320px;
    }
-.date-style {
-    font-size: 13x;
+
+    .date-style {
+        font-size:18px;
     }
 
 }
@@ -171,12 +180,15 @@
     .about-me-title, .wit-title {
         font-size: 36px;
     }
+
     .about-me-text, .wit-text {
         font-size:18px;
     }
+
     .pdf-viewer {
         width:80%;
     }
+
     .cv-note1, .cv-note2 {
         font-size:34px;
     }
@@ -188,25 +200,29 @@
     }
 
     .article-title {
-            font-size:28px;
+        font-size:38px;
     }
 
     .adaptive-title-font {
-        font-size:28px;
+        font-size:32px;
     }
+
     .article-preview-text {
-        font-size:16px;
+        font-size:20px;
     }
+
     .tag-badge {
-        font-size:15px;
+        font-size:22px;
     }
+
    .image-preview-container {
+       float: right;
             height: 260px;
    }
-   .date-style {
-       font-size:12px;
-   }
 
+   .date-style {
+       font-size:17px;
+   }
 }
 
 @media screen and (max-width:1200px) {
@@ -239,23 +255,24 @@
     }
 
     .article-title {
-            font-size:26px;
+            font-size:36px;
     }
 
     .adaptive-title-font {
-        font-size:24px;
+        font-size:30px;
     }
     .article-preview-text {
-        font-size: 15px;
+        font-size:18px;
     }
     .tag-badge {
-        font-size: 14px;
+        font-size: 20 px;
     }
     .image-preview-container {
+        float: right;
         height: 240px;
     }
     .date-style {
-        font-size: 11px;
+        font-size:16px;
     }
 
 }
@@ -290,23 +307,24 @@
     }
 
     .article-title {
-            font-size:24px;
+            font-size:34px;
     }
 
     .adaptive-title-font {
-        font-size:22px;
+        font-size:28px;
     }
     .article-preview-text {
-        font-size: 13px;
+        font-size: 16px;
     }
     .tag-badge {
-        font-size: 12px;
+        font-size: 18px;
     }
     .image-preview-container {
+        float: right;
         height:200px;
     }
     .date-style {
-        font-size: 10px;
+        font-size: 14px;
     }
 
 }
@@ -340,23 +358,24 @@
     }
 
     .article-title {
-            font-size:22px;
+            font-size:30px;
     }
 
    .adaptive-title-font {
-    font-size:19px;
+    font-size:26px;
    }
    .image-preview-container {
-            height: 170px;
+       float: right;
+            height: 180px;
    }
    .article-preview-text {
-       font-size:11px;
+       font-size:14px;
    }
   .tag-badge {
-       ont-size: 10px;
+       font-size: 16px;
   }
   .date-style {
-        font-size: 9px;
+        font-size: 13px;
   }
 
 }
@@ -385,23 +404,28 @@
     }
 
     .article-title {
-            font-size:16px;
+            font-size:28px;
     }
 
     .adaptive-title-font {
-        font-size: 16px; /* Adjusted font size for smaller screens */
+        font-size: 26px; /* Adjusted font size for smaller screens */
     }
     .article-preview-text {
-        font-size:10px;
+        font-size:16px;
     }
-   .image-preview-container {
-            height: 150px;
-   }
+    .image-preview-container {
+        margin: 0 auto; /* Center align the image horizontally */
+        display: block; /* Change display to block */
+        width: 100%; /* Set width to 100% */
+        height: auto; /* Automatically adjust height */
+        max-width: 100%; /* Set maximum width to 100% */
+        max-height: 400px; /* Set maximum height if needed */
+    }
     .tag-badge {
-        font-size: 9px;
+        font-size: 16px;
     }
     .date-style {
-        font-size: 8x;
+        font-size: 16x;
     }
 
     .youtube-embed {
@@ -437,27 +461,35 @@
         border-radius: 3px;
     }
 
-    .article-title, .wit-title {
+    .article-title {
+        font-size: 23px;
+    }
+
+    .wit-title {
             font-size:14px;
     }
     .adaptive-title-font {
-        font-size:13px; /* Further adjusted font size for even smaller screens */
-    }
-    .article-preview-text, .wit-text {
-        font-size: 9px;
-    }
-    .tag-badge {
-           font-size: 7px;
+        font-size:24px; /* Further adjusted font size for even smaller screens */
     }
 
-    .image-preview-container {
-        height: 140px;
+    .article-preview-text {
+        font-size:16px;
+    }
+
+    .wit-text {
+        font-size: 13px;
+    }
+    .tag-badge {
+           font-size: 15px;
     }
     .youtube-embed {
         width: 392;
         height:220;
     }
 
+    .date-style {
+        font-size:16px;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -484,22 +516,19 @@
         border-radius: 2px;
     }
     .article-title {
-        font-size: 12px;
+        font-size:22px;
     }
     .adaptive-title-font {
-        font-size:12px; /* Further adjusted font size for even smaller screens */
+        font-size:22px; /* Further adjusted font size for even smaller screens */
     }
     .article-preview-text {
-        font-size: 8px;
+        font-size: 14px;
     }
     .tag-badge {
-            font-size: 7px;
-    }
-    .image-preview-container {
-        height: 130px;
+        font-size: 14px;
     }
     .date-style {
-        font-size: 6px;
+        font-size: 14px;
     }
     .youtube-embed {
         width: 336;
@@ -509,37 +538,47 @@
 }
 
 @media screen and (max-width: 300px) {
-        .education-block, .profile-block, .hobby-block {
-            width:100%;
-        }
-        .profile-image, .hobby-image {
-            width:50%;
-            height:50%;
-        }
+    .education-block, .profile-block, .hobby-block {
+        width:100%;
+    }
+    .profile-image, .hobby-image {
+    width:50%;
+        height:50%;
+    }
 
-        .about-me-title, .wit-title {
-            font-size: 18px;
-        }
-        .about-me-text, .wit-text {
-            font-size:12px;
-        }
-        .cv-note1 {
-            font-size:16px;
-        }
-        .cv-note2 {
-            font-size:14px;
-        }
-        .youtube-embed {
-            width: 224;
-            height:126;
-        }
-
-
+    .about-me-title, .wit-title {
+        font-size: 18px;
+    }
+    .about-me-text, .wit-text {
+        font-size:12px;
+    }
+    .cv-note1 {
+        font-size:16px;
+    }
+    .cv-note2 {
+        font-size:14px;
+    }
+    .youtube-embed {
+        width: 224;
+        height:126;
+    }
+    .adaptive-title-font {
+        font-size:18px; /* Further adjusted font size for even smaller screens */
+    }
+    .article-preview-text {
+        font-size: 12px;
+    }
+    .tag-badge {
+        font-size: 12px;
+    }
+    .date-style {
+        font-size: 12px;
+    }
 }
+
 .article-style {
       align: right;
       overflow: hidden;
-      padding: 10px;
       border-radius:5px;
       background-color: rgba(0, 0, 0, 0); /* Completely transparent black */
       transition: background-color 0.5s ease;
@@ -557,7 +596,7 @@
 }
 /* Apply grayscale filter to the image by default */
 .image-preview-container {
-    float: right;
+    /*float: right; */
     margin-left:20px;
     /*max-height:400px;*/
     width:auto;
