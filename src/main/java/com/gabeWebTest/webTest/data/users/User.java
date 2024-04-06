@@ -1,13 +1,20 @@
 package com.gabeWebTest.webTest.data.users;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class User {
 
+    public User() {
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idgenerator")
+    @SequenceGenerator(name = "idgenerator", initialValue = 1000)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "username")
     private String username;
     private String password;
     private String role;

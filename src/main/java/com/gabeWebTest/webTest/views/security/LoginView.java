@@ -1,7 +1,5 @@
-package com.gabeWebTest.webTest.views.upload;
+package com.gabeWebTest.webTest.views.security;
 
-import com.gabeWebTest.webTest.views.article.ArticleView;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
