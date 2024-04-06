@@ -6,6 +6,13 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class User {
 
+    public User(Long id, String username, String password, String role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
     public User() {
     }
 
