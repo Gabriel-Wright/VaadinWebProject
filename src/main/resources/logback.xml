@@ -9,7 +9,7 @@
 
     <!-- Rolling File Appender -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/weblogs.log</file>
+        <file>logs/web.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- Log file will roll over daily -->
             <fileNamePattern>logs/weblogs-%d{yyyy-MM-dd}.log</fileNamePattern>
@@ -24,7 +24,7 @@
     </appender>
 
     <!-- Root Logger -->
-    <root level="info">
+    <root level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>

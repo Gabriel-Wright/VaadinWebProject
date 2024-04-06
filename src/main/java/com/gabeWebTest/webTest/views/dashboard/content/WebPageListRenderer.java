@@ -47,10 +47,6 @@ public class WebPageListRenderer extends ComponentRenderer<Div, WebPage> {
     private Div createTagDisplayComponent(WebPage item) {
         Set<Tag> tags = item.getTags();
         Div horizontalLayout = new Div();
-//        horizontalLayout.addClassName("tag-ball-style");
-//        horizontalLayout.getStyle().set("flex-wrap","wrap");
-//        horizontalLayout.setPadding(false); // Disable padding to minimize extra space
-
         for(Tag tag: tags) {
             horizontalLayout.add(tag.createTagComponent());
         }

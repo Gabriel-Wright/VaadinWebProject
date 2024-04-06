@@ -11,10 +11,12 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route("what-is-this-site")
 @PageTitle("What is this site?")
+@AnonymousAllowed
 public class WhatIsThisSiteView extends AppLayout {
 
     private final NavigationBar navigationBar;

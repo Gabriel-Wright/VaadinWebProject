@@ -16,6 +16,7 @@ import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinRequest;
 import com.vaadin.flow.server.VaadinServletRequest;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,6 +28,7 @@ import java.time.LocalTime;
 
 
 @Route("article")
+@AnonymousAllowed
 public class ArticleView extends AppLayout implements HasUrlParameter<Long>, HasDynamicTitle {
 
     private static final Logger logger = LoggerFactory.getLogger(ArticleView.class);
@@ -51,7 +53,6 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long>, Has
 
         addToDrawer(mainDrawer.createDrawerContent());
         setPrimarySection(Section.DRAWER);
-        logger.info("loaded new page");
     }
 
     @Override

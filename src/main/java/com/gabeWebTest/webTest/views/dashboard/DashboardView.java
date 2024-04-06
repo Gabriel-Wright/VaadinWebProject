@@ -20,6 +20,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.virtuallist.VirtualList;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
@@ -27,6 +28,7 @@ import java.util.*;
 @Route("")
 @PageTitle("Welcome | Projects & Thoughts")
 @JavaScript("js/custom.js")
+@AnonymousAllowed
 public class DashboardView extends AppLayout implements TagFilterListener {
 
     private H1 viewTitle;
