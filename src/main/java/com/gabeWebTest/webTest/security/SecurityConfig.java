@@ -1,6 +1,8 @@
 package com.gabeWebTest.webTest.security;
 
+import com.gabeWebTest.webTest.views.dashboard.DashboardView;
 import com.gabeWebTest.webTest.views.security.LoginView;
+import com.gabeWebTest.webTest.views.security.upload.UploadView;
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
