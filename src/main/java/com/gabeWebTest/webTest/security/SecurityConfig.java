@@ -40,7 +40,10 @@ public class SecurityConfig extends VaadinWebSecurity {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        //Allow access to all paths except from upload.
+        //Enforce HTTPS globally
+        http.requiresChannel().anyRequest().requiresSecure();
+
+        //Allow access to all paths except from upload - am also able to post for handleFadeOut to allow UI to respawn.
         http.authorizeHttpRequests(auth ->
                 auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST,"/handleFadeOutCompletion/")).permitAll().
                         requestMatchers(AntPathRequestMatcher.antMatcher("/upload/**")).authenticated().
