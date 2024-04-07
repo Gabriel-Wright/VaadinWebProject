@@ -40,7 +40,7 @@ public class SecurityConfig extends VaadinWebSecurity {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        //Enforce HTTPS globally
+        //Enforce HTTPS globall
         http.requiresChannel().anyRequest().requiresSecure();
 
         //Allow access to all paths except from upload - am also able to post for handleFadeOut to allow UI to respawn.
