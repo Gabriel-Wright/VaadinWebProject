@@ -1,6 +1,7 @@
 package com.gabeWebTest.webTest.views.security;
 
 import com.vaadin.flow.component.login.LoginForm;
+import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
@@ -15,7 +16,9 @@ import org.slf4j.LoggerFactory;
 @AnonymousAllowed
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
-    private final LoginForm login = new LoginForm();
+    private LoginI18n loginI18n;
+    private LoginI18n.Form loginI8nForm;
+    private LoginForm login;
     private static final Logger logger = LoggerFactory.getLogger(LoginView.class);
 
 
@@ -24,9 +27,17 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
 
-        login.setAction("login");
-        login.setForgotPasswordButtonVisible(false);
+        loginI18n = LoginI18n.createDefault();
+        loginI8nForm = loginI18n.getForm();
+        loginI8nForm.setSubmit("(●'◡'●)");
+        loginI8nForm.setTitle("");
+        loginI8nForm.setUsername("(⌐■_■)");
+        loginI8nForm.setPassword("¯\\_(ツ)_/¯");
+        loginI8nForm.setForgotPassword("..");
 
+        login = new LoginForm();
+        login.setI18n(loginI18n);
+        login.setAction("login");
         add(login);
     }
 

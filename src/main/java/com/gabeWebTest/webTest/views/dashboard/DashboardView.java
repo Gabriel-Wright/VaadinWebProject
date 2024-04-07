@@ -134,19 +134,6 @@ public class DashboardView extends AppLayout implements TagFilterListener {
         list.getStyle().set("opacity","0");
         list.getStyle().set("transition","opacity ease 0.5s");
 
-        //Execute javaScript to get callback on fadein and set new list once 500 milliseconds pass
-//        UI.getCurrent().getPage().executeJs(
-//                "function fadeOutElementAndNotifyServer() {\n" +
-//                        "    // Send request to server\n" +
-//                        "    fetch('/handleFadeOutCompletion', {\n" +
-//                        "        method: 'POST',\n" +
-//                        "        headers: {\n" +
-//                        "            'Content-Type': 'application/json'\n" +
-//                        "        }\n" +
-//                        "    });\n" +
-//                        "}\n" +
-//                        "setTimeout(fadeOutElementAndNotifyServer, 500);"
-//        );
         UI.getCurrent().getPage().executeJs("fadeOutElementAndNotifyServer();");
     }
 

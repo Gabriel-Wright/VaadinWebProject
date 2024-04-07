@@ -42,12 +42,19 @@ public class SecurityConfig extends VaadinWebSecurity {
 
         //Allow access to all paths except from upload.
         http.authorizeHttpRequests(auth ->
-                auth.requestMatchers(AntPathRequestMatcher.antMatcher("/**")).permitAll().
-                requestMatchers(AntPathRequestMatcher.antMatcher("/upload/**")).authenticated());
+                auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST,"/handleFadeOutCompletion/")).permitAll().
+                        requestMatchers(AntPathRequestMatcher.antMatcher("/upload/**")).authenticated().
+                        requestMatchers(AntPathRequestMatcher.antMatcher("/**")).permitAll());
         http.formLogin(form ->
                 form.defaultSuccessUrl("/upload").failureUrl("/login?error=true"));
         super.configure(http);
         setLoginView(http, LoginView.class);
+    }
+
+    @Override
+    protected void configure(WebSecurity web) throws Exception {
+        web.ignoring().requestMatchers(HttpMethod.POST,"/handleFadeOutCompletion");
+
     }
 
 }
