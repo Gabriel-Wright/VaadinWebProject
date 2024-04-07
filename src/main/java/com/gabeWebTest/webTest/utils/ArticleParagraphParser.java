@@ -9,7 +9,8 @@ public class ArticleParagraphParser {
 
     public final static int DEFAULT = -1;
     public final static int VERTICAL = 0;
-    public final static int HORIZONTAL = 1;
+    public final static int HORIZONTAL_LEFT = 1;
+    public final static int HORIZONTAL_RIGHT = 2;
 
 //    private static Pattern pattern = Pattern.compile("<([vh]),\\s*\\w+\\/\\w+\\.\\w+>");
     private static Pattern pattern = Pattern.compile("<([a-z]),(\\s*\\d*)>");
@@ -29,7 +30,8 @@ public class ArticleParagraphParser {
     private static int matchFormatCode(String formatCode) {
         return switch(formatCode) {
             case("v") -> VERTICAL;
-            case("h") -> HORIZONTAL;
+            case("l") -> HORIZONTAL_LEFT;
+            case("r") -> HORIZONTAL_RIGHT;
             default -> DEFAULT;
         };
     }
@@ -43,7 +45,7 @@ public class ArticleParagraphParser {
             try {
                 return Integer.parseInt(sourceIDString);
             } catch (NumberFormatException e) {
-                System.err.println("Error parsing image ID: " + e.getMessage());
+//                System.err.println("Error parsing image ID: " + e.getMessage());
                 return -1; // Or return a default value as needed
             }
         }

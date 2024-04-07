@@ -11,18 +11,18 @@ public class ParagraphParserTests {
     @Test
     public void testGetParagraphFormat() {
         String paragraphTextV = "<v,3> hello this is a paragraph whats going on guys";
-        String paragraphTextH = "<h,> hello this is a paragraph watsas";
+        String paragraphTextH = "<l,> hello this is a paragraph watsas";
         String paragraphTextD = "<a,4> blah blah";
 
         Assertions.assertEquals(VERTICAL, GET_FORMAT(paragraphTextV));
-        Assertions.assertEquals(HORIZONTAL, GET_FORMAT(paragraphTextH));
+        Assertions.assertEquals(HORIZONTAL_LEFT, GET_FORMAT(paragraphTextH));
         Assertions.assertEquals(DEFAULT, GET_FORMAT(paragraphTextD));
     }
 
     @Test
     public void testGetSourceID() {
         String paragraphText2 = "<v,2>";
-        String paragraphText4 = "<h,4>";
+        String paragraphText4 = "<l,4>";
 
         Assertions.assertEquals(2, GET_SOURCE_ID(paragraphText2));
         Assertions.assertEquals(4, GET_SOURCE_ID(paragraphText4));
@@ -33,7 +33,7 @@ public class ParagraphParserTests {
         String paragraphTest = "<v,4>This is an excellent test paragraph";
         String expectedParagraph = "This is an excellent test paragraph";
 
-        String paragraphTest2 = "<h,6> Yay lets test thisone lol";
+        String paragraphTest2 = "<l,6> Yay lets test thisone lol";
         String expectedParagraph2 = " Yay lets test thisone lol";
 
         Assertions.assertEquals(expectedParagraph, REMOVE_PATTERN(paragraphTest));

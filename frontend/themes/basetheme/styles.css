@@ -782,6 +782,9 @@ vaadin-multi-select-combo-box-item[selected] {
     font-size:50px;
     font-family:"InconsolataRegular",sans-serif;
 }
+.article-text-block {
+    width:85;
+}
 
 .article-date {
     font-family:"InconsolataRegular",sans-serif;
