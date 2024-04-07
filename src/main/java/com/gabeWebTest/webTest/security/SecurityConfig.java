@@ -16,6 +16,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @EnableWebSecurity
 @Configuration
@@ -37,12 +39,15 @@ public class SecurityConfig extends VaadinWebSecurity {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        //Allow access to all paths except from upload.
+        http.authorizeHttpRequests(auth ->
+                auth.requestMatchers(AntPathRequestMatcher.antMatcher("/**")).permitAll().
+                requestMatchers(AntPathRequestMatcher.antMatcher("/upload/**")).authenticated());
+        http.formLogin(form ->
+                form.defaultSuccessUrl("/upload").failureUrl("/login?error=true"));
         super.configure(http);
         setLoginView(http, LoginView.class);
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().requestMatchers("/**");
-    }
 }
