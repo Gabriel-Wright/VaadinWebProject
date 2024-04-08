@@ -18,10 +18,12 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -49,25 +51,22 @@ public class SecurityConfig extends VaadinWebSecurity {
         return provider;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-        //Enforce HTTPS globall
-        http.requiresChannel().anyRequest().requiresSecure();
-
-        http.addFilterBefore(jwtAuthentificationFilter, UsernamePasswordAuthenticationFilter.class);
-
-        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        //Allow access to all paths except from upload - am also able to post for handleFadeOut to allow UI to respawn.
-        http.authorizeHttpRequests(auth ->
-                auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST,"/handleFadeOutCompletion/")).permitAll().
-                        requestMatchers(AntPathRequestMatcher.antMatcher("/upload/**")).authenticated().
-                        requestMatchers(AntPathRequestMatcher.antMatcher("/**")).permitAll());
-        http.formLogin(form ->
-                form.defaultSuccessUrl("/upload").failureUrl("/login-view"));
-        super.configure(http);
-        setLoginView(http, LoginView.class);
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(
+                        auth -> auth.requestMatchers("/upload/**")
+                                .authenticated()
+                                .anyRequest()
+                                .permitAll())
+                .userDetailsService(userDetailsService)
+                .sessionManagement(session -> session
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthentificationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
+
 
     @Override
     protected void configure(WebSecurity web) throws Exception {
