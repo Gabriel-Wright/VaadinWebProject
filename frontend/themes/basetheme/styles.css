@@ -90,7 +90,6 @@
         width: 50%;
         margin:auto;
     }
-
     .linkedin-anchor, .github-anchor, .youtube-anchor {
         width:50px;
         padding: 5px;
@@ -118,6 +117,20 @@
       float: right;
       height:320px;
    }
+   .left-image {
+       width:50%;
+       height:50%;
+       float:right;
+        margin:10px;
+   }
+
+   .right-image {
+       width:50%;
+       height:50%;
+       float:left;
+       margin:10px;
+   }
+
    .date-style {
        font-size: 20x;
    }
@@ -155,6 +168,18 @@
     .article-preview-text {
         font-size: 22px;
     }
+    .left-image {
+        width:50%;
+        height:50%;
+        float:right;
+    }
+
+    .right-image {
+        width:50%;
+        height:50%;
+        float:left;
+    }
+
 
     .tag-badge {
         font-size: 24px;
@@ -163,6 +188,19 @@
    .image-preview-container {
        float: right;
             height:320px;
+   }
+   .left-image {
+       width:50%;
+       height:50%;
+       float:right;
+        margin:10px;
+   }
+
+   .right-image {
+       width:50%;
+       height:50%;
+       float:left;
+       margin:10px;
    }
 
     .date-style {
@@ -210,6 +248,18 @@
     .article-preview-text {
         font-size:20px;
     }
+    .left-image {
+        width:50%;
+        height:50%;
+        float:right;
+    }
+
+    .right-image {
+        width:50%;
+        height:50%;
+        float:left;
+    }
+
 
     .tag-badge {
         font-size:22px;
@@ -218,6 +268,19 @@
    .image-preview-container {
        float: right;
             height: 260px;
+   }
+   .left-image {
+       width:50%;
+       height:50%;
+       float:right;
+        margin:10px;
+   }
+
+   .right-image {
+       width:50%;
+       height:50%;
+       float:left;
+       margin:10px;
    }
 
    .date-style {
@@ -271,6 +334,19 @@
         float: right;
         height: 240px;
     }
+   .left-image {
+       width:50%;
+       height:50%;
+       float:right;
+        margin:10px;
+   }
+
+   .right-image {
+       width:50%;
+       height:50%;
+       float:left;
+       margin:10px;
+   }
     .date-style {
         font-size:16px;
     }
@@ -316,6 +392,20 @@
     .article-preview-text {
         font-size: 16px;
     }
+   .left-image {
+       width:50%;
+       height:50%;
+       float:right;
+        margin:10px;
+   }
+
+   .right-image {
+       width:50%;
+       height:50%;
+       float:left;
+       margin:10px;
+   }
+
     .tag-badge {
         font-size: 18px;
     }
@@ -366,11 +456,25 @@
    }
    .image-preview-container {
        float: right;
-            height: 180px;
+       height: 180px;
    }
    .article-preview-text {
        font-size:14px;
    }
+   .left-image {
+       width:50%;
+       height:50%;
+       float:right;
+        margin:10px;
+   }
+
+   .right-image {
+       width:50%;
+       height:50%;
+       float:left;
+       margin:10px;
+   }
+
   .tag-badge {
        font-size: 16px;
   }
@@ -421,6 +525,26 @@
         max-width: 100%; /* Set maximum width to 100% */
         max-height: 400px; /* Set maximum height if needed */
     }
+    .left-image {
+        float:none;
+        margin: 0 auto; /* Center align the image horizontally */
+        display: block; /* Change display to block */
+        width: 90%; /* Set width to 100% */
+        height: auto; /* Automatically adjust height */
+        max-width: 100%; /* Set maximum width to 100% */
+        max-height: 400px; /* Set maximum height if needed */
+    }
+
+    .right-image {
+        float:none;
+        margin: 0 auto; /* Center align the image horizontally */
+        display: block; /* Change display to block */
+        width: 90%; /* Set width to 100% */
+        height: auto; /* Automatically adjust height */
+        max-width: 100%; /* Set maximum width to 100% */
+        max-height: 400px; /* Set maximum height if needed */
+    }
+
     .tag-badge {
         font-size: 16px;
     }
@@ -804,6 +928,11 @@ vaadin-multi-select-combo-box-item[selected] {
     color:black;
 }
 
+.vertical-image {
+    width:90%;
+    margin:0 auto;
+}
+
 .about-me::part(navbar) {
     background-color: #11111;
 }
@@ -856,6 +985,8 @@ vaadin-multi-select-combo-box-item[selected] {
     font-family:"InconsolataRegular",sans-serif;
     margin-bottom: 5px;
 }
+
+
 
 .pdf-viewer {
     margin:auto;

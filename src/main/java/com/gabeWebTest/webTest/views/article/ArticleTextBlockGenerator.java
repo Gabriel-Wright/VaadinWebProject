@@ -68,10 +68,6 @@ public class ArticleTextBlockGenerator {
         int sourceID = GET_SOURCE_ID(paragraph);
         Image sourceImage = loadImage(sourceID);
         sourceImage.addClassName("right-image");
-        sourceImage.setWidth("50%");
-        sourceImage.setHeight("50%");
-        sourceImage.getStyle().set("float","right");
-        sourceImage.getStyle().set("margin","10px");
         paragraph = REMOVE_PATTERN(paragraph);
         Paragraph paragraphToAdd = new Paragraph(paragraph);
         paragraphToAdd.addClassName("article-text");
@@ -85,10 +81,6 @@ public class ArticleTextBlockGenerator {
         int sourceID = GET_SOURCE_ID(paragraph);
         Image sourceImage = loadImage(sourceID);
         sourceImage.addClassName("left-image");
-        sourceImage.setWidth("50%");
-        sourceImage.setHeight("50%");
-        sourceImage.getStyle().set("float","left");
-        sourceImage.getStyle().set("margin","10px");
         paragraph = REMOVE_PATTERN(paragraph);
         Paragraph paragraphToAdd = new Paragraph(paragraph);
         paragraphToAdd.addClassName("article-text");
@@ -102,8 +94,7 @@ public class ArticleTextBlockGenerator {
         layout.setPadding(false);
         int sourceID = GET_SOURCE_ID(paragraph);
         Image sourceImage = loadImage(sourceID);
-        sourceImage.setWidth("70%");
-        sourceImage.getStyle().set("margin","auto");
+        sourceImage.addClassName("vertical-image");
         paragraph = REMOVE_PATTERN(paragraph);
         Paragraph paragraphToAdd = new Paragraph(paragraph);
         paragraphToAdd.addClassName("article-text");
