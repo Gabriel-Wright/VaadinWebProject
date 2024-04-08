@@ -1,5 +1,7 @@
 package com.gabeWebTest.webTest.security;
 
+import com.gabeWebTest.webTest.filters.JWTAuthentificationFilter;
+import com.gabeWebTest.webTest.services.JwtService;
 import com.gabeWebTest.webTest.views.dashboard.DashboardView;
 import com.gabeWebTest.webTest.views.security.LoginView;
 import com.gabeWebTest.webTest.views.security.upload.UploadView;
@@ -8,13 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +31,9 @@ public class SecurityConfig extends VaadinWebSecurity {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private JWTAuthentificationFilter jwtAuthentificationFilter;
 
     @Bean
     AuthenticationProvider authenticationProvider() {
@@ -43,6 +52,9 @@ public class SecurityConfig extends VaadinWebSecurity {
         //Enforce HTTPS globall
         http.requiresChannel().anyRequest().requiresSecure();
 
+        http.addFilterBefore(jwtAuthentificationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         //Allow access to all paths except from upload - am also able to post for handleFadeOut to allow UI to respawn.
         http.authorizeHttpRequests(auth ->
                 auth.requestMatchers(AntPathRequestMatcher.antMatcher(HttpMethod.POST,"/handleFadeOutCompletion/")).permitAll().
