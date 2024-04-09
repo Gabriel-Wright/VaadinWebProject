@@ -51,26 +51,50 @@ public class SecurityConfig extends VaadinWebSecurity {
         return provider;
     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(
-                        auth -> auth.requestMatchers("/upload/**")
-                                .authenticated()
-                                .anyRequest()
-                                .permitAll())
-                .userDetailsService(userDetailsService)
-                .sessionManagement(session -> session
-                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtAuthentificationFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        return http
+//                .csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests(
+//                        auth -> auth.requestMatchers("/upload/**")
+//                                .authenticated()
+//                                .anyRequest()
+//                                .permitAll())
+//                .formLogin(
+//                        form->form
+//                                .loginPage("/login-view")
+//                                .failureUrl("/login-view?error=true")
+//                                .successForwardUrl("/upload")
+//                )
+//                .userDetailsService(userDetailsService)
+//                .sessionManagement(session -> session
+//                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .addFilterBefore(jwtAuthentificationFilter, UsernamePasswordAuthenticationFilter.class)
+//                .build();
+//    }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(auth ->
+            auth.requestMatchers(AntPathRequestMatcher
+                    .antMatcher("/upload/**")).authenticated()
+            .requestMatchers(AntPathRequestMatcher.antMatcher("/**")).permitAll());
+
+        http.formLogin(form -> form.
+                defaultSuccessUrl("/upload").failureUrl("/login-view"));
+
+        http.sessionManagement(session ->
+                session.sessionCreationPolicy(SessionCreationPolicy.NEVER));
+
+        http.addFilterBefore(jwtAuthentificationFilter, UsernamePasswordAuthenticationFilter.class);
+        super.configure(http);
+        setLoginView(http, LoginView.class);
+}
+
 
 
     @Override
     protected void configure(WebSecurity web) throws Exception {
-        web.ignoring().requestMatchers(HttpMethod.POST,"/handleFadeOutCompletion");
+        web.ignoring().requestMatchers(HttpMethod.POST,"/handleFadeOutCompletion","/login");
 
     }
 

@@ -4,6 +4,9 @@ import com.gabeWebTest.webTest.data.users.AuthenticationResponse;
 import com.gabeWebTest.webTest.data.users.User;
 import com.gabeWebTest.webTest.services.AuthenticationService;
 import org.apache.coyote.Response;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,24 +20,26 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping("/register")
+    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody User request
+            User request
     ) {
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
 
-    @PostMapping("/login")
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AuthenticationResponse> login (
-            @RequestBody User request
+            User request
     ) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
     @GetMapping("/login")
-    public ModelAndView redirectToLoginView() {
-        return new ModelAndView("redirect:/login-view");
+    public ResponseEntity<Object> redirectToLoginView() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location", "/login-view");
+        return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 
 }

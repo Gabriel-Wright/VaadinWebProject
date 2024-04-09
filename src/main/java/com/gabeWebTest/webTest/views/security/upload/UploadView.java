@@ -11,7 +11,7 @@ import jakarta.annotation.security.RolesAllowed;
 
 @Route("upload")
 @PageTitle("Upload Files")
-@DenyAll
+@PermitAll
 public class UploadView extends AppLayout {
 
     UploadView() {

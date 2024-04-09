@@ -3,7 +3,11 @@ package com.gabeWebTest.webTest.services;
 import com.gabeWebTest.webTest.data.users.AuthenticationResponse;
 import com.gabeWebTest.webTest.data.users.User;
 import com.gabeWebTest.webTest.data.users.UserRepository;
+import com.gabeWebTest.webTest.views.security.LoginView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +19,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private static final Logger logger = LoggerFactory.getLogger(LoginView.class);
 
     public AuthenticationService(UserRepository repository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager) {
         this.repository = repository;
@@ -38,11 +43,18 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(User request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                request.getUsername(),
-                request.getPassword()
-                )
-        );
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                    request.getUsername(),
+                    request.getPassword()
+            ));
+        } catch (BadCredentialsException e) {
+            // Log the exception
+            logger.error("Authentication failed for user: {}", request.getUsername(), e);
+
+            // Return a custom response indicating authentication failure
+            return new AuthenticationResponse("Authentication failed. Bad credentials.");
+        }
 
         User user = repository.findByUsername(request.getUsername());
 
