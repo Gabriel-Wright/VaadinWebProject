@@ -3,7 +3,7 @@ package com.gabeWebTest.webTest.services;
 import com.gabeWebTest.webTest.data.users.AuthenticationResponse;
 import com.gabeWebTest.webTest.data.users.User;
 import com.gabeWebTest.webTest.data.users.UserRepository;
-import com.gabeWebTest.webTest.views.security.LoginView;
+//import com.gabeWebTest.webTest.views.security.LoginView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +19,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-    private static final Logger logger = LoggerFactory.getLogger(LoginView.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
     public AuthenticationService(UserRepository repository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager) {
         this.repository = repository;
@@ -30,6 +30,7 @@ public class AuthenticationService {
 
 
     public AuthenticationResponse register(User request) {
+
         User user = new User();
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -39,7 +40,7 @@ public class AuthenticationService {
 
         String token = jwtService.generateToken(user);
 
-        return new AuthenticationResponse(token);
+        return new AuthenticationResponse(token,"User registration was successful");
     }
 
     public AuthenticationResponse authenticate(User request) {
@@ -53,14 +54,14 @@ public class AuthenticationService {
             logger.error("Authentication failed for user: {}", request.getUsername(), e);
 
             // Return a custom response indicating authentication failure
-            return new AuthenticationResponse("Authentication failed. Bad credentials.");
+            return new AuthenticationResponse(null,"Authentication failed. Bad credentials.", false);
         }
 
         User user = repository.findByUsername(request.getUsername());
 
         String token = jwtService.generateToken(user);
 
-        return new AuthenticationResponse(token);
+        return new AuthenticationResponse(token,"User login was successful", true);
     }
 
 }

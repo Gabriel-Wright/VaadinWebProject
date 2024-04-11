@@ -10,23 +10,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class UserDetailsSer implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        User user = userRepository.findByUsername(username);
-
-        if(user ==null) {
-            throw new UsernameNotFoundException("User Not Found");
-        }
-
-        //CustomUserDetails interprets our user object used in data jpa to the UserDetails needed for UserDetailsService.
-        //UserDetailsService is needed for our spring security to autowire how to read from our repository
-
-        return new CustomUserDetails(user);
+        return userRepository.findByUsername(username);
     }
 }

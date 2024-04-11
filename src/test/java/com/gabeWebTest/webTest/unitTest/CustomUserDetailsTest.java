@@ -1,6 +1,7 @@
 package com.gabeWebTest.webTest.unitTest;
 
 import com.gabeWebTest.webTest.data.users.CustomUserDetails;
+import com.gabeWebTest.webTest.data.users.Role;
 import com.gabeWebTest.webTest.data.users.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,7 +15,7 @@ public class CustomUserDetailsTest {
     @Test
     public void testGetAuthorities() {
         User mockUser = mock(User.class);
-        when(mockUser.getRole()).thenReturn("ADMIN");
+        when(mockUser.getRole()).thenReturn(Role.ADMIN);
 
         CustomUserDetails customUserDetails = new CustomUserDetails(mockUser);
 
