@@ -1,13 +1,14 @@
 package com.gabeWebTest.webTest.services;
 
-import com.gabeWebTest.webTest.data.users.AuthenticationResponse;
+import com.gabeWebTest.webTest.data.auth.AuthenticationRequest;
+import com.gabeWebTest.webTest.data.auth.AuthenticationResponse;
+import com.gabeWebTest.webTest.data.auth.RegisterRequest;
+import com.gabeWebTest.webTest.data.users.Role;
 import com.gabeWebTest.webTest.data.users.User;
 import com.gabeWebTest.webTest.data.users.UserRepository;
-//import com.gabeWebTest.webTest.views.security.LoginView;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,56 +16,50 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticationService {
 
-    public final UserRepository repository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
+    private final JWTService jwtService;
     private final AuthenticationManager authenticationManager;
-    private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
-    public AuthenticationService(UserRepository repository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager) {
-        this.repository = repository;
+    @Autowired
+    public AuthenticationService(UserRepository userRepository,
+                                 PasswordEncoder passwordEncoder,
+                                 JWTService jwtService,
+                                 AuthenticationManager authenticationManager) {
+        this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
     }
 
+    public AuthenticationResponse register(RegisterRequest request) {
+        User user = new User(
+        request.getUsername(),
+        passwordEncoder.encode(request.getPassword()));
+        userRepository.save(user);
 
-    public AuthenticationResponse register(User request) {
+        String jwtToken = jwtService.generateToken(user);
 
-        User user = new User();
-        user.setUsername(request.getUsername());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(request.getRole());
+        AuthenticationResponse response = new AuthenticationResponse(jwtToken);
 
-        user = repository.save(user);
-
-        String token = jwtService.generateToken(user);
-
-        return new AuthenticationResponse(token,"User registration was successful");
+        return response;
     }
 
-    public AuthenticationResponse authenticate(User request) {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    request.getUsername(),
-                    request.getPassword()
-            ));
-        } catch (BadCredentialsException e) {
-            // Log the exception
-            logger.error("Authentication failed for user: {}", request.getUsername(), e);
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getUsername(),
+                        request.getPassword()
+                )
+        );
 
-            // Return a custom response indicating authentication failure
-            return new AuthenticationResponse(null,"Authentication failed. Bad credentials.", false);
-        }
+        User user = userRepository.findByUsername(request.getUsername())
+                .orElseThrow();
+        String jwtToken = jwtService.generateToken(user);
+        System.out.println("Authenticated through username password: given authentication token: "+
+                jwtToken);
+        AuthenticationResponse response = new AuthenticationResponse(jwtToken);
 
-        User user = repository.findByUsername(request.getUsername());
-
-        String token = jwtService.generateToken(user);
-
-        return new AuthenticationResponse(token,"User login was successful", true);
+        return response;
     }
-
 }
-
-
-
