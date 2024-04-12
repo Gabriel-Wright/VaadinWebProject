@@ -1,11 +1,13 @@
 package com.gabeWebTest.webTest.config;
 
+import com.vaadin.flow.spring.security.VaadinWebSecurity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -14,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfiguration {
+public class SecurityConfiguration extends VaadinWebSecurity {
 
     private final JWTAuthenticationFilter jwtAuthFilter;
     private AuthenticationProvider authenticationProvider;
@@ -31,7 +33,7 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/v1/**")
+                .requestMatchers("/**", "/about-me", "/articles/**", "/what-is-this-site","/api/v1/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -41,7 +43,44 @@ public class SecurityConfiguration {
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+//                .exceptionHandling()
+//                .authenticationEntryPoint(((request, response, authException) -> response.sendRedirect("/")));
 
         return http.build();
     }
+
+    /**
+     * Allows access to static resources, bypassing Spring security.
+     */
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().requestMatchers(
+                //Images
+                "/img/**",
+                //PDFs
+                "/pdf/**",
+                // Vaadin Flow static resources //
+                "/VAADIN/**",
+
+                // the standard favicon URI
+                "/favicon.ico",
+
+                // the robots exclusion standard
+                "/robots.txt",
+
+                // web application manifest //
+                "/manifest.webmanifest",
+                "/sw.js",
+                "/offline-page.html",
+
+                // (development mode) static resources //
+                "/frontend/**",
+
+                // (development mode) webjars //
+                "/webjars/**",
+
+                // (production mode) static resources //
+                "/frontend-es5/**", "/frontend-es6/**");
+    }
+
 }
