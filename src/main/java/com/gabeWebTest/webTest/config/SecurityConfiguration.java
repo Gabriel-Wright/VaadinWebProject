@@ -38,13 +38,16 @@ public class SecurityConfiguration extends VaadinWebSecurity {
                 .anyRequest()
                 .authenticated()
                 .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/upload")
+                .failureUrl("/login?error=true")
+                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-//                .exceptionHandling()
-//                .authenticationEntryPoint(((request, response, authException) -> response.sendRedirect("/")));
 
         return http.build();
     }
