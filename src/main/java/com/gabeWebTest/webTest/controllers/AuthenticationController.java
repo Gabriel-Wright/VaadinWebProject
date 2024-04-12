@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/api/v1/")
 
 public class AuthenticationController {
 
@@ -23,12 +23,12 @@ public class AuthenticationController {
         this.authService = authService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register (
-            @RequestBody RegisterRequest request
-    ) {
-        return ResponseEntity.ok(authService.register(request));
-    }
+//    @PostMapping("/register")
+//    public ResponseEntity<AuthenticationResponse> register (
+//            @RequestBody RegisterRequest request
+//    ) {
+//        return ResponseEntity.ok(authService.register(request));
+//    }
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> register (
