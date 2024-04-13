@@ -80,7 +80,7 @@ public class WebPageListRenderer extends ComponentRenderer<Div, WebPage> {
 
     private Paragraph loadWebPagePreviewParagraph(WebPage item) {
         //Maybe have to add a preview text bit to the DB
-        String webPageFirstParagraph = SPLIT_TEXT(REMOVE_PATTERN(item.getArticlePreviewText().getArticleTextAsString()))[0];
+        String webPageFirstParagraph = SPLIT_TEXT(REMOVE_PATTERN(item.getArticlePreviewText()))[0];
 
         Paragraph paragraph = new Paragraph(webPageFirstParagraph);
         paragraph.addClassName("article-preview-text");

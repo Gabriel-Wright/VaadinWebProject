@@ -1,9 +1,9 @@
 package com.gabeWebTest.webTest.data.webPage;
 
-import com.gabeWebTest.webTest.data.webPage.articleFormat.ArticleFormat;
 import com.gabeWebTest.webTest.data.webPage.tags.Tag;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -14,14 +14,23 @@ public class WebPage {
 
     }
 
-    public WebPage(Long id, int version, String title, ArticlePreviewText articleText, Dates dates, Set<Tag> tags, ArticleFormat articleFormat) {
+    public WebPage(String title, String articleTextPath, String thumbnailPath, String articlePreviewText, Set<Tag> tags) {
+        this.title = title;
+        this.articleTextPath = articleTextPath;
+        this.thumbnailPath = thumbnailPath;
+        this.articlePreviewText = articlePreviewText;
+        this.tags = tags;
+        version = 1;
+        setDefaultDates();
+    }
+
+    public WebPage(Long id, int version, String title, String articleText, Dates dates, Set<Tag> tags) {
         this.id = id;
         this.version = version;
         this.title = title;
         this.articlePreviewText = articleText;
         this.dates = dates;
         this.tags = tags;
-        this.articleFormat = articleFormat;
     }
 
     //This defines how the primary key Id is handled in the database.
@@ -37,11 +46,11 @@ public class WebPage {
 
     private String title;
 
-    @Embedded
-    private ArticlePreviewText articlePreviewText;
+    @Column(name="Article_Preview")
+    private String articlePreviewText;
 
-    @Column
-    private String articleTextID;
+    @Column(name="Article_Text_Path")
+    private String articleTextPath;
 
     @Column(name="THUMBNAIL")
     private String thumbnailPath;
@@ -56,10 +65,6 @@ public class WebPage {
             inverseJoinColumns = @JoinColumn(name = "tag_id") // column in the join table referencing Tag
     )
     private Set<Tag> tags;
-
-    @ManyToOne
-    @JoinColumn(name = "article_format_id") // This column will be created in the WebPage table
-    private ArticleFormat articleFormat;
 
     public Long getId() {
         return id;
@@ -77,7 +82,7 @@ public class WebPage {
         return thumbnailPath;
     }
 
-    public ArticlePreviewText getArticlePreviewText() {
+    public String getArticlePreviewText() {
         return articlePreviewText;
     }
 
@@ -113,6 +118,11 @@ public class WebPage {
             return getId().equals(other.getId());
         }
         return super.equals(other);
+    }
+
+    private void setDefaultDates() {
+        LocalDateTime currentTime = LocalDateTime.now();
+        dates = new Dates(currentTime, currentTime);
     }
 }
 

@@ -28,7 +28,7 @@ public class ArticleTextBlockGenerator {
     }
 
     public VerticalLayout loadArticleTextBlock() {
-        articleRawText = webPage.getArticlePreviewText().getArticleTextAsString();
+        articleRawText = webPage.getArticlePreviewText();
         separateAndFormatParagraphs();
         return textBlock;
     }

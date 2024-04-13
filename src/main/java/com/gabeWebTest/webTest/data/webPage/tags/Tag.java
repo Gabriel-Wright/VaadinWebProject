@@ -13,7 +13,16 @@ import java.util.Set;
 @Entity
 public class Tag {
 
+    private final Color defaultColor = Color.RED;
+
     public Tag() {
+    }
+
+
+    //Id will be set automatically upon being saved in repo
+    public Tag(String tagName) {
+        this.tagName = tagName;
+        this.color = defaultColor;
     }
 
     public Tag(int id, String tagName, Color color) {
