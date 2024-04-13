@@ -33,7 +33,7 @@ public class SecurityConfiguration extends VaadinWebSecurity {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/","/about-me", "/articles/**", "/what-is-this-site","/api/v1/**")
+                .requestMatchers("/","/about-me", "/articles/**", "/what-is-this-site","/api/v1/auth/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

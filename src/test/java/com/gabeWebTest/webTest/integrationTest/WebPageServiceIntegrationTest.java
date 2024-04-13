@@ -29,22 +29,14 @@ public class WebPageServiceIntegrationTest {
     @Autowired
     private TagRepository tagRepository;
 
-    @Autowired
-    private ArticleFormatRepository articleFormatRepository;
-
     @Test
     public void testFindAllWebPagesOrderByCreatedDateDesc() {
         //Clear existing data
         webPageRepository.deleteAll();
-        articleFormatRepository.deleteAll();
         tagRepository.deleteAll();
 
 
         //Article formats
-        ArticleFormat articleFormat1 = new ArticleFormat(0L, "test1");
-        ArticleFormat articleFormat2 = new ArticleFormat(1L, "test2");
-        articleFormatRepository.save(articleFormat1);
-        articleFormatRepository.save(articleFormat2);
 
         //Tag formats
         Tag tag1 = new Tag(0, "tag1", Color.RED);
@@ -89,15 +81,8 @@ public class WebPageServiceIntegrationTest {
     void testFindWebPagesByTags() {
         //Clear existing data
         webPageRepository.deleteAll();
-        articleFormatRepository.deleteAll();
         tagRepository.deleteAll();
 
-
-        //Article formats
-        ArticleFormat articleFormat1 = new ArticleFormat(0L, "test1");
-        ArticleFormat articleFormat2 = new ArticleFormat(1L, "test2");
-        articleFormatRepository.save(articleFormat1);
-        articleFormatRepository.save(articleFormat2);
 
         //Tag formats
         Tag tag1 = new Tag(0, "tag1", Color.BLACK);
@@ -156,15 +141,9 @@ public class WebPageServiceIntegrationTest {
     void testFindWebPagesByTagsOrderByDateCreatedDesc() {
         // Clear existing data
         webPageRepository.deleteAll();
-        articleFormatRepository.deleteAll();
         tagRepository.deleteAll();
 
         // Article formats
-        ArticleFormat articleFormat1 = new ArticleFormat(0L, "test1");
-        ArticleFormat articleFormat2 = new ArticleFormat(1L, "test2");
-        articleFormatRepository.save(articleFormat1);
-        articleFormatRepository.save(articleFormat2);
-
         // Tag formats
         Tag tag1 = new Tag(0, "tag1", Color.BLUE);
         Tag tag2 = new Tag(1, "tag2", Color.BLACK);

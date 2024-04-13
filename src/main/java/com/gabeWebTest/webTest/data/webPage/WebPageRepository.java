@@ -4,6 +4,7 @@ import com.gabeWebTest.webTest.data.webPage.tags.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface WebPageRepository extends JpaRepository<WebPage, Long> {
 
@@ -22,8 +23,8 @@ public interface WebPageRepository extends JpaRepository<WebPage, Long> {
     //Filters by tags in order of date created ascending
     List<WebPage> findByTagsInOrderByDatesTimeCreatedAsc(List<Tag> tags);
 
-//    //Filter by webpages by tags in between a certain date range by date created descending
-//    List<WebPage> findByDatesTimeCreatedBetweenAndTagsInOrderByDatesTimeCreatedDesc(LocalDateTime startDate, LocalDateTime endDate, List<Tag> tags);
+    // Find a webpage by its title
+    Optional<WebPage> findByTitle(String title);
 
 
 }

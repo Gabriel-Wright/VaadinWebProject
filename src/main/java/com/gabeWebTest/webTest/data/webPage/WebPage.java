@@ -37,9 +37,11 @@ public class WebPage {
     //Basically just increments by 1, starting at Id = 1000
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idgenerator")
-    @SequenceGenerator(name = "idgenerator", initialValue = 1000)
+    @SequenceGenerator(name = "idgenerator", initialValue = 0)
     private Long id;
 
+//    @Column(name ="Article_Active")
+//    private boolean active;
     //This stores the version of the entry i.e. after updates or changes to DB.
     @Version
     private int version;
@@ -118,6 +120,20 @@ public class WebPage {
             return getId().equals(other.getId());
         }
         return super.equals(other);
+    }
+
+    @Override
+    public String toString() {
+        return "WebPage{" +
+                "id=" + id +
+                ", version=" + version +
+                ", title='" + title + '\'' +
+                ", articlePreviewText='" + articlePreviewText + '\'' +
+                ", articleTextPath='" + articleTextPath + '\'' +
+                ", thumbnailPath='" + thumbnailPath + '\'' +
+                ", dates=" + dates.toString() +
+                ", tags=" + tags.toString() +
+                '}';
     }
 
     private void setDefaultDates() {

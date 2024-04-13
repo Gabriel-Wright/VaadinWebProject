@@ -123,4 +123,17 @@ public class Tag {
 
         return tagSpan;
     }
+
+    @Override
+    public String toString() {
+        return "Tag{" +
+                "defaultColor=" + defaultColor +
+                ", id=" + id +
+                ", tagName='" + tagName + '\'' +
+                ", colorHex='" + colorHex + '\'' +
+                ", color=" + color +
+                ", icon=" + icon +
+                ", webPages=" + webPages +
+                '}';
+    }
 }

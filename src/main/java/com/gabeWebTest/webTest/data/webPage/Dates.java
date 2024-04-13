@@ -33,4 +33,12 @@ public class Dates  {
     public LocalDateTime getTimeLastUpdated() {
         return timeLastUpdated;
     }
+
+    @Override
+    public String toString() {
+        return "Dates{" +
+                "timeCreated=" + timeCreated +
+                ", timeLastUpdated=" + timeLastUpdated +
+                '}';
+    }
 }
