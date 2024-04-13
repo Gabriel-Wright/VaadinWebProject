@@ -14,11 +14,11 @@ public class WebPage {
 
     }
 
-    public WebPage(Long id, int version, String title, ArticleText articleText, Dates dates, Set<Tag> tags, ArticleFormat articleFormat) {
+    public WebPage(Long id, int version, String title, ArticlePreviewText articleText, Dates dates, Set<Tag> tags, ArticleFormat articleFormat) {
         this.id = id;
         this.version = version;
         this.title = title;
-        this.articleText = articleText;
+        this.articlePreviewText = articleText;
         this.dates = dates;
         this.tags = tags;
         this.articleFormat = articleFormat;
@@ -38,7 +38,10 @@ public class WebPage {
     private String title;
 
     @Embedded
-    private ArticleText articleText;
+    private ArticlePreviewText articlePreviewText;
+
+    @Column
+    private String articleTextID;
 
     @Column(name="THUMBNAIL")
     private String thumbnailPath;
@@ -74,8 +77,8 @@ public class WebPage {
         return thumbnailPath;
     }
 
-    public ArticleText getArticleText() {
-        return articleText;
+    public ArticlePreviewText getArticlePreviewText() {
+        return articlePreviewText;
     }
 
 

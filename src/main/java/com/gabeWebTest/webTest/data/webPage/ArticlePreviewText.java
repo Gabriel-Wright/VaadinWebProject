@@ -5,13 +5,13 @@ import jakarta.persistence.Lob;
 import jakarta.validation.constraints.NotBlank;
 
 @Embeddable
-public class ArticleText {
+public class ArticlePreviewText {
 
     @NotBlank
     @Lob
-    private String articleText;
+    private String articlePreview;
 
     public String getArticleTextAsString() {
-        return articleText;
+        return articlePreview;
     }
 }

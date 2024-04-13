@@ -7,7 +7,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import java.util.Optional;
@@ -29,7 +28,7 @@ public class ArticleTextBlockGenerator {
     }
 
     public VerticalLayout loadArticleTextBlock() {
-        articleRawText = webPage.getArticleText().getArticleTextAsString();
+        articleRawText = webPage.getArticlePreviewText().getArticleTextAsString();
         separateAndFormatParagraphs();
         return textBlock;
     }

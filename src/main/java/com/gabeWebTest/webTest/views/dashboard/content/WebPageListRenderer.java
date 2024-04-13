@@ -5,9 +5,6 @@ import com.gabeWebTest.webTest.data.webPage.WebPage;
 import com.gabeWebTest.webTest.views.article.ArticleView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.function.SerializableSupplier;
@@ -83,7 +80,7 @@ public class WebPageListRenderer extends ComponentRenderer<Div, WebPage> {
 
     private Paragraph loadWebPagePreviewParagraph(WebPage item) {
         //Maybe have to add a preview text bit to the DB
-        String webPageFirstParagraph = SPLIT_TEXT(REMOVE_PATTERN(item.getArticleText().getArticleTextAsString()))[0];
+        String webPageFirstParagraph = SPLIT_TEXT(REMOVE_PATTERN(item.getArticlePreviewText().getArticleTextAsString()))[0];
 
         Paragraph paragraph = new Paragraph(webPageFirstParagraph);
         paragraph.addClassName("article-preview-text");

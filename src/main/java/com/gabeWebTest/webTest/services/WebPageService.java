@@ -29,6 +29,9 @@ public class WebPageService {
         return webPageRepository.findByTagsInOrderByDatesTimeCreatedDesc(tags);
     }
 
+    public void saveWebPage(WebPage webPage) {
+        webPageRepository.save(webPage);
+    }
 
     //Will not receieve a webPage if id is null
     public Optional<WebPage> findWebPageById(long id) {
