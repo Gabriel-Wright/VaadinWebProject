@@ -12,8 +12,8 @@ import java.util.Set;
 
 @Entity
 public class Tag {
-
-    private final Color defaultColor = Color.RED;
+    @Transient //Not persistent in the database
+    private final static Color DEFAULT_COLOR = Color.RED;
 
     public Tag() {
     }
@@ -22,13 +22,15 @@ public class Tag {
     //Id will be set automatically upon being saved in repo
     public Tag(String tagName) {
         this.tagName = tagName;
-        this.color = defaultColor;
+        this.color = DEFAULT_COLOR;
+        this.colorHex = convertColorToHex(color);
     }
 
     public Tag(int id, String tagName, Color color) {
         this.id = id;
         this.tagName = tagName;
         this.color = color;
+        this.colorHex = convertColorToHex(this.color);
     }
 
     @Id
@@ -127,7 +129,6 @@ public class Tag {
     @Override
     public String toString() {
         return "Tag{" +
-                "defaultColor=" + defaultColor +
                 ", id=" + id +
                 ", tagName='" + tagName + '\'' +
                 ", colorHex='" + colorHex + '\'' +
