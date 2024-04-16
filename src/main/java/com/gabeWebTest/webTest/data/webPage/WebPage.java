@@ -84,6 +84,10 @@ public class WebPage {
         return thumbnailPath;
     }
 
+    public String getArticleTextPath() {
+        return articleTextPath;
+    }
+
     public String getArticlePreviewText() {
         return articlePreviewText;
     }

@@ -36,6 +36,9 @@ UPDATE WEB_PAGE SET THUMBNAIL = 'img/thumbnails/gameTest.png' WHERE id = 1001;
 UPDATE WEB_PAGE SET THUMBNAIL = 'img/thumbnails/wiiParty.png' where id = 1002;
 
 --Insert Text of articles
+UPDATE WEB_PAGE SET Article_Text_Path = 'text/test.txt' WHERE id = 1000;
+UPDATE WEB_PAGE SET Article_Text_Path = 'text/test.txt' WHERE id = 1001;
+UPDATE WEB_PAGE SET Article_Text_Path = 'text/test.txt' WHERE id = 1002;
 
 --UPDATE WEB_PAGE SET article_preview_text = '<v,1>"Memories of Murder" is a South Korean crime-drama film directed by Bong Joon-ho, released in 2003. [p] <l,>brahHello welcome to this article brahHello welcome to this article brah[p] <r,>Hello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brah' WHERE id = 1000;
 --UPDATE WEB_PAGE SET article_preview_text = '<v,0>Developing games using JFrame in Java provides a versatile platform for creating 2D graphical applications with user interaction.[p]<,>o this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brah' WHERE id = 1001;
