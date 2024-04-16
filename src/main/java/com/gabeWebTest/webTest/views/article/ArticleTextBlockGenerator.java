@@ -5,12 +5,12 @@ import com.gabeWebTest.webTest.data.webPage.WebPage;
 import com.gabeWebTest.webTest.services.VisualSourceService;
 import com.gabeWebTest.webTest.utils.TxtFileParser;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-import java.io.IOException;
 import java.util.Optional;
 
 import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.*;
@@ -51,8 +51,34 @@ public class ArticleTextBlockGenerator {
             case HORIZONTAL_LEFT -> loadHorizontalLeftParagraph(paragraph);
             case HORIZONTAL_RIGHT -> loadHorizontalRightParagraph(paragraph);
             case VERTICAL -> loadVerticalParagraph(paragraph);
+            case YOUTUBE_EMBED -> loadYoutubeEmbed(paragraph);
+            case CODE_EMBED -> loadCodeEmbed(paragraph);
             default -> loadNoPictureParagraph(paragraph);
         };
+    }
+
+    private VerticalLayout loadCodeEmbed(String paragraph) {
+        VerticalLayout layout = new VerticalLayout();
+        String code = GET_PATTERN_STRING(paragraph);
+        layout.add(createCodeHtml(code));
+        paragraph = REMOVE_PATTERN(paragraph);
+        Paragraph paragraphToAdd = new Paragraph(paragraph);
+        paragraphToAdd.addClassName("article-text");
+        layout.add(paragraphToAdd);
+
+        return layout;
+    }
+
+    private VerticalLayout loadYoutubeEmbed(String paragraph) {
+        VerticalLayout layout = new VerticalLayout();
+        String url = GET_PATTERN_STRING(paragraph);
+        layout.add(createYoutubeEmbed(url));
+        paragraph = REMOVE_PATTERN(paragraph);
+        Paragraph paragraphToAdd = new Paragraph(paragraph);
+        paragraphToAdd.addClassName("article-text");
+        layout.add(paragraphToAdd);
+
+        return layout;
     }
 
     private VerticalLayout loadNoPictureParagraph(String paragraph) {
@@ -113,5 +139,22 @@ public class ArticleTextBlockGenerator {
             imagePath =DEFAULT_IMAGE_PATH;
         }
         return new Image(imagePath, imagePath);
+    }
+
+    private Html createYoutubeEmbed(String url) {
+        String iframeHtml = "<iframe width=\"560\" height=\"315\" src=\""+url+"\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
+        // Create an Html component and set the HTML content
+        Html html = new Html(iframeHtml);
+        html.addClassName("youtube-embed");
+        html.getStyle().set("margin","auto");
+
+        return html;
+    }
+
+    private Html createCodeHtml(String code) {
+        String formattedCode = "<pre><code>" + code +"</code></pre>";
+        Html codeHtml = new Html(formattedCode);
+        codeHtml.addClassName("code-style");
+        return codeHtml;
     }
 }

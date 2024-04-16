@@ -1,1 +1,51 @@
-<v,1>bleeeh
+It feels so gratifying to finally be able to post something on here after working on this project.
+
+[p]<v,29> Over the past year or so, I've dedicated myself to upskilling in software development.
+         Around June/July 2023 I started working on a simple project to
+         convert my downloaded Nationwide files into a readable excel format {Link here to GitHub}.
+         This was a command line program used to read bank statement files, downloaded from online banking sites,
+         which are then formatted into an SQLite DB. These SQLite DB's could then be exported into a formatted Excel File within the program.
+
+[p] <r,7>While this project did not seem complicated at the outset, it marked a departure from the type of coding projects/ assignments I had previously worked on.
+    With University assignments, I was only required to build programs or models for specific scripted challenges.
+    In contrast this conversion app demanded a deeper understanding of software architecture than I had previously needed.
+    I set out to craft a codebase characterized by modularity and extensibility.
+    One way I hoped to do this was by follow architecture principles such as the SOLID principles {Link to an article on solid principles}.
+    Working on this project was the first time I interacted with any build tools (I used maven for that project), handled proper logging systems (log4j here),
+    and tried to constantly work with test based development. I found it incredibly rewarding whenever I experienced the tangible benefits of
+    thoughtful planning and foresight in my code.
+
+[p] <c,
+	/*
+	 * =========== ABSTRACT IMPLEMENTATION ============
+	 */
+	/**
+	 * Creates the Inbound table in the database. The table will be created only if
+	 * it does not already exist. The table schema includes columns for ID, Date,
+	 * trType, RawDescription, ProcessDescription, Category, Paid_In, and Balance.
+	 */
+
+	public void createTable() {
+		String addTable = "CREATE TABLE IF NOT EXISTS " + getTableName() + " (\n" + "ID text PRIMARY KEY, \n"
+				+ "Date text NOT NULL, \n" + "trType text, \n" + "RawDescription text NOT NULL, \n"
+				+ "ProcessDescription text NOT NULL, \n" + "Category text NOT NULL, \n" + "Paid_In REAL NOT NULL,"
+				+ "Balance REAL NOT NULL);";
+
+		try (Connection conn = DriverManager.getConnection(getDB().getUrl()); Statement stmt = conn.createStatement()) {
+			stmt.execute(addTable);
+			String log = String.format("Created Table: %s", getTableName());
+			logger.info(log);
+		} catch (SQLException e) {
+			String log = String.format("Failed to create table: %s. %s", getTableName(), e.getMessage());
+			logger.error(log);
+		}
+	}
+>However, I did receieve feedback from my friends, who suggested that I might have been overly fixated on certain principles, particularly the Single Responsibility Principle (SRP).
+        They suggested my code base was beginning to get overly fragmented with a multitude of small, speciailised classes each with only one responsibility.
+        With my handling of my "Table" class objects, I could have found more commonality between classes.
+        Within my database, I had distinct tables for Inbound and Outbound transactions, each represented by separate class objects (TableInbound and TableOutbound) that extended an abstract class, Table.
+        Additionally, I had separate reader and writer classes for each variation of the table class (e.g., TableInboundReader, TableOutboundReader).
+        While my intention was to facilitate easier updates and extensions, I realized that this approach led to unnecessary repetition and complexity.
+        Both table classes essentially shared the same structure and functionality.
+        It did not really affect my ability to develop for that project - but I think the point made from my friends was that I need to actively think more about the type of structure I'm making
+        rather than following convention for the sake of convention.

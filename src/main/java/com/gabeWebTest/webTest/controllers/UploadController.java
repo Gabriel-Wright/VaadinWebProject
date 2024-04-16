@@ -72,7 +72,7 @@ public class UploadController {
         if(StringUtils.isBlank(fileName)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No file presented");
         }
-        String testValue = "/img/" + fileName;
+        String testValue = "img/" + fileName;
         if(visualSourceRepository.findByImagePath("/img/" + fileName).isPresent()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Image already exists under path:"+fileName);
         }
