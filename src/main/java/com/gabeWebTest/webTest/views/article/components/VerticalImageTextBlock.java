@@ -19,7 +19,7 @@ public class VerticalImageTextBlock extends VerticalLayout {
         super();
         setPadding(false);
         int sourceID = GET_SOURCE_ID(paragraph);
-        Image sourceImage = imageLoader.LOAD_IMAGE(sourceID);
+        Image sourceImage = new Image(imageLoader.LOAD_IMAGE(sourceID), String.valueOf(sourceID));
         sourceImage.addClassName("vertical-image");
         paragraph = REMOVE_PATTERN(paragraph);
         Paragraph paragraphToAdd = new Paragraph(paragraph);

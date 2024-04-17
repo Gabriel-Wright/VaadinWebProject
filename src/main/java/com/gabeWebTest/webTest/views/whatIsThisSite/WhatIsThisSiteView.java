@@ -7,14 +7,18 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.InputStream;
 
 @Route("what-is-this-site")
 @PageTitle("What is this site?")
@@ -48,8 +52,24 @@ public class WhatIsThisSiteView extends AppLayout {
         content.add(createTechStackExplanation());
         content.addClassName("wit-content");
         content.getStyle().set("margin","auto");
+//        content.add(new Image(testStreamResource(), "AltText"));
         return content;
     }
+
+//    private StreamResource testStreamResource() {
+//        StreamResource streamResource = new StreamResource("LI-In-Bug.png", () -> {
+//            try {
+//                InputStream inputStream = getClass().getResourceAsStream("/static/img/LI-In-Bug.png");
+//                return inputStream;
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                return null;
+//            }
+//        });
+//
+//        return streamResource;
+//    }
+
     private Div siteIntroExplanation() {
         Div div = new Div();
         div.addClassName("tech-stack");

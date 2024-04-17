@@ -15,7 +15,7 @@ public class LeftImageTextBlock extends Div {
     public LeftImageTextBlock(String paragraph, ImageLoader imageLoader) {
         super();
         int sourceID = GET_SOURCE_ID(paragraph);
-        Image sourceImage = imageLoader.LOAD_IMAGE(sourceID);
+        Image sourceImage = new Image(imageLoader.LOAD_IMAGE(sourceID), String.valueOf(sourceID));
         sourceImage.addClassName("left-image");
         paragraph = REMOVE_PATTERN(paragraph);
         Paragraph paragraphToAdd = new Paragraph(paragraph);

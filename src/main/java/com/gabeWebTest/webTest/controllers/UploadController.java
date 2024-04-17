@@ -73,7 +73,7 @@ public class UploadController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No file presented");
         }
         String testValue = "img/" + fileName;
-        if(visualSourceRepository.findByImagePath("/img/" + fileName).isPresent()) {
+        if(visualSourceRepository.findByImagePath("/static/img/" + fileName).isPresent()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Image already exists under path:"+fileName);
         }
         Optional<VisualSource> visualSource = visualSourceRepository.findByImagePath(testValue);
@@ -82,7 +82,7 @@ public class UploadController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid file type. Only image files are allowed.");
         }
         saveImageToDest(imageFile);
-        visualSourceRepository.save(new VisualSource("/img/" + fileName));
+        visualSourceRepository.save(new VisualSource("/static/img/" + fileName));
         return ResponseEntity.ok("Image:" + fileName+" uploaded successfully");
     }
 
