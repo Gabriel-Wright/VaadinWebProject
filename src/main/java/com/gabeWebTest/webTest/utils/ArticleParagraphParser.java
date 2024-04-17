@@ -11,6 +11,7 @@ public class ArticleParagraphParser {
     public final static int HORIZONTAL_RIGHT = 2;
     public final static int YOUTUBE_EMBED = 3;
     public final static int CODE_EMBED = 4;
+    public final static int HEADING = 5;
 
 //    private static Pattern pattern = Pattern.compile("<([vh]),\\s*\\w+\\/\\w+\\.\\w+>");
     //SINGLE INT SHOULD BE AFTER THE ,
@@ -36,6 +37,7 @@ public class ArticleParagraphParser {
             case("r") -> HORIZONTAL_RIGHT;
             case("y") -> YOUTUBE_EMBED;
             case("c") -> CODE_EMBED;
+            case("h") -> HEADING;
             default -> DEFAULT;
         };
     }

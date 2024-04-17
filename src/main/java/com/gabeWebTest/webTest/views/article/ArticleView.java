@@ -3,6 +3,7 @@ package com.gabeWebTest.webTest.views.article;
 import com.gabeWebTest.webTest.data.webPage.WebPage;
 import com.gabeWebTest.webTest.services.VisualSourceService;
 import com.gabeWebTest.webTest.services.WebPageService;
+import com.gabeWebTest.webTest.utils.ImageLoader;
 import com.gabeWebTest.webTest.views.dashboard.mainDrawer.MainDrawer;
 import com.gabeWebTest.webTest.views.dashboard.navigationBar.NavigationBar;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -39,6 +40,8 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long>, Has
     @Autowired
     private final VisualSourceService visualSourceService;
 
+    private ImageLoader imageLoader;
+
     private final NavigationBar navigationBar;
     private final MainDrawer mainDrawer;
     private String title;
@@ -49,6 +52,8 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long>, Has
         this.visualSourceService = visualSourceService;
         this.navigationBar = navigationBar;
         this.mainDrawer = mainDrawer;
+        imageLoader = new ImageLoader();
+        imageLoader.setVisualSourceService(visualSourceService);
         setDrawerOpened(true);
         navigationBar.setDrawToggleRight(true);
 
@@ -82,7 +87,7 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long>, Has
 //        titleOfArticle.setSizeFull();
 //        articleLayout.add(loadThumbnail());
         articleLayout.add(loadTitleOfArticle());
-        ArticleTextBlockGenerator articleTextBlockGenerator = new ArticleTextBlockGenerator(webPage, visualSourceService);
+        ArticleTextBlockGenerator articleTextBlockGenerator = new ArticleTextBlockGenerator(webPage, visualSourceService, imageLoader);
         articleLayout.add(articleTextBlockGenerator.loadArticleTextBlock());
         setContent(articleLayout);
     }
