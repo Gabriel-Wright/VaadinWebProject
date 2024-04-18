@@ -7,8 +7,7 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.GET_SOURCE_ID;
-import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.REMOVE_PATTERN;
+import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.*;
 
 public class VerticalImageTextBlock extends VerticalLayout {
 
@@ -22,7 +21,7 @@ public class VerticalImageTextBlock extends VerticalLayout {
         Image sourceImage = new Image(imageLoader.LOAD_IMAGE(sourceID), String.valueOf(sourceID));
         sourceImage.addClassName("vertical-image");
         paragraph = REMOVE_PATTERN(paragraph);
-        Paragraph paragraphToAdd = new Paragraph(paragraph);
+        Paragraph paragraphToAdd = LOAD_PARAGRAPH_WITH_LINKS(paragraph);
         paragraphToAdd.addClassName("article-text");
         add(sourceImage);
         add(paragraphToAdd);

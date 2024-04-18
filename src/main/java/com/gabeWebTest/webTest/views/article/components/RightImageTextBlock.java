@@ -6,8 +6,7 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.GET_SOURCE_ID;
-import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.REMOVE_PATTERN;
+import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.*;
 
 public class RightImageTextBlock extends Div {
 
@@ -18,7 +17,7 @@ public class RightImageTextBlock extends Div {
         Image sourceImage = new Image(imageLoader.LOAD_IMAGE(sourceID), String.valueOf(sourceID));
         sourceImage.addClassName("right-image");
         paragraph = REMOVE_PATTERN(paragraph);
-        Paragraph paragraphToAdd = new Paragraph(paragraph);
+        Paragraph paragraphToAdd = LOAD_PARAGRAPH_WITH_LINKS(paragraph);
         paragraphToAdd.addClassName("article-text");
         add(sourceImage);
         add(paragraphToAdd);

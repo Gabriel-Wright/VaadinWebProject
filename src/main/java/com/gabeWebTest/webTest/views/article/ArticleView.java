@@ -86,7 +86,6 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long>, Has
 //        H1 titleOfArticle = new H1(webPage.getTitle());
 //        titleOfArticle.setSizeFull();
 //        articleLayout.add(loadThumbnail());
-        articleLayout.add(new Image("middleResources/img/monika.png","img/github-mark.png"));
         articleLayout.add(loadTitleOfArticle());
         ArticleTextBlockGenerator articleTextBlockGenerator = new ArticleTextBlockGenerator(webPage, visualSourceService, imageLoader);
         articleLayout.add(articleTextBlockGenerator.loadArticleTextBlock());

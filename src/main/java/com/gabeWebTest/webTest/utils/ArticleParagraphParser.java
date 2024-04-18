@@ -1,5 +1,12 @@
 package com.gabeWebTest.webTest.utils;
 
+import com.vaadin.flow.component.Html;
+import com.vaadin.flow.component.HtmlComponent;
+import com.vaadin.flow.component.html.Anchor;
+import com.vaadin.flow.component.html.Paragraph;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,10 +22,11 @@ public class ArticleParagraphParser {
 
 //    private static Pattern pattern = Pattern.compile("<([vh]),\\s*\\w+\\/\\w+\\.\\w+>");
     //SINGLE INT SHOULD BE AFTER THE ,
-    private static Pattern PATTERN_INT = Pattern.compile("<([a-z]),(\\s*\\d*)>");
+    private static Pattern PATTERN_INT = Pattern.compile("<¬([a-z]),(\\s*\\d*)¬>");
     //ANY STRING CAN BE AFTER THE ,
-    private static Pattern PATTERN_STRING = Pattern.compile("<([a-z]),([^>]+)>");
-
+    private static Pattern PATTERN_STRING = Pattern.compile("<¬([a-z]),([^¬>]*)¬>");
+    //LINK PATTERN
+    private static Pattern PATTERN_LINK  = Pattern.compile("¬¬([^,]+),([^¬]+)¬¬");
     private static Matcher matcher;
     public static int GET_FORMAT(String paragraphText) {
         matcher = PATTERN_STRING.matcher(paragraphText);
@@ -70,10 +78,40 @@ public class ArticleParagraphParser {
     }
 
     public static String REMOVE_PATTERN(String paragraphText) {
-        return paragraphText.replaceAll("<[^>]+>", "");
+        return paragraphText.replaceAll("<¬[^>]+¬>", "");
     }
 
     public static String[] SPLIT_TEXT(String rawText) {
         return rawText.split("\\[p\\]");
+    }
+
+    public static Paragraph LOAD_PARAGRAPH_WITH_LINKS(String paragraphText) {
+        Paragraph paragraph = new Paragraph();
+
+        List<Anchor> links = getHtmlLinks(paragraphText);
+        int numLinks = links.size();
+        String[] paragraphSplitParts = PATTERN_LINK.split(paragraphText);
+        int numParts = paragraphSplitParts.length;
+        for(int i=0; i<numParts; i++) {
+            paragraph.add(paragraphSplitParts[i]);
+            if(i < numLinks) {
+                paragraph.add(links.get(i));
+            }
+        }
+
+        return paragraph;
+    }
+
+    private static List<Anchor> getHtmlLinks(String paragraphText) {
+        List<Anchor> links = new ArrayList<>();
+        Matcher matcher = PATTERN_LINK.matcher(paragraphText);
+        while(matcher.find()) {
+            String text = matcher.group(1);
+            String url = matcher.group(2);
+            String htmlString = "<a href=\""+url+"\">"+text+"</a>";
+            Anchor anchor = new Anchor(url, text);
+            links.add(anchor);
+        }
+        return links;
     }
 }

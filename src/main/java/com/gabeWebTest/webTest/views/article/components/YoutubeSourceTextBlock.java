@@ -4,8 +4,7 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.GET_PATTERN_STRING;
-import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.REMOVE_PATTERN;
+import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.*;
 
 public class YoutubeSourceTextBlock extends VerticalLayout {
 
@@ -13,7 +12,7 @@ public class YoutubeSourceTextBlock extends VerticalLayout {
         String url = GET_PATTERN_STRING(paragraph);
         add(createYoutubeEmbed(url));
         paragraph = REMOVE_PATTERN(paragraph);
-        Paragraph paragraphToAdd = new Paragraph(paragraph);
+        Paragraph paragraphToAdd = LOAD_PARAGRAPH_WITH_LINKS(paragraph);
         paragraphToAdd.addClassName("article-text");
         add(paragraphToAdd);
 
