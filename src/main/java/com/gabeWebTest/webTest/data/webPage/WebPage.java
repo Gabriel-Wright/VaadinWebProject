@@ -21,6 +21,7 @@ public class WebPage {
         this.articlePreviewText = articlePreviewText;
         this.tags = tags;
         version = 1;
+        active = false;
         setDefaultDates();
     }
 
@@ -31,6 +32,7 @@ public class WebPage {
         this.articlePreviewText = articleText;
         this.dates = dates;
         this.tags = tags;
+        active = false;
     }
 
     //This defines how the primary key Id is handled in the database.
@@ -47,6 +49,9 @@ public class WebPage {
     private int version;
 
     private String title;
+
+    @Column(name ="Article_Active")
+    private Boolean active;
 
     @Column(name="Article_Preview")
     private String articlePreviewText;
@@ -78,6 +83,10 @@ public class WebPage {
 
     public int getVersion() {
         return version;
+    }
+
+    public Boolean getActive() {
+        return active;
     }
 
     public int getThumbnailID() {

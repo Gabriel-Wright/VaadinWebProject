@@ -26,5 +26,9 @@ public interface WebPageRepository extends JpaRepository<WebPage, Long> {
     // Find a webpage by its title
     Optional<WebPage> findByTitle(String title);
 
+    List<WebPage> findByActiveTrueOrderByDatesTimeCreatedDesc();
+
+    List<WebPage> findByActiveTrueAndTagsInOrderByDatesTimeCreatedDesc(List<Tag> tags);
+
 
 }

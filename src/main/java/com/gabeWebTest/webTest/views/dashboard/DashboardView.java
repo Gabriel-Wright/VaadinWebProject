@@ -103,7 +103,7 @@ public class DashboardView extends AppLayout implements TagFilterListener {
         list = new VirtualList<>();
 //        list.getStyle().set("opacity","1");
 //        list.getStyle().set("transition","opacity 0.5s ease");
-        selectedWebPages = webPageService.findAllWebPages();
+        selectedWebPages = webPageService.findAllActiveWebPagesOrderedByDateDesc();
         list.setItems(selectedWebPages);
         list.setRenderer(new WebPageListRenderer(Div::new, imageLoader));
         list.setHeightFull();
@@ -118,9 +118,9 @@ public class DashboardView extends AppLayout implements TagFilterListener {
         Set<Tag> selectedTags = tagFilter.getSelectedTags();
         List<WebPage> newWebPageSelection;
         if (selectedTags.isEmpty()) {
-            newWebPageSelection = webPageService.findAllWebPages();
+            newWebPageSelection = webPageService.findAllActiveWebPagesOrderedByDateDesc();
         } else {
-            newWebPageSelection = webPageService.findWebPagesByTags(new ArrayList<>(selectedTags));
+            newWebPageSelection = webPageService.findAllActiveWebPagesOrderedByDateDescWithTags(new ArrayList<>(selectedTags));
         }
 
         if(!updateNecessary(newWebPageSelection)) {

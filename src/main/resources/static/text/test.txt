@@ -13,7 +13,7 @@ It feels so gratifying to finally be able to post something on here after workin
     With University assignments, I was only required to build programs or models for specific scripted challenges.
     In contrast this conversion app demanded a deeper understanding of software architecture than I had previously needed.
     I set out to craft a codebase characterized by modularity and extensibility.
-    One way I hoped to do this was by follow architecture principles such as the SOLID principles {Link to an article on solid principles}.
+    One way I hoped to do this was by follow architecture principles such as the ¬¬SOLID Principles, https://youtu.be/kF7rQmSRlq0?si=RCbNLUWPEgy9165S¬¬.
     Working on this project was the first time I interacted with any build tools (I used maven for that project), handled proper logging systems (log4j here),
     and tried to constantly work with test based development. I found it incredibly rewarding whenever I experienced the tangible benefits of
     thoughtful planning and foresight in my code.
@@ -123,3 +123,7 @@ It's inevitable to encounter challenges and write less-than-ideal code along the
 website is better than the code I produced for my bank statement conversion app. It sounds cliché but it is a learning opportunity that ultimately contributes to my improvement.
 Over time I am sure I will recognise the flaws and quirks of this website's code base, and it might undergo numerous transformations because of that.
  But that I think that is the nature of getting better at a skill—it's a journey of perpetual refinement and evolution
+
+[p]<¬h,References:¬>
+[p] • ¬¬SOLID Principles: Do You Really Understand Them?, https://www.youtube.com/watch?v=kF7rQmSRlq0¬¬ posted from Alex Hyett
+[p] • ¬¬My own Github projects, https://github.com/Gabriel-Wright/Downloaded-Bank-Statement-to-Formatted-Excel-document¬¬ by ME!!

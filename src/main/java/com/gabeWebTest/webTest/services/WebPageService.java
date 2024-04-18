@@ -21,6 +21,14 @@ public class WebPageService {
         return webPageRepository.findAll();
     }
 
+    public List<WebPage> findAllActiveWebPagesOrderedByDateDesc(){
+        return webPageRepository.findByActiveTrueOrderByDatesTimeCreatedDesc();
+    }
+
+    public List<WebPage> findAllActiveWebPagesOrderedByDateDescWithTags(List<Tag> tags) {
+        return webPageRepository.findByActiveTrueAndTagsInOrderByDatesTimeCreatedDesc(tags);
+    }
+
     public List<WebPage> findWebPagesByTags(List<Tag> tags) {
         return webPageRepository.findByTagsIn(tags);
     }
