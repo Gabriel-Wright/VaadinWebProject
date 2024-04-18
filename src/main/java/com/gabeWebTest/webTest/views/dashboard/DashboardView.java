@@ -2,7 +2,9 @@ package com.gabeWebTest.webTest.views.dashboard;
 
 import com.gabeWebTest.webTest.data.webPage.tags.Tag;
 import com.gabeWebTest.webTest.data.webPage.WebPage;
+import com.gabeWebTest.webTest.services.VisualSourceService;
 import com.gabeWebTest.webTest.services.WebPageService;
+import com.gabeWebTest.webTest.utils.ImageLoader;
 import com.gabeWebTest.webTest.views.dashboard.content.UIChangeEventListener;
 import com.gabeWebTest.webTest.views.dashboard.content.WebPageListRenderer;
 import com.gabeWebTest.webTest.views.dashboard.mainDrawer.MainDrawer;
@@ -37,13 +39,17 @@ public class DashboardView extends AppLayout implements TagFilterListener {
     private final MainDrawer mainDrawer;
     private final WebPageService webPageService;
     private final UIChangeEventListener dashboardUIChangeListener;
+    @Autowired
+    private final VisualSourceService visualSourceService;
+    private ImageLoader imageLoader;
 
     //These are needed for displaying suitable articles based on filters, and loading the new articles when necessary.
     private List<WebPage> selectedWebPages;
     private VirtualList<WebPage> list;
 
     @Autowired
-    public DashboardView(TagFilter tagFilter, NavigationBar navigationBar, MainDrawer mainDrawer, WebPageService webPageService, UIChangeEventListener dashboardUIChangeListener) {
+    public DashboardView(TagFilter tagFilter, NavigationBar navigationBar, MainDrawer mainDrawer, WebPageService webPageService, UIChangeEventListener dashboardUIChangeListener,
+                         VisualSourceService visualSourceService) {
         addClassName("dashboard-layout");
 
         this.tagFilter = tagFilter;
@@ -51,7 +57,9 @@ public class DashboardView extends AppLayout implements TagFilterListener {
         this.mainDrawer = mainDrawer;
         this.webPageService = webPageService;
         this.dashboardUIChangeListener = dashboardUIChangeListener;
-
+        this.visualSourceService = visualSourceService;
+        this.imageLoader = new ImageLoader();
+        imageLoader.setVisualSourceService(visualSourceService);
         setDrawerOpened(true);
         navigationBar.setDrawToggleRight(true);
         dashboardUIChangeListener.setDashboardView(this);
@@ -97,7 +105,7 @@ public class DashboardView extends AppLayout implements TagFilterListener {
 //        list.getStyle().set("transition","opacity 0.5s ease");
         selectedWebPages = webPageService.findAllWebPages();
         list.setItems(selectedWebPages);
-        list.setRenderer(new WebPageListRenderer(Div::new));
+        list.setRenderer(new WebPageListRenderer(Div::new, imageLoader));
         list.setHeightFull();
         list.addClassName("articlelist-style");
     }

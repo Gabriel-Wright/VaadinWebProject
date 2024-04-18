@@ -14,10 +14,10 @@ public class WebPage {
 
     }
 
-    public WebPage(String title, String articleTextPath, String thumbnailPath, String articlePreviewText, Set<Tag> tags) {
+    public WebPage(String title, String articleTextPath, int thumbnailID, String articlePreviewText, Set<Tag> tags) {
         this.title = title;
         this.articleTextPath = articleTextPath;
-        this.thumbnailPath = thumbnailPath;
+        this.thumbnailID = thumbnailID;
         this.articlePreviewText = articlePreviewText;
         this.tags = tags;
         version = 1;
@@ -55,7 +55,7 @@ public class WebPage {
     private String articleTextPath;
 
     @Column(name="THUMBNAIL")
-    private String thumbnailPath;
+    private int thumbnailID;
 
     @Embedded
     private Dates dates;
@@ -80,8 +80,8 @@ public class WebPage {
         return version;
     }
 
-    public String getThumbnailPath() {
-        return thumbnailPath;
+    public int getThumbnailID() {
+        return thumbnailID;
     }
 
     public String getArticleTextPath() {
@@ -134,7 +134,7 @@ public class WebPage {
                 ", title='" + title + '\'' +
                 ", articlePreviewText='" + articlePreviewText + '\'' +
                 ", articleTextPath='" + articleTextPath + '\'' +
-                ", thumbnailPath='" + thumbnailPath + '\'' +
+                ", thumbnailID='" + thumbnailID + '\'' +
                 ", dates=" + dates.toString() +
                 ", tags=" + tags.toString() +
                 '}';

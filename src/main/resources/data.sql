@@ -31,9 +31,9 @@ INSERT INTO WEBPAGE_TAG (WEBPAGE_ID, TAG_ID) VALUES (1002, 3);
 
 -- Insert thumbnail
 
-UPDATE WEB_PAGE SET THUMBNAIL = 'img/thumbnails/memoriesOfMurderThumbnail.jpg' WHERE id = 1000;
-UPDATE WEB_PAGE SET THUMBNAIL = 'img/thumbnails/gameTest.png' WHERE id = 1001;
-UPDATE WEB_PAGE SET THUMBNAIL = 'img/thumbnails/wiiParty.png' where id = 1002;
+UPDATE WEB_PAGE SET THUMBNAIL = 0 WHERE id = 1000;
+UPDATE WEB_PAGE SET THUMBNAIL = 1 WHERE id = 1001;
+UPDATE WEB_PAGE SET THUMBNAIL = 1 where id = 1002;
 
 --Insert Text of articles
 UPDATE WEB_PAGE SET Article_Text_Path = 'text/test.txt' WHERE id = 1000;
@@ -48,5 +48,5 @@ UPDATE WEB_PAGE SET ARTICLE_PREVIEW = '<v,0>Developing games using JFRAME' WHERE
 UPDATE WEB_PAGE SET ARTICLE_PREVIEW = '<l,2> Artificial Intelligent (AI)' where id = 1002;
 
 
-INSERT INTO VISUAL_SOURCE (SOURCE_ID, IMAGE_PATH) VALUES (0,'img/thumbnails/memoriesOfMurderThumbnail.jpg');
-INSERT INTO VISUAL_SOURCE (SOURCE_ID, IMAGE_PATH) VALUES (1, 'img/thumbnails/gameTest.png');
+INSERT INTO VISUAL_SOURCE (SOURCE_ID, FILE_NAME, IMAGE_PATH) VALUES (0,'memoriesOfMurderThumbnail.jpg','/static/img/thumbnails/memoriesOfMurderThumbnail.jpg');
+INSERT INTO VISUAL_SOURCE (SOURCE_ID, FILE_NAME, IMAGE_PATH) VALUES (1, 'gameTest.png','/static/img/thumbnails/gameTest.png');

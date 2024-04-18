@@ -2,13 +2,10 @@ package com.gabeWebTest.webTest.utils;
 
 import com.gabeWebTest.webTest.data.visualSource.VisualSource;
 import com.gabeWebTest.webTest.services.VisualSourceService;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.server.StreamResource;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.Optional;
 
 public class ImageLoader {
@@ -20,28 +17,32 @@ public class ImageLoader {
     public StreamResource LOAD_IMAGE(int sourceID) {
         Optional<VisualSource> visualSourceOptional = visualSourceService.findVisualSource(sourceID);
         if (!visualSourceOptional.isPresent()) {
-            return null;
+            return returnDefaultResource();
         }
         StreamResource streamResource = new StreamResource(visualSourceOptional.get().getFileName(), () -> {
             try {
                 return new FileInputStream(BASE_PATH+visualSourceOptional.get().getImagePath());
             } catch (FileNotFoundException  e) {
+                //Need to figure out file for this one possible error - what happens if there is no file at the location.
                 e.printStackTrace();
                 return null;
             }
         });
         return streamResource;
     }
-//        if(visualSourceOptional.isPresent()) {
-//            imagePath = visualSourceOptional.get().getImagePath();
-//        } else {
-//            imagePath =DEFAULT_IMAGE_PATH;
-//        }
-//
-//        StreamResource streamResource = new StreamResource(imagePath, () -> getClass().getResourceAsStream(imagePath));
-//
-//        return new Image(streamResource, DEFAULT_IMAGE_PATH);
 
+    private StreamResource returnDefaultResource() {
+        VisualSource defaultVisualSource = visualSourceService.findVisualSource(0).get();
+        StreamResource streamResource = new StreamResource(defaultVisualSource.getFileName(), () -> {
+            try {
+                return new FileInputStream(BASE_PATH + defaultVisualSource.getImagePath());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+        return streamResource;
+    }
 
     public void setVisualSourceService(VisualSourceService visualSourceService) {
         this.visualSourceService = visualSourceService;

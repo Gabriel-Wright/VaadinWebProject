@@ -32,6 +32,10 @@ public class VisualSource {
     @Column(name = "FILE_NAME")
     private String fileName;
 
+    public int getId() {
+        return id;
+    }
+
     public String getImagePath() {
         return imagePath;
     }

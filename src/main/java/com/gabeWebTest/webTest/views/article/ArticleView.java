@@ -120,20 +120,6 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long>, Has
         return articleDate;
     }
 
-    private Image loadThumbnail() {
-        Image image;
-        if(webPage.getThumbnailPath()==null) {
-
-            image = new Image("img/LI-In-Bug.png", "ArticleImage");
-        } else {
-            image = new Image(webPage.getThumbnailPath(),webPage.getTitle());
-        }
-
-        image.addClassName("article-thumbnail");
-
-        return image;
-    }
-
     @Override
     public String getPageTitle() {
         return title;

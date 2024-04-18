@@ -2,12 +2,14 @@ package com.gabeWebTest.webTest.views.dashboard.content;
 
 import com.gabeWebTest.webTest.data.webPage.tags.Tag;
 import com.gabeWebTest.webTest.data.webPage.WebPage;
+import com.gabeWebTest.webTest.utils.ImageLoader;
 import com.gabeWebTest.webTest.views.article.ArticleView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.function.SerializableSupplier;
+import com.vaadin.flow.server.StreamResource;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
@@ -19,11 +21,14 @@ import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.SPLIT_TEXT;
 
 public class WebPageListRenderer extends ComponentRenderer<Div, WebPage> {
 
-    public WebPageListRenderer(SerializableSupplier<Div> componentSupplier) {
+    private ImageLoader imageLoader;
+    private Div layout;
+
+    public WebPageListRenderer(SerializableSupplier<Div> componentSupplier, ImageLoader imageLoader) {
         super(componentSupplier);
+        this.imageLoader = imageLoader;
     }
 
-    private Div layout;
     @Override
     public Div createComponent(WebPage item) {
         // Create components to represent a single item
@@ -51,12 +56,9 @@ public class WebPageListRenderer extends ComponentRenderer<Div, WebPage> {
     }
 
     private Image loadWebPagePreviewImage(WebPage item) {
-        Image image;
-        if(item.getThumbnailPath()==null) {
-            image = new Image("img/LI-In-Bug.png", "ArticleImage");
-        } else {
-            image = new Image(item.getThumbnailPath(),item.getTitle());
-        }
+        int sourceId = item.getThumbnailID();
+        StreamResource imageStreamResource = imageLoader.LOAD_IMAGE(sourceId);
+        Image image = new Image(imageStreamResource, String.valueOf(sourceId));
         image.addClassName("image-preview-container");
         return image;
     }
