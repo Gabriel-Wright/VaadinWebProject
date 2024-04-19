@@ -4,6 +4,7 @@ import com.gabeWebTest.webTest.data.webPage.tags.Tag;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,7 @@ public class WebPage {
 
     }
 
-    public WebPage(String title, String articleTextPath, int thumbnailID, String articlePreviewText, Set<Tag> tags) {
+    public WebPage(String title, String articleTextPath, int thumbnailID, String articlePreviewText, List<Tag> tags) {
         this.title = title;
         this.articleTextPath = articleTextPath;
         this.thumbnailID = thumbnailID;
@@ -25,7 +26,7 @@ public class WebPage {
         setDefaultDates();
     }
 
-    public WebPage(Long id, int version, String title, String articleText, Dates dates, Set<Tag> tags) {
+    public WebPage(Long id, int version, String title, String articleText, Dates dates, List<Tag> tags) {
         this.id = id;
         this.version = version;
         this.title = title;
@@ -71,7 +72,7 @@ public class WebPage {
             joinColumns = @JoinColumn(name = "webpage_id"), // column in the join table referencing WebPage
             inverseJoinColumns = @JoinColumn(name = "tag_id") // column in the join table referencing Tag
     )
-    private Set<Tag> tags;
+    private List<Tag> tags;
 
     public Long getId() {
         return id;
@@ -110,7 +111,7 @@ public class WebPage {
         return dates;
     }
 
-    public Set<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 

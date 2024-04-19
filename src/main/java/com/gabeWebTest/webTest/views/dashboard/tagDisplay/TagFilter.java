@@ -37,7 +37,7 @@ public class TagFilter {
 
     public MultiSelectComboBox<Tag> createTagFilterDropDown() {
         // Get all tags from TagService
-        List<Tag> tags = tagService.findAllTags();
+        List<Tag> tags = tagService.findAllTagsOrdered();
 
         MultiSelectComboBox<Tag> filterDropDown = new MultiSelectComboBox<>();
         filterDropDown.addClassName("custom-multiselect");

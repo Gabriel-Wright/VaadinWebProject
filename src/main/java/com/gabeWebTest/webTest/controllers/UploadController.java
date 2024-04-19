@@ -24,9 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import static com.gabeWebTest.webTest.utils.FileSaveHandler.saveImageToDest;
 import static com.gabeWebTest.webTest.utils.FileSaveHandler.saveTextToDest;
@@ -94,7 +92,7 @@ public class UploadController {
                                               @RequestParam("article_text_path") String articleTextPath,
                                               @RequestParam("thumbnail_path") int thumbnailID,
                                               @RequestParam("article_preview_text") String previewText,
-                                              @RequestParam("tags") Set<String> tags) {
+                                              @RequestParam("tags") List<String> tags) {
         if(StringUtils.isBlank(title)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("WebPage title cannot be blank");
         }
@@ -117,9 +115,9 @@ public class UploadController {
         return ResponseEntity.ok("Webpage uploaded successfully with ID:" +newID);
     }
 
-    private Set<Tag> resolveTags(Set<String> tagStringSet) {
+    private List<Tag> resolveTags(List<String> tagStringSet) {
         // Convert tag names to Tag entities
-        Set<Tag> convertedTags = new HashSet<>();
+        List<Tag> convertedTags = new ArrayList<>();
         for (String tagName : tagStringSet) {
             Tag tag = tagRepository.findByTagName(tagName);
             if (tag == null) {

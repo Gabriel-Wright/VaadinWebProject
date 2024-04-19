@@ -47,7 +47,7 @@ public class WebPageListRenderer extends ComponentRenderer<Div, WebPage> {
 
     @Transactional
     private Div createTagDisplayComponent(WebPage item) {
-        Set<Tag> tags = item.getTags();
+        List<Tag> tags = item.getTags();
         Div horizontalLayout = new Div();
         for(Tag tag: tags) {
             horizontalLayout.add(tag.createTagComponent());

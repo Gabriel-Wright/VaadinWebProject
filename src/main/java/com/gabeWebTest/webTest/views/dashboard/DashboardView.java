@@ -89,11 +89,6 @@ public class DashboardView extends AppLayout implements TagFilterListener {
         VerticalLayout content = new VerticalLayout();
         content.setSizeFull(); // Set the size to fill the entire available space
         content.add(list);
-//        DrawerToggle toggle = new DrawerToggle();
-//        Icon icon = new Icon(VaadinIcon.ARROW_DOWN);
-//        toggle.setIcon(icon);
-////        toggle.getStyle().set("position","fixed");
-//        content.add(toggle);
         content.setAlignItems(FlexComponent.Alignment.CENTER);
         setContent(content);
     }
@@ -101,8 +96,6 @@ public class DashboardView extends AppLayout implements TagFilterListener {
     private void initialiseVirtualListView() {
         //Here is where I would have articleDisplayAdded
         list = new VirtualList<>();
-//        list.getStyle().set("opacity","1");
-//        list.getStyle().set("transition","opacity 0.5s ease");
         selectedWebPages = webPageService.findAllActiveWebPagesOrderedByDateDesc();
         list.setItems(selectedWebPages);
         list.setRenderer(new WebPageListRenderer(Div::new, imageLoader));
@@ -135,7 +128,6 @@ public class DashboardView extends AppLayout implements TagFilterListener {
     private boolean updateNecessary(List<WebPage> newWebPageSelection) {
         return !newWebPageSelection.equals(selectedWebPages);
     }
-
 
     private void fadeOutVirtualList() {
         //Fade out old list

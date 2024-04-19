@@ -18,4 +18,6 @@ public class TagService {
     public List<Tag> findAllTags() {
         return tagRepository.findAll();
     }
+
+    public List<Tag> findAllTagsOrdered() { return tagRepository.findAllByOrderByTagNameAsc();}
 }
