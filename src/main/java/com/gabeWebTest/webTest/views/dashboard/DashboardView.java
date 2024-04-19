@@ -23,6 +23,8 @@ import com.vaadin.flow.component.virtuallist.VirtualList;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
@@ -47,11 +49,13 @@ public class DashboardView extends AppLayout implements TagFilterListener {
     private List<WebPage> selectedWebPages;
     private VirtualList<WebPage> list;
 
+    private static final Logger logger = LoggerFactory.getLogger(DashboardView.class);
+
     @Autowired
     public DashboardView(TagFilter tagFilter, NavigationBar navigationBar, MainDrawer mainDrawer, WebPageService webPageService, UIChangeEventListener dashboardUIChangeListener,
                          VisualSourceService visualSourceService) {
         addClassName("dashboard-layout");
-
+        logger.info("accessed dashboard");
         this.tagFilter = tagFilter;
         this.navigationBar = navigationBar;
         this.mainDrawer = mainDrawer;

@@ -4,6 +4,8 @@ import com.gabeWebTest.webTest.data.auth.AuthenticationRequest;
 import com.gabeWebTest.webTest.data.auth.AuthenticationResponse;
 import com.gabeWebTest.webTest.data.auth.RegisterRequest;
 import com.gabeWebTest.webTest.services.AuthenticationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
 
     private final AuthenticationService authService;
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
 
     @Autowired
     public AuthenticationController(AuthenticationService authService) {
@@ -31,6 +34,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticateJson (
             @RequestBody AuthenticationRequest request
     ) {
+        logger.info("Attempting to authenticate");
         return ResponseEntity.ok(authService.authenticate(request));
     }
 
@@ -40,6 +44,7 @@ public class AuthenticationController {
             @RequestParam("username") String username,
             @RequestParam("password") String password
     ) {
+        logger.info("Attempting to authenticate");
         // Create AuthenticationRequest object from form parameters
         AuthenticationRequest request = new AuthenticationRequest(username, password);
 

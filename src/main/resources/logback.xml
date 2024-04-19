@@ -8,25 +8,68 @@
     </appender>
 
     <!-- Rolling File Appender -->
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/web.log</file>
+    <appender name="ROOT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/root/root.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- Log file will roll over daily -->
-            <fileNamePattern>logs/weblogs-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/root/root-%d{yyyy-MM-dd}.log</fileNamePattern>
         </rollingPolicy>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
             <!-- Maximum file size before rolling (in bytes) -->
-            <maxFileSize>10MB</maxFileSize>
+            <maxFileSize>120KB</maxFileSize>
         </triggeringPolicy>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
+    <appender name="CONTROLLER_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/controller/controller.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Log file will roll over daily -->
+            <fileNamePattern>logs/controller/controller-%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <!-- Maximum file size before rolling (in bytes) -->
+            <maxFileSize>120KB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FRONTEND_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/frontend/views.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Log file will roll over daily -->
+            <fileNamePattern>logs/frontend/views-%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <!-- Maximum file size before rolling (in bytes) -->
+            <maxFileSize>120KB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.gabeWebTest.webTest.controllers" level = "INFO">
+        <appender-ref ref ="CONTROLLER_FILE"/>
+    </logger>
+
+    <logger name="com.gabeWebTest.webTest.services" level ="INFO">
+        <appender-ref ref ="CONTROLLER_FILE"/>
+    </logger>
+
+    <logger name="com.gabeWebTest.webTest.views" level = "INFO">
+        <appender-ref ref ="FRONTEND_FILE"/>
+    </logger>
+
     <!-- Root Logger -->
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
+        <appender-ref ref="ROOT_FILE"/>
     </root>
+
 
 </configuration>
