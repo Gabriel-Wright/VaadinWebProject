@@ -53,6 +53,21 @@
         </encoder>
     </appender>
 
+    <appender name="FILTER_CONFIG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/filter/configFilter.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Log file will roll over daily -->
+            <fileNamePattern>logs/filter/configFilter-%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <!-- Maximum file size before rolling (in bytes) -->
+            <maxFileSize>120KB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <logger name="com.gabeWebTest.webTest.controllers" level = "INFO">
         <appender-ref ref ="CONTROLLER_FILE"/>
     </logger>
@@ -63,6 +78,10 @@
 
     <logger name="com.gabeWebTest.webTest.views" level = "INFO">
         <appender-ref ref ="FRONTEND_FILE"/>
+    </logger>
+
+    <logger name="com.gabeWebTest.webTest.config" level= "INFO">
+        <appender-ref ref="FILTER_CONFIG_FILE"/>
     </logger>
 
     <!-- Root Logger -->

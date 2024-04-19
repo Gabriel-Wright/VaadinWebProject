@@ -15,7 +15,15 @@ public class VisualSourceService {
         this.visualSourceRepository = visualSourceRepository;
     }
 
+    public Optional<VisualSource> findByImagePath(String imagePath) {
+        return visualSourceRepository.findByImagePath(imagePath);
+    }
+
     public Optional<VisualSource> findVisualSource(long id) {
         return visualSourceRepository.findById(id);
+    }
+
+    public void save(VisualSource visualSource) {
+        visualSourceRepository.save(visualSource);
     }
 }

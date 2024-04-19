@@ -1,11 +1,9 @@
 package com.gabeWebTest.webTest.controllers;
 
 import com.gabeWebTest.webTest.data.visualSource.VisualSource;
-import com.gabeWebTest.webTest.data.visualSource.VisualSourceRepository;
 import com.gabeWebTest.webTest.data.webPage.WebPage;
-import com.gabeWebTest.webTest.data.webPage.WebPageRepository;
 import com.gabeWebTest.webTest.data.webPage.tags.Tag;
-import com.gabeWebTest.webTest.data.webPage.tags.TagRepository;
+import com.gabeWebTest.webTest.services.TagService;
 import com.gabeWebTest.webTest.services.VisualSourceService;
 import com.gabeWebTest.webTest.services.WebPageService;
 import com.gabeWebTest.webTest.utils.FileSaveHandler;
@@ -35,55 +33,60 @@ public class UploadController {
 
     @Autowired
     private final WebPageService webPageService;
-    private final WebPageRepository webPageRepository;
-    private final TagRepository tagRepository;
-    private final VisualSourceRepository visualSourceRepository;
+    private final TagService tagService;
     private final VisualSourceService visualSourceService;
-    private final String resourcesPath = "src/main/resources/static";
+    private final String resourcesPath = "src/main/resources/";
 
     private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
 
-    public UploadController(WebPageService webPageService, WebPageRepository webPageRepository, TagRepository tagRepository, VisualSourceRepository visualSourceRepository, VisualSourceService visualSourceService) {
+    public UploadController(WebPageService webPageService, TagService tagService, VisualSourceService visualSourceService) {
         this.webPageService = webPageService;
-        this.webPageRepository = webPageRepository;
-        this.tagRepository = tagRepository;
-        this.visualSourceRepository = visualSourceRepository;
+        this.tagService = tagService;
         this.visualSourceService = visualSourceService;
     }
 
     @PostMapping("/text")
     public ResponseEntity<String> uploadText(@RequestParam("text") MultipartFile textFile) throws IOException {
         String fileName = textFile.getOriginalFilename();
+        logger.info("Received request to upload text file: {}",fileName);
         if(StringUtils.isBlank(fileName)) {
+            logger.warn("Received request without a file");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No file presented");
         }
-        // Check if the content type is appropriate for an image
         // Check if the content type is appropriate for a text file
         if (!isTextContentType(textFile.getContentType())) {
+            logger.warn("Invalid file type received: {}", textFile.getContentType());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid file type. Only text files are allowed.");
         }
         // Save the text file to the destination
         saveTextToDest(textFile);
+        logger.info("Text file {} uploaded successfully", fileName);
         return ResponseEntity.ok("Text file:" + fileName + " uploaded successfully");
     }
 
     @PostMapping("/images")
     public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile imageFile) throws IOException {
         String fileName = imageFile.getOriginalFilename();
+        logger.info("Request receieved to upload image file: {}",fileName);
         if(StringUtils.isBlank(fileName)) {
+            logger.warn("Received request without a file");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No file presented");
         }
         String formattedFileName = "/static/img/" + fileName;
-        if(visualSourceRepository.findByImagePath(formattedFileName).isPresent()) {
+        if(visualSourceService.findByImagePath(formattedFileName).isPresent()) {
+            logger.warn("Image already exists under path: {}", fileName);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Image already exists under path:"+fileName);
         }
         // Check if the content type is appropriate for an image
         if (!isImageContentType(imageFile.getContentType())) {
+            logger.warn("Invalid file type received: {}", imageFile.getContentType());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid file type. Only image files are allowed.");
         }
         saveImageToDest(imageFile);
-        visualSourceRepository.save(new VisualSource(formattedFileName));
-        int newID = visualSourceRepository.findByImagePath(formattedFileName).get().getId();
+        visualSourceService.save(new VisualSource(formattedFileName));
+        int newID = visualSourceService.findByImagePath(formattedFileName).get().getId();
+
+        logger.info("Image {} uploaded successfully with new ID: {}", fileName, newID);
         return ResponseEntity.ok("Image:" + fileName+" uploaded successfully with new ID: "+newID);
     }
 
@@ -93,25 +96,31 @@ public class UploadController {
                                               @RequestParam("thumbnail_path") int thumbnailID,
                                               @RequestParam("article_preview_text") String previewText,
                                               @RequestParam("tags") List<String> tags) {
+        logger.info("Received request to upload article with title: {}", title);
         if(StringUtils.isBlank(title)) {
+            logger.warn("Received request with blank title");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("WebPage title cannot be blank");
         }
         if(webPageIsPresent(title)) {
             // Return a response indicating that the webpage already exists
+            logger.warn("Webpage with title '{}' already exists", title);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Webpage with title '" + title + "' already exists");
         }
         if(!isValidSavedImagePath(thumbnailID)) {
+            logger.warn("No thumbnail found for ID: {}", thumbnailID);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No thumbnail under that path found");
         }
         if(!isValidTextFilePath(articleTextPath)) {
+            logger.warn("No text file found for path: {}", articleTextPath);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No txt file under that path found");
         }
         // Proceed with creating and saving the new webpage
         WebPage uploadArticle = new WebPage(title, articleTextPath, thumbnailID, previewText, resolveTags(tags));
-        webPageRepository.save(uploadArticle);
+        webPageService.save(uploadArticle);
 
         // Return a success response
-        int newID = Math.toIntExact(webPageRepository.findByTitle(title).get().getId());
+        int newID = Math.toIntExact(webPageService.findWebPageByTitle(title).get().getId());
+        logger.info("Webpage uploaded successfully with ID: {}", newID);
         return ResponseEntity.ok("Webpage uploaded successfully with ID:" +newID);
     }
 
@@ -119,19 +128,20 @@ public class UploadController {
         // Convert tag names to Tag entities
         List<Tag> convertedTags = new ArrayList<>();
         for (String tagName : tagStringSet) {
-            Tag tag = tagRepository.findByTagName(tagName);
-            if (tag == null) {
+            Tag tag;
+            if(!tagService.findByTagName(tagName).isPresent()) {
                 // Create a new Tag entity if it doesn't exist
                 tag = new Tag(tagName);
-                tag = tagRepository.save(tag);
+                tagService.save(tag);
             }
+            tag = tagService.findByTagName(tagName).get();
             convertedTags.add(tag);
         }
         return convertedTags;
     }
 
     private boolean webPageIsPresent(String title) {
-        return webPageRepository.findByTitle(title).isPresent();
+        return webPageService.findWebPageByTitle(title).isPresent();
     }
 
     private boolean isImageContentType(String contentType) {
@@ -167,7 +177,7 @@ public class UploadController {
         }
 
         // Check if the file exists
-        File file = new File(resourcesPath + textFilePath);
+        File file = new File(resourcesPath + "/static/" + textFilePath);
         return file.exists();
     }
 }

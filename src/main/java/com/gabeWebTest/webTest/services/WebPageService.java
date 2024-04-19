@@ -45,4 +45,12 @@ public class WebPageService {
     public Optional<WebPage> findWebPageById(long id) {
         return webPageRepository.findById(id);
     }
+
+    public Optional<WebPage> findWebPageByTitle(String title) {
+        return webPageRepository.findByTitle(title);
+    }
+
+    public void save(WebPage webPage) {
+        webPageRepository.save(webPage);
+    }
 }

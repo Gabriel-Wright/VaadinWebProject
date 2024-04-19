@@ -23,18 +23,11 @@ public class AuthenticationController {
         this.authService = authService;
     }
 
-//    @PostMapping("/register")
-//    public ResponseEntity<AuthenticationResponse> register (
-//            @RequestBody RegisterRequest request
-//    ) {
-//        return ResponseEntity.ok(authService.register(request));
-//    }
-
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticateJson (
             @RequestBody AuthenticationRequest request
     ) {
-        logger.info("Attempting to authenticate");
+        logger.info("Attempting to authenticate:"+request.getUsername());
         return ResponseEntity.ok(authService.authenticate(request));
     }
 

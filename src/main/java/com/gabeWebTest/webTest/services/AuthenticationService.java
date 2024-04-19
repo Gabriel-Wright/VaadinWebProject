@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -48,21 +50,36 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        logger.info("attempting to authenticate now");
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
-                        request.getPassword()
-                )
-        );
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getUsername(),
+                            request.getPassword()
+                    )
+            );
 
-        User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow();
-        String jwtToken = jwtService.generateToken(user);
-        System.out.println("Authenticated through username password: given authentication token: "+
-                jwtToken);
-        AuthenticationResponse response = new AuthenticationResponse(jwtToken);
+            User user = userRepository.findByUsername(request.getUsername())
+                    .orElseThrow(() -> {
+                        logger.error("User not found: " + request.getUsername());
+                        return new UsernameNotFoundException("User not found");
+                    });
 
-        return response;
+            String jwtToken = jwtService.generateToken(user);
+
+            // Log successful authentication and the generated JWT token
+            logger.info("Authentication successful for user: " + request.getUsername());
+            logger.debug("Generated JWT token: " + jwtToken);
+
+            AuthenticationResponse response = new AuthenticationResponse(jwtToken);
+
+            // Log the authentication response
+            logger.debug("Authentication response: " + response);
+
+            return response;
+        } catch (AuthenticationException e) {
+            // Log authentication failure
+            logger.error("Authentication failed for user: " + request.getUsername(), e);
+            throw e; // Optionally, re-throw the exception for handling at a higher level
+        }
     }
 }
