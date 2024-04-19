@@ -22,15 +22,13 @@ public class ArticleTextBlockGenerator {
     private final WebPage webPage;
     private String articleRawText;
     private VerticalLayout textBlock;
-    private VisualSourceService visualSourceService;
     private ImageLoader imageLoader;
 
 
     private final String DEFAULT_IMAGE_PATH = "img/thumbnails/memoriesOfMurderThumbnail.jpg";
 
-    public ArticleTextBlockGenerator(WebPage webPage, VisualSourceService visualSourceService, ImageLoader imageLoader) {
+    public ArticleTextBlockGenerator(WebPage webPage,  ImageLoader imageLoader) {
         this.webPage = webPage;
-        this.visualSourceService = visualSourceService;
         this.imageLoader = imageLoader;
     }
 

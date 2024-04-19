@@ -27,7 +27,6 @@ public class AboutMeView extends AppLayout {
     private final MainDrawer mainDrawer;
     @Autowired
     public AboutMeView(NavigationBar navigationbar, MainDrawer mainDrawer) {
-//        addClassName("about-me");
         addClassName("dashboard-layout");
         setPrimarySection(Section.DRAWER);
         this.navigationBar = navigationbar;
