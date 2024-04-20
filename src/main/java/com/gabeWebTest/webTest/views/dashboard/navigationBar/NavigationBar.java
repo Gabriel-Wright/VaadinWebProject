@@ -26,6 +26,7 @@ public class NavigationBar {
     private boolean drawToggleRight = true;
 
     private Icon toggleIcon;
+
     public HorizontalLayout createNavBarContent(DrawerToggle drawerToggle, String title) {
         HorizontalLayout layout = new HorizontalLayout();
         setupLayout(layout);

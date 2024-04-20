@@ -64,6 +64,10 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long>, Has
     @Override
     public void setParameter(BeforeEvent beforeEvent, Long aLong) {
         webPage = webPageService.findWebPageById(aLong).orElse(null);
+        if (webPage == null || webPage.getActive() == null || !webPage.getActive()) {
+            loadInactivePage();
+            return;
+        }
         loadNavBar();
         loadPage();
         if(webPage!=null) {
@@ -71,6 +75,14 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long>, Has
         } else {
             title = "Article";
         }
+    }
+
+    private void loadInactivePage() {
+        DrawerToggle toggle = new DrawerToggle();
+        addToNavbar(navigationBar.createNavBarContent(toggle, "No article found"));
+        Paragraph inactiveParagraph = new Paragraph("This article is not active: please return to the main menu to view available articles");
+        inactiveParagraph.addClassName("article-text");
+        setContent(inactiveParagraph);
     }
 
     private void setPageTitle() {

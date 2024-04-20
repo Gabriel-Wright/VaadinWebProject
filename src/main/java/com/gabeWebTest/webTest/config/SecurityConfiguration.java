@@ -34,7 +34,7 @@ public class SecurityConfiguration extends VaadinWebSecurity {
                 .disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/","/about-me",
-                        "/articles/**",
+                        "/article/**",
                         "/what-is-this-site",
                         "/api/v1/auth/**",
                         "/handleFadeOutCompletion",
