@@ -1,4 +1,4 @@
-package com.gabeWebTest.webTest.views.article;
+package com.gabeWebTest.webTest.views.article.components;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Div;

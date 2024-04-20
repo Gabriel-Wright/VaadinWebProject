@@ -75,9 +75,11 @@
         width:30%;
         height:30%;
     }
-
-    .about-me-title, .wit-title {
+    .about-me-title, .wit-title, .article-text-block-title {
         font-size:40px;
+    }
+    .article-text {
+        font-size:24px;
     }
     .about-me-text,.wit-text {
         font-size:18px;
@@ -141,8 +143,11 @@
         width:30%;
         height:30%;
     }
-    .about-me-title, .wit-title {
+    .about-me-title, .wit-title, .article-text-block-title {
         font-size: 38px;
+    }
+    .article-text {
+        font-size:22px;
     }
     .about-me-text, .wit-title {
         font-size:18px;
@@ -215,10 +220,12 @@
         height:30%;
     }
 
-    .about-me-title, .wit-title {
+    .about-me-title, .wit-title, .article-text-block-title {
         font-size: 36px;
     }
-
+    .article-text {
+        font-size:22px;
+    }
     .about-me-text, .wit-text {
         font-size:18px;
     }
@@ -297,9 +304,13 @@
         height:30%;
     }
 
-    .about-me-title, .wit-title {
+    .about-me-title, .wit-title, .article-text-block-title {
         font-size: 32px;
     }
+    .article-text {
+        font-size:20px;
+    }
+
     .about-me-text, .wit-text {
         font-size:16px;
     }
@@ -362,8 +373,11 @@
         height:30%;
     }
 
-    .about-me-title, .wit-title {
+    .about-me-title, .wit-title, .article-text-block-title {
         font-size: 30px;
+    }
+    .article-text {
+        font-size:18px;
     }
     .about-me-text, .wit-text {
         font-size:15px;
@@ -428,8 +442,11 @@
         height:50%;
     }
 
-    .about-me-title, .wit-title {
+    .about-me-title, .wit-title, .article-text-block-title {
         font-size: 26px;
+    }
+    .article-text {
+        font-size:17px;
     }
     .about-me-text, .wit-text {
         font-size:14px;
@@ -492,8 +509,11 @@
         width:50%;
         height:50%;
     }
-    .about-me-title, .wit-title {
+    .about-me-title, .wit-title, .article-text-block-title {
         font-size: 24px;
+    }
+    .article-text {
+        font-size:16px;
     }
     .about-me-text, .wit-text {
         font-size:14px;
@@ -568,8 +588,11 @@
         height:50%;
     }
 
-    .about-me-title, .wit-title {
+    .about-me-title, .wit-title, .article-text-block-title {
         font-size: 24px;
+    }
+    .article-text {
+        font-size:15px;
     }
     .about-me-text, .wit-text {
         font-size:13px;
@@ -624,8 +647,11 @@
         width:50%;
         height:50%;
     }
-    .about-me-title, .wit-title {
+    .about-me-title, .wit-title, .article-text-block-title {
         font-size: 20px;
+    }
+    .article-text {
+        font-size:14px;
     }
     .about-me-text, .wit-text {
         font-size:13px;
@@ -670,8 +696,11 @@
         height:50%;
     }
 
-    .about-me-title, .wit-title {
+    .about-me-title, .wit-title, .article-text-block-title {
         font-size: 18px;
+    }
+    .article-text {
+        font-size:14px;
     }
     .about-me-text, .wit-text {
         font-size:12px;
@@ -903,7 +932,6 @@ vaadin-multi-select-combo-box-item[selected] {
 }
 
 .article-text-block-title {
-    font-size:50px;
     font-family:"InconsolataRegular",sans-serif;
 }
 .article-text-block {
@@ -924,7 +952,6 @@ vaadin-multi-select-combo-box-item[selected] {
 
 .article-text {
     font-family:"InconsolataRegular",sans-serif;
-    font-size:24px;
     color:black;
 }
 
@@ -1028,6 +1055,12 @@ vaadin-multi-select-combo-box-item[selected] {
 
 .youtube-embed {
     margin:auto;
+    display:block;
+    padding:20px;
+}
+
+.code-style {
+    margin:left;
     display:block;
     padding:20px;
 }

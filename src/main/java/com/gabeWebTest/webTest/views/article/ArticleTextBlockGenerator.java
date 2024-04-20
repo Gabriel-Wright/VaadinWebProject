@@ -1,19 +1,11 @@
 package com.gabeWebTest.webTest.views.article;
 
-import com.gabeWebTest.webTest.data.visualSource.VisualSource;
 import com.gabeWebTest.webTest.data.webPage.WebPage;
-import com.gabeWebTest.webTest.services.VisualSourceService;
 import com.gabeWebTest.webTest.utils.ImageLoader;
 import com.gabeWebTest.webTest.utils.TxtFileParser;
 import com.gabeWebTest.webTest.views.article.components.*;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Html;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-
-import java.util.Optional;
 
 import static com.gabeWebTest.webTest.utils.ArticleParagraphParser.*;
 
