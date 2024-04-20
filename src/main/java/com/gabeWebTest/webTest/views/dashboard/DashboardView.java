@@ -20,8 +20,10 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.virtuallist.VirtualList;
+import com.vaadin.flow.router.NotFoundException;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AccessDeniedErrorRouter;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 
 @Route("")
+@AccessDeniedErrorRouter
 @PageTitle("Welcome | Projects & Thoughts")
 @JavaScript("js/custom.js")
 @AnonymousAllowed
@@ -54,6 +57,8 @@ public class DashboardView extends AppLayout implements TagFilterListener {
     @Autowired
     public DashboardView(TagFilter tagFilter, NavigationBar navigationBar, MainDrawer mainDrawer, WebPageService webPageService, UIChangeEventListener dashboardUIChangeListener,
                          VisualSourceService visualSourceService) {
+        // Register the custom error handler for NotFoundException
+
         addClassName("dashboard-layout");
         logger.info("accessed dashboard");
         this.tagFilter = tagFilter;
