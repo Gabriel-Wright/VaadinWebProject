@@ -81,6 +81,8 @@
     .article-text {
         font-size:24px;
     }
+
+
     .about-me-text,.wit-text {
         font-size:18px;
     }
@@ -96,6 +98,12 @@
         width:50px;
         padding: 5px;
         border-radius: 5px;
+    }
+    .code-embed {
+        margin:auto;
+        display:block;
+        padding:20px;
+        font-size:16px;
     }
     .pdf-viewer {
         width:75%;
@@ -173,6 +181,12 @@
     .article-preview-text {
         font-size: 22px;
     }
+    .code-embed {
+        margin:auto;
+        display:block;
+        padding:20px;
+        font-size:16px;
+    }
     .left-image {
         width:50%;
         height:50%;
@@ -228,6 +242,13 @@
     }
     .about-me-text, .wit-text {
         font-size:18px;
+    }
+
+    .code-embed {
+        margin:auto;
+        display:block;
+        padding:20px;
+        font-size:16px;
     }
 
     .pdf-viewer {
@@ -317,6 +338,12 @@
     .cv-note1, .cv-note2 {
         font-size:32px;
     }
+    .code-embed {
+        margin:auto;
+        display:block;
+        padding:20px;
+        font-size:16px;
+    }
 
     .pdf-viewer {
         width:85%;
@@ -385,6 +412,13 @@
     .pdf-viewer {
         width:90%;
     }
+    .code-embed {
+        margin:left;
+        display:block;
+        padding:20px;
+        font-size:16px;
+    }
+
     .cv-note1, .cv-note2 {
         font-size:26px;
     }
@@ -454,6 +488,13 @@
     .pdf-viewer {
         width:95%;
     }
+    .code-embed {
+        margin:left;
+        display:block;
+        padding:10px;
+        font-size:14px;
+    }
+
     .cv-note1, .cv-note2 {
         font-size:24px;
     }
@@ -525,6 +566,12 @@
         width:28px;
         padding: 3px;
         border-radius: 3px;
+    }
+    .code-embed {
+        margin:left;
+        display:block;
+        padding:10px;
+        font-size:13px;
     }
 
     .article-title {
@@ -607,7 +654,12 @@
         padding: 2px;
         border-radius: 3px;
     }
-
+    .code-embed {
+        margin:left;
+        display:block;
+        padding:5px;
+        font-size:12px;
+    }
     .article-title {
         font-size: 23px;
     }
@@ -665,6 +717,12 @@
         padding: 2px;
         border-radius: 2px;
     }
+    .code-embed {
+        margin:left;
+        display:block;
+        padding:5px;
+        font-size:12px;
+    }
     .article-title {
         font-size:22px;
     }
@@ -710,6 +768,12 @@
     }
     .cv-note2 {
         font-size:14px;
+    }
+    .code-embed {
+        margin:left;
+        display:block;
+        padding:5px;
+        font-size:12px;
     }
     .youtube-embed {
         width: 224;
@@ -1059,7 +1123,7 @@ vaadin-multi-select-combo-box-item[selected] {
     padding:20px;
 }
 
-.code-style {
+.code-embed {
     margin:left;
     display:block;
     padding:20px;

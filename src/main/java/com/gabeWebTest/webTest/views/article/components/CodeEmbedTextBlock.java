@@ -20,7 +20,7 @@ public class CodeEmbedTextBlock extends VerticalLayout {
     private Html createCodeHtml(String code) {
         String formattedCode = "<pre><code>" + code +"</code></pre>";
         Html codeHtml = new Html(formattedCode);
-        codeHtml.addClassName("code-style");
+        codeHtml.addClassName("code-embed");
         return codeHtml;
     }
 
