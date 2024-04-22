@@ -75,6 +75,7 @@ public class SecurityConfiguration extends VaadinWebSecurity {
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 
