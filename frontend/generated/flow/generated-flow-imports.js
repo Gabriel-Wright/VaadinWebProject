@@ -27,11 +27,11 @@ import '@vaadin/vaadin-lumo-styles/vaadin-iconset.js';
 
 const loadOnDemand = (key) => {
   const pending = [];
-  if (key === 'c6cbb74ba6b82c4ca32b3e9cf34e19a6b164e84a925e5d15161d0efe058531b3') {
-    pending.push(import('./chunks/chunk-88510b02fbafdbe4d02c389141fb9ce4376ce3cec0a1f8ab34bca9882cb1be17.js'));
-  }
   if (key === '06bda167530166660205426e3e1dfb2c844956ecdaa783018966b40efe2e35c4') {
     pending.push(import('./chunks/chunk-b9cee5494d79a60087bd672fe6d9a03cd08a15b103c71e0d25d21f035887a8d5.js'));
+  }
+  if (key === 'c6cbb74ba6b82c4ca32b3e9cf34e19a6b164e84a925e5d15161d0efe058531b3') {
+    pending.push(import('./chunks/chunk-88510b02fbafdbe4d02c389141fb9ce4376ce3cec0a1f8ab34bca9882cb1be17.js'));
   }
   if (key === '830afaa2837cfb2afb0563a286dde8aa3272f91bdf8bb876f622c439b47af290') {
     pending.push(import('./chunks/chunk-88510b02fbafdbe4d02c389141fb9ce4376ce3cec0a1f8ab34bca9882cb1be17.js'));
