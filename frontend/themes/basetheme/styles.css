@@ -143,7 +143,9 @@
        float:left;
        margin:10px;
    }
-
+    .drawer-toggle-right {
+        transform: rotate(180deg); /* Rotate element by 180 degrees */
+    }
    .date-style {
        font-size: 20x;
    }
@@ -228,6 +230,9 @@
        float:left;
        margin:10px;
    }
+    .drawer-toggle-right {
+        transform: rotate(180deg); /* Rotate element by 180 degrees */
+    }
 
     .date-style {
         font-size:18px;
@@ -298,6 +303,9 @@
         float:left;
     }
 
+    .drawer-toggle-right {
+        transform: rotate(180deg); /* Rotate element by 180 degrees */
+    }
 
     .tag-badge {
         font-size:22px;
@@ -399,6 +407,11 @@
        float:left;
        margin:10px;
    }
+
+    .drawer-toggle-right {
+        transform: rotate(180deg); /* Rotate element by 180 degrees */
+    }
+
     .date-style {
         font-size:16px;
     }
@@ -555,6 +568,10 @@
        margin:10px;
    }
 
+    .drawer-toggle-right {
+        transform: rotate(180deg); /* Rotate element by 180 degrees */
+    }
+
   .tag-badge {
        font-size: 16px;
   }
@@ -562,6 +579,11 @@
         font-size: 13px;
   }
 
+}
+@media screen and (max-width:800px) {
+    .drawer-toggle-right {
+        transform: rotate(0deg); /* Rotate element by 180 degrees */
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -638,6 +660,10 @@
         max-height: 400px; /* Set maximum height if needed */
     }
 
+    .drawer-toggle-right {
+        transform: rotate(0deg); /* Rotate element by 180 degrees */
+    }
+
     .tag-badge {
         font-size: 16px;
     }
@@ -698,6 +724,9 @@
 
     .article-preview-text {
         font-size:16px;
+    }
+    .drawer-toggle-right {
+        transform: rotate(0deg); /* Rotate element by 180 degrees */
     }
 
     .wit-text {
@@ -761,6 +790,9 @@
     .youtube-embed {
         padding:5px; /* Add padding to create a border */
     }
+    .drawer-toggle-right {
+        transform: rotate(0deg); /* Rotate element by 180 degrees */
+    }
 
 }
 
@@ -808,6 +840,9 @@
     }
     .date-style {
         font-size: 12px;
+    }
+    .drawer-toggle-right {
+        transform: rotate(0deg); /* Rotate element by 180 degrees */
     }
 }
 
@@ -881,7 +916,6 @@
     transition: opacity 0.5s ease;
 }
 .drawer-toggle-right {
-    transform: rotate(180deg); /* Rotate element by 180 degrees */
     transition: transform 0.5s ease;
 }
 
