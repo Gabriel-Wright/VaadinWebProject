@@ -85,6 +85,8 @@ public class SecurityConfiguration extends VaadinWebSecurity {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().requestMatchers(
+                //Icons
+                "/icons/**",
                 //Fonts
                 "/font/**",
                 //Images
