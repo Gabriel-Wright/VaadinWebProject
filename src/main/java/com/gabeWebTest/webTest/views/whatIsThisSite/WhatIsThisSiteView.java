@@ -13,7 +13,6 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.InputStream;
 
 @Route("what-is-this-site")
 @PageTitle("What is this site?")
