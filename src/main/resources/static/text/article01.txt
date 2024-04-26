@@ -88,7 +88,7 @@ Forcing myself to delve into projects where I initially had little to no underst
 I am quite a proud person, and I can suffer from a fear of producing subpar work as well as imposter sydrome.
 Because of this it's essential for me to push through that apprehension and produce something.
 It's inevitable to encounter challenges and write less-than-ideal code along the way, but I can confidently say the code I write for this
-website is better than the code I produced for my bank statement conversion app. It sounds cliché but it is a learning opportunity that ultimately contributes to my improvement.
+website is better than the code I produced for my bank statement conversion app. It sounds cliche but it is a learning opportunity that ultimately contributes to my improvement.
 Over time I am sure I will recognise the flaws and quirks of this website's code base, and it might undergo numerous transformations because of that.
  But that I think that is the nature of getting better at a skill. It's a journey of perpetual refinement and evolution.
 
