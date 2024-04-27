@@ -26,7 +26,6 @@ public class NavigationBar {
     private boolean drawToggleRight = true;
 
     private Icon toggleIcon;
-
     public HorizontalLayout createNavBarContent(DrawerToggle drawerToggle, String title) {
         HorizontalLayout layout = new HorizontalLayout();
         setupLayout(layout);
@@ -122,16 +121,8 @@ public class NavigationBar {
         Image linkedInImage = new Image(linkedINImagePath, "LinkedIn");
         linkedInImage.addClassName("linkedin-anchor");
 
-//        linkedInImage.addClassName("responsive-logo");
-//        linkedInImage.getElement().getStyle().set("max-width", "100%");
-//        linkedInImage.getElement().getStyle().set("height", "auto");
         Anchor linkedInAnchor = new Anchor(linkedINLink, linkedInImage);
         linkedInAnchor.setTarget("_blank");
-        // Add a class to the anchor for styling (if needed)
-//        linkedInAnchor.addClassName("linkedin-anchor");
-        // Set the anchor's alignment to the right
-//        linkedInAnchor.getElement().getStyle().set("margin-left", "auto");
-//        linkedInImage.setWidth("auto");
         return linkedInAnchor;
     }
 
@@ -146,5 +137,9 @@ public class NavigationBar {
 
     public void setDrawToggleRight(boolean drawToggleRight) {
         this.drawToggleRight = drawToggleRight;
+    }
+
+    public boolean getDrawToggleRight() {
+        return drawToggleRight;
     }
 }

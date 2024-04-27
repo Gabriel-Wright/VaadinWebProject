@@ -100,7 +100,7 @@ public class DashboardView extends AppLayout implements TagFilterListener {
     private void initialiseVirtualListView() {
         //Here is where I would have articleDisplayAdded
         list = new VirtualList<>();
-        selectedWebPages = webPageService.findAllActiveWebPagesOrderedByDateDesc();
+        selectedWebPages = webPageService.findAllWebPages();
         list.setItems(selectedWebPages);
         list.setRenderer(new WebPageListRenderer(Div::new, imageLoader));
         list.setHeightFull();
