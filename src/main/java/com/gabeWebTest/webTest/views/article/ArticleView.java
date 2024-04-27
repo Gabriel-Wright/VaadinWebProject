@@ -48,17 +48,21 @@ public class ArticleView extends AppLayout implements HasUrlParameter<Long>, Has
     private WebPage webPage;
     public ArticleView(WebPageService webPageService, VisualSourceService visualSourceService, NavigationBar navigationBar, MainDrawer mainDrawer) {
         addClassName("dashboard-layout");
+        setPrimarySection(Section.DRAWER);
         this.webPageService = webPageService;
         this.visualSourceService = visualSourceService;
         this.navigationBar = navigationBar;
         this.mainDrawer = mainDrawer;
         imageLoader = new ImageLoader();
         imageLoader.setVisualSourceService(visualSourceService);
-        setDrawerOpened(true);
-        navigationBar.setDrawToggleRight(true);
-
+        if(navigationBar.getDrawToggleRight()) {
+            navigationBar.setDrawToggleRight(true);
+        } else {
+            navigationBar.setDrawToggleRight(false);
+            setDrawerOpened(false);
+        }
         addToDrawer(mainDrawer.createDrawerContent());
-        setPrimarySection(Section.DRAWER);
+
     }
 
     @Override
