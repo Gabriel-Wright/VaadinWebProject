@@ -47,90 +47,103 @@ to represent my maze, each maze would consist of X mazeTiles in width and Y maze
 or a floor tile. While this approach limited the possibility of incorporating non-square walls or unique structures, it allowed me to 
 start with a straightforward data structure for my first prototype, avoiding potential headaches early on.
 
-[p] With the tile-based system in place, I needed to choose a maze generation algorithm. I needed to pick out a maze generation algorithm.
-My requirements for the maze generation algorithm were: the algorithm needs to be efficient - my mazes were not going to be too large in dimension but since 
-the maze generation algorithm needs to run at the start of every time the minigame ran - I couldn't have any noticeable delay.
-There should be a unique path between any two cells, this is needed because there should be no locked off loops or cycles
+[p] <#l,256#>With the tile-based system in place, I needed to choose a maze generation algorithm.
+My requirements for the maze generation algorithm were: the algorithm needs to be efficient. My mazes were not going to be too large in dimension but, since
+the maze generation algorithm needs to run at start time, I couldn't have any noticeable delay.
+There should be a unique path between any two cells, this is needed to ensure there are no locked off areas of the maze
 that players wouldn't be able to access. However, the maze should still have some level of complexity to allow for winding paths, loops and dead ends...
-in order to fulfill the push and pull, risk reward sense I had in mind for the game. 
-I needed an algorithm that was free of directional bias (some maze algorithms exhibit directional bias e.g. Sidewinder). Finally I wanted a generation algorithm that was deterministic - given I may want to test specific
+in order to fulfill the push and pull, risk reward sense I had in mind for the game.
+I also needed an algorithm that was free of directional bias. Finally, I wanted a generation algorithm that was deterministic - given I may want to test specific
 random generation seeds.
 
-After some research I settled on Prim's Algorithm. It's relatively efficient for all sizes of mazes with complexity O(E log V), making it suitable for mazes of various sizes.
+[p] After some research I settled on Prim's Algorithm. It's relatively efficient for all sizes of mazes with complexity O(E log V), making it suitable for mazes of various sizes.
 The resulting maze is guaranteed to be a tree, ensuring a unique path between any two cells. 
 Moreover, Prim's algorithm allows for good complexity of generation with long paths, loops and deadends, without exhibitng directional bias.
 Depending on the random seed used, it can also be deterministic, which aids in debugging and testing.
 
-Implementing Prim's Algorithm in Unity was relatively straightforward. Unity's use of Prefabs allowed me to represent each maze tile 
+[p] <#c,
+void Start()
+    {
+        CalculateWallConstants();
+        InitializeMaze();
+        //Generate from the middle of the maze
+        GenerateMaze(mazeWidth/2, mazeHeight/2);
+        RenderMaze();
+    }
+#>
+[p] Implementing Prim's Algorithm in Unity was relatively straightforward. Unity's use of Prefabs allowed me to represent each maze tile
 as a prefab, which I could then instantiate as either a mazeFloor or mazeWall after the maze generation. 
-One aspect of required attention was scaling the tile sizes. To add variety to the game, I wanted the dimensions of the maze to be random, resulting in mazes of different sizes. 
+One aspect that required attention was scaling the tile sizes. To add variety to the game, I wanted the dimensions of the maze to be random.
 As a result, I had to scale the mazeTile prefabs dynamically to fit the maze's dimensions.
 
 
 
-Header <Initial Playtesting>
+[p] <#h,First round of Play Testing#>
 
-Initial playtesting did reveal that the dynamic I hoped for was present in gameplay. Players were stalking each other to find the right path.
+[p] Initial Play Testing did reveal that the dynamic I hoped for was present in gameplay. Players were stalking each other to find the right path.
 In some of my initial playtests I set the size of the maze to ridiculous sizes, stuff like 100 * 100 maps. Watching players spend ages lurking through the darkness, 
 so close to the end, only to reach a dead end and have to backtrack so far, felt like such an abuse of power as a developer (in a good way).
 
  
-There were multiple issues that were brought up by the initial playtesting. For one, as this was a simple demo, I hadn't handled the game end state. 
+[p] <#v,257#>There were multiple issues that were brought up by the initial playtesting. For one, as this was a simple demo, I hadn't handled the game end state.
 Unlike in Mario Party, where only one player wins, each player in our minigames receives a placing from 1st to 4th, earning points accordingly. 
 This led to situations where one player would finish far ahead of the others, leaving them waiting for the game to end.
 
-At first I thought there might be some merit to adding a timer to force the game to end. I ultimately felt that idea lacked a sense 
-of jeopardy and tension tension. And if some players reached a dead end close to time up - they just might give up and be forced to wait out the clock.
+[p] At first, I thought there might be some merit to adding a timer to force the game to end. I ultimately felt that idea lacked a sense
+of jeopardy and tension. And if some players reached a dead end close to time up - they just might give up and be forced to wait out the clock.
 Instead I decided to introduce a threat that would "chase" the players if they took too long to finish. 
 
-Maze Solver Approaches
+[p] <#h,Maze Solver Approaches#>
 
-In considering a threat that might chase players I first thought about adding an A.I threat in the form of a snake that would grow
+[p] In considering a threat that might chase players I first thought about adding an A.I threat in the form of a snake that would grow
 as the game progress, akin to the class "snake" game. I had handled A.I pathfinding through tile based environments before with my small
  prototype game I made in Java, there I used A* pathfinding to efficiently find routes to the player. I scrapped this
  idea. I wasn't sure how to handle the snake's "aggro", what player would the snake aim to attack? If the snake was to aim for the player in
  last place, I would need an algorithm to calculate which player had the shortest path to the snake. Even then, I wasn't convinced that
  targetting the player in last place would be the most fun approach.
- 
-I settled on threatening the players by having the maze fill up with water. Although implementing a water system with gravity and physics would have been interesting, 
+
+[p] <#y,https://www.youtube.com/embed/KcpRyIFU7Eg?si=JyEjbCP0FWBkRVQO#>
+
+[p] I settled on threatening the players by having the maze fill up with water. Although implementing a water system with gravity and physics would have been interesting,
 I used a simpler approach where the water would move into adjacent tiles, like the water and lava systems in minecraft. 
 I decided the water would fill up discretely, occupying newly adjacent tiles each time an update tick was called for the maze solver.
 
-While preloading the maze's solution could have reduced computational load during gameplay and improved performance, 
+[p] While preloading the maze's solution could have reduced computational load during gameplay and improved performance,
 it would have required a complex data structure to store the steps in advance, especially since I wanted the water to branch off into all available paths at junctions. 
 Managing pre-calculated maze solutions during runtime would have been memory-intensive, and adjusting the solving path dynamically would have been complicated.
 
-Especially because of the scope of my minigame, handling the maze solving dynamically during gameplay was not something that would not be too intensive on Unity's engine. 
+[p] Especially because of the scope of my minigame, handling the maze solving dynamically during gameplay was not something that would not be too intensive on Unity's engine.
 This approach was easier to implement and would allow for easier extension of gameplay.  
 Since the water would flow discretely, there was no need for continuous calculations. The water tiles would update into adjacent tiles after a 
 certain number of ticks within fixed update, with the calculations of future paths being distributed between those update calls, which saved on performance.
 
 
 
-New PlayTesting With a new Threat
+[p] <#h,Play Testing with new Water Threat#>
 
-In playtesting the new water threat, it added a sense of urgency to the rounds, preventing them from dragging on unnecessarily.
-There were moments of palpable tension at some points when players caught a glimpse of the water creeping up on them from the darkness and then scrambled to reach the end
-of the maze. From a developer stand point, there was again that weird pleasure in watching my play testers squirm to get out. 
+[p] <#r,258#>The water threat did add a sense of urgency to the rounds, and prevented them from dragging on unnecessarily.
+There were moments of palpable tension when players would catch a glimpse of the water creeping up on them from the darkness.
+From a developer stand point, there was again a weird pleasure in watching my play testers squirm to get out.
 Some of my fellow devs even raged a few times. As funny as the play session was to me, I didn't feel the game was inherently fun yet. 
 The issue of reaching a dead end and having to wait out the timer still remained, the water essentially became the timer. 
 So I needed to find a way to counter act the dead ends.
 
-Defeating the Dead Ends
+[p] <#h,Defeating the Dead Ends#>
 
-I first thought of reducing the number of dead ends by tweaking my maze generation algorithm. This approach did not work, I tried
+[p] I first thought of reducing the number of dead ends by tweaking my maze generation algorithm. This approach did not work, I tried
 to randomly drop walls - but this rarely lead to better generation. Another idea was to buff or nerf other gameplay mechanics to make the
 dead ends less of an issue. The action button at this point of development was used to increase the lighting around the player for a short time.
 I experimented with buffing the radius of the player's light, if players could see further perhaps running into dead ends would be less of an issue.
-While this did somewhat reduce that issue, it inadvertendly damaged the push pull risk reward dynamic I had intended. Players could see to far ahead... which kind of 
+While this did somewhat reduce that issue, it inadvertently damaged the push pull risk reward dynamic I had intended. Players could see to far ahead... which kind of
 ruins the point of the minigame.
-During the early rounds of playtesting, some friends suggested adding a feature to destroy walls using the action button.
+
+[p] During the early rounds of play testing, some friends suggested adding a feature to destroy walls using the action button.
 I was hesitant to make this change at that point, I didn't want players to mine their way through the maze and destroy the whole purpose of the game.
 However, having now implemented the water,  I realised it offered players a chance to escape from a dead end if they were getting chased by the water.
 also made it so, if I balanced how long it took to break mazeWalls appropriately, if players focused on breaking too many mazeWalls the water would catch up to them.
 Moreover, I came to realise that it introduced an new push pull dynamic where players had to balance between breaking walls to find shortcuts and risking falling behind as others found faster routes.
 
-Adding the ability to destory the mazeBlocks, while keeping the maze solver algorithm adapted to it was not as complicated as I expected.
+[p] Adding the ability to destory the mazeBlocks, while keeping the maze solver algorithm adapted to it was not as complicated as I expected.
 Since I hadn't precalculated the maze solving paths, and my code was modular, I could easily incorporate a mechanism for water to flow into newly destroyed blocks. 
 also integrated a dash mechanic, previously developed by Ollie, our head developer, to break mazeWall. 
 Balancing this feature was done based on the number of times a player dashed into a mazeWall.
