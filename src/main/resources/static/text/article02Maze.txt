@@ -155,23 +155,26 @@ a little collision animation but I think it still needs some work. Better sound 
 There were suggestions to improve the interaction between dashing and wall breaking, but overall, play testers felt that the game loop finally felt more fleshed out and complete.
 
 
-<#h,Water Sprites#>
+[p] <#h,Water Sprites#>
 
-As of writing, Maze Race Game, now known as Perplexing Pawthways, is nearing completion. We have a dedicated playtesting session organised for May 29th, and we are
+[p] <#l,356#>As of writing, Maze Race Game, now known as Perplexing Pawthways, is nearing completion. We have a dedicated playtesting session organised for May 29th, and we are
 focusing on polishing all aspects of the game. In line with this I have been trying to make up for the lack of sprites and animations in Maze Game. 
 A few weeks ago one of our artists offered to create some water textures needed for my water objects, which I greatly appreciated. I expected to receive a single uniform
 water texture that could be applied to every water tile within the maze. However, this artist exceeded my expectations and created water block
-textures for each possible positioning within the maze. 
-
+textures for each possible positioning within the maze.
 On one hand, this is fantastic because it means the game will look much better than I had anticipated. 
 On the other hand, implementing these sprites for appropriate positions in the maze will be more complex than I had hoped. 
 It seems the artist knew this might be the case but assumed I could handle it, which I don't mind, but it's still funny to find myself with more work to do.
 
-Breaking down the problem, we need to display a different sprite for water based on its location within the maze. 
+[p]Breaking down the problem, we need to display a different sprite for water based on its location within the maze.
 If the water reaches a dead end, the dead end sprite should be used. If it reaches a corner, then the corner sprite is appropriate. 
 Determining which sprite to use depends on the number of adjacent walls the floor tile is touching. 
 For example, if the floor tile is not touching any walls, the water can flow in all directions, so the 4-way flow tile is used. 
 Conversely, if the floor tile has only one edge touching another floor tile, it is a dead end tile.
 
-To simplify this process, when spawning a new water tile, we check how many walls are adjacent to the floor tile. 
+[p]To simplify this process, when spawning a new water tile, we check how many walls are adjacent to the floor tile.
 Based on this count, we select the appropriate sprite and rotation using simple switch-case statements.
+
+[p] <#h, Current State of Perplexing Pawthways#>
+
+[p] <#v,357#>
