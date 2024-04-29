@@ -10,6 +10,7 @@ public class TextOnlyBlock extends VerticalLayout {
 
     public TextOnlyBlock(String paragraph) {
         super();
+        setPadding(false);
         paragraph = REMOVE_PATTERN(paragraph);
         Paragraph paragraphToAdd = LOAD_PARAGRAPH_WITH_LINKS(paragraph);
         paragraphToAdd.addClassName("article-text");

@@ -17,7 +17,32 @@ It feels so gratifying to finally be able to post something on here after workin
     Working on this project was the first time I interacted with any build tools (I used maven for that project), handled proper logging systems (log4j here),
     and tried to consistently work with test based development. I found it incredibly rewarding whenever I experienced the tangible benefits of
     thoughtful planning and foresight in my code.
+[p] <#c,
+/*
+* =========== ABSTRACT IMPLEMENTATION ============
+ */
+/**
+* Creates the Inbound table in the database. The table will be created only if
+* it does not already exist. The table schema includes columns for ID, Date,
+* trType, RawDescription, ProcessDescription, Category, Paid_In, and Balance.
+*/
 
+public void createTable() {
+	String addTable = "CREATE TABLE IF NOT EXISTS " + getTableName() + " (\n" + "ID text PRIMARY KEY, \n"
+			+ "Date text NOT NULL, \n" + "trType text, \n" + "RawDescription text NOT NULL, \n"
+			+ "ProcessDescription text NOT NULL, \n" + "Category text NOT NULL, \n" + "Paid_In REAL NOT NULL,"
+			+ "Balance REAL NOT NULL);";
+
+	try (Connection conn = DriverManager.getConnection(getDB().getUrl()); Statement stmt = conn.createStatement()) {
+		stmt.execute(addTable);
+		String log = String.format("Created Table: %s", getTableName());
+		logger.info(log);
+	} catch (SQLException e) {
+		String log = String.format("Failed to create table: %s. %s", getTableName(), e.getMessage());
+		logger.error(log);
+	}
+}
+#>
 [p] I did receive feedback from my friends, who suggested that I might have become overly fixated on certain principles, particularly the Single Responsibility Principle (SRP).
         They suggested my code base was beginning to get overly fragmented with a multitude of small, specialised classes each with only one responsibility.
         With my handling of my "Table" class objects, I could have found more commonality between classes.
@@ -42,6 +67,15 @@ It feels so gratifying to finally be able to post something on here after workin
     that I could easily update and use.
     This web app project felt like the next stage of development from the simple java command line conversion app project I made before,
      as a full stack project which relies on database integration.
+[p] <#c,
+
+public interface VisualSourceRepository extends JpaRepository VisualSource, Long {
+
+    public Optional VisualSource findByImagePath(String imagePath);
+
+    public VisualSource save(VisualSource visualSource);
+}
+#>
 
 [p] Spring Boot proved to be a game-changer for this site's development. I had dabbled with Springboot before, but all of my
 other projects that I had brought to completion had been done without a major framework like Springboot to handle architectural heavy lifting.

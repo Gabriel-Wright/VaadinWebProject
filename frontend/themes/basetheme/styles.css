@@ -103,6 +103,7 @@
         padding:60px; /* Add padding to create a border */
     }
     .code-embed {
+        width:70%;
         margin:auto;
         display:block;
         padding:20px;
@@ -191,9 +192,10 @@
     }
 
     .code-embed {
+        width:85%;
         margin:auto;
         display:block;
-        padding:20px;
+        padding:15px;
         font-size:16px;
     }
     .left-image {
@@ -260,9 +262,10 @@
     }
 
     .code-embed {
+        width:85%;;
         margin:auto;
         display:block;
-        padding:20px;
+        padding:15px;
         font-size:16px;
     }
 
@@ -357,9 +360,10 @@
         font-size:32px;
     }
     .code-embed {
+        width:88%;
         margin:auto;
         display:block;
-        padding:20px;
+        padding:14px;
         font-size:16px;
     }
     .youtube-embed {
@@ -444,9 +448,10 @@
     }
 
     .code-embed {
+        width:90%;
         margin:left;
         display:block;
-        padding:20px;
+        padding:10px;
         font-size:16px;
     }
 
@@ -524,9 +529,10 @@
     }
 
     .code-embed {
+        width:92%;
         margin:left;
         display:block;
-        padding:10px;
+        padding:8px;
         font-size:14px;
     }
 
@@ -616,9 +622,10 @@
     }
 
     .code-embed {
+        width:92%;
         margin:left;
         display:block;
-        padding:10px;
+        padding:6px;
         font-size:13px;
     }
 
@@ -706,6 +713,7 @@
     }
 
     .code-embed {
+        width:94%;
         margin:left;
         display:block;
         padding:5px;
@@ -767,9 +775,10 @@
         border-radius: 2px;
     }
     .code-embed {
+        width: 95%;
         margin:left;
         display:block;
-        padding:5px;
+        padding:3px;
         font-size:12px;
     }
     .article-title {
@@ -821,6 +830,7 @@
         font-size:14px;
     }
     .code-embed {
+        width: 98%;
         margin:left;
         display:block;
         padding:5px;
@@ -1186,9 +1196,8 @@ vaadin-multi-select-combo-box-item[selected] {
     box-sizing: border-box; /* Include padding in the element's dimensions */
 }
 .code-embed {
-    margin:left;
-    display:block;
-    padding:20px;
+    overflow-x: auto; /* Add horizontal scrollbar if content exceeds container width */
+    white-space: pre; /* Preserve whitespace and line breaks in the code */
 }
 
 .tech-stack {
