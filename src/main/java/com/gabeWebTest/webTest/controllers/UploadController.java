@@ -145,7 +145,8 @@ public class UploadController {
     }
 
     private boolean isImageContentType(String contentType) {
-        return contentType != null && (contentType.startsWith("image/jpeg") || contentType.startsWith("image/png"));
+        return contentType != null && (contentType.startsWith("image/jpeg") || contentType.startsWith("image/png")
+        ||contentType.startsWith("image/gif"));
     }
 
     private boolean isTextContentType(String contentType) {
@@ -161,7 +162,8 @@ public class UploadController {
 
         String imagePath = visualSource.get().getImagePath();
         // If the image path given is blank or doesn't end with either .png or .jpg, then return false
-        if (StringUtils.isBlank(imagePath) || !((imagePath.toLowerCase().endsWith(".png") || imagePath.toLowerCase().endsWith(".jpg")))) {
+        if (StringUtils.isBlank(imagePath) || !((imagePath.toLowerCase().endsWith(".png") || imagePath.toLowerCase().endsWith(".jpg") ||
+                imagePath.toLowerCase().endsWith(".gif")))) {
             return false;
         }
 

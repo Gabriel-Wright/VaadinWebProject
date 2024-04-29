@@ -143,7 +143,7 @@ However, having now implemented the water,  I realised it offered players a chan
 also made it so, if I balanced how long it took to break mazeWalls appropriately, if players focused on breaking too many mazeWalls the water would catch up to them.
 Moreover, I came to realise that it introduced an new push pull dynamic where players had to balance between breaking walls to find shortcuts and risking falling behind as others found faster routes.
 
-[p] Adding the ability to destory the mazeBlocks, while keeping the maze solver algorithm adapted to it was not as complicated as I expected.
+[p] <#l,306#> Adding the ability to destory the mazeBlocks, while keeping the maze solver algorithm adapted to it was not as complicated as I expected.
 Since I hadn't precalculated the maze solving paths, and my code was modular, I could easily incorporate a mechanism for water to flow into newly destroyed blocks. 
 also integrated a dash mechanic, previously developed by Ollie, our head developer, to break mazeWall. 
 Balancing this feature was done based on the number of times a player dashed into a mazeWall.
@@ -151,11 +151,11 @@ Balancing this feature was done based on the number of times a player dashed int
 Trying to capture the impact of the collision with a mazeWall during a dash has been difficult, I have added
 a little collision animation but I think it still needs some work. Better sound effects will probably improve the "feel" of it too.
 
-Following these changes, the feedback from playtesting was significantly more positive. 
-There were suggestions to improve the interaction between dashing and wall breaking, but overall, playtesters felt that the game loop finally felt more fleshed out and complete.
+[p] Following these changes, the feedback from play testing was significantly more positive.
+There were suggestions to improve the interaction between dashing and wall breaking, but overall, play testers felt that the game loop finally felt more fleshed out and complete.
 
 
-Water Sprites
+<#h,Water Sprites#>
 
 As of writing, Maze Race Game, now known as Perplexing Pawthways, is nearing completion. We have a dedicated playtesting session organised for May 29th, and we are
 focusing on polishing all aspects of the game. In line with this I have been trying to make up for the lack of sprites and animations in Maze Game. 
