@@ -99,7 +99,7 @@ public class AboutMeView extends AppLayout {
 
     private Div getEducationTextBlock() {
         Div titleAndTextBlock = new Div();
-        H1 title = new H1("Education Background");
+        H1 title = new H1("Education");
         title.addClassName("about-me-title");
         String educationText1 = "I completed my Undergraduate degree at the University of Warwick between September 2018 and July 2021. Initially, I pursued a joint degree in Maths and Philosophy, "+
                "due to my split interest in both subjects and their interconnectedness. Particularly intriguing to me was the exploration of mathematical logic and its implications on metaphysical concepts of truth.";
