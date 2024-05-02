@@ -1,43 +1,44 @@
 [p] <#v,156#>Starting late 2023, I began working alongside some of my friends to create a multiplayer party game in Unity.
-Dubbed "chaotic cats" (though that title is still tentative), our project began as a small game Jam.
-A group of us got together one weekend to create a collection of mini-games to play together.
+Dubbed "Chaotic Cats" (though that title is still tentative), our project began as a small game jam.
+A group of us got together one weekend to create a collection of minigames to play together.
 We decided on a small collection of minigames as our first project together because 
-we felt it would allow each team member to develop individual games.
+we felt it would allow each team member to develop individual game states.
 This way we would all get an opportunity to learn each stage of development in a gameloop and we could
 avoid some of the hassle of version control and branch management. 
 
 [p] Over the weekend we came to realise that we were going to struggle with an "asset" bottleneck. Due
-to us starting off the project as a gameJam where we each separated and created games with different requirements, we did not plan ahead
-with our projects architecture or asset tree. This again highlighted an issue that I have noted with all of my projects: the importance
+to us starting off the project as a game jam where we each separated and created games with different requirements, we did not plan ahead
+with our projects architecture or asset tree. This again highlighted an issue that I have noted with all of my other personal projects: the importance
 of a cohesive development plan.
 
-[p] <#v,206#>"Chaotic cats" extended beyond the initial Game Jam. As we polished our minigames, we realized that since we were putting in the effort to
-refine them and were enjoying the process of it, we might as well commit more to create a complete game. 
-At the end of the game jam we had prototype minigames in an alpha or beta state. Currently we have 16 minigames in development, our end
-goal being 20. Most are in the beta stage, with core gameplay loops implemented. Our progress and motivation has slowed with some minigames due to a bottleneck in asset creation, 
-as we have limited artists in our group. Many developers, including myself, have begun working on art for the game, I would say most of it 
-is pretty good but some of my art is definitely a bit dodgy. Check out this art I'm trying to work on currently:
+[p] <#v,206#>"Chaotic Cats" extended beyond the initial game jam and our process for development has now improved significantly since we started. Out of
+necessity we started to work on some documentation, and asset lists for our artists.
+As we polished our minigames and streamlined our development process, we realized that since we were putting in the effort to
+refine them, and enjoying the process of it, we might as well fully commit to creating a complete game.
+At the end of the game jam we had prototype minigames in an alpha or beta state. Currently, we have 16 minigames in development, our end
+goal being 20. Most are in the beta stage, with core gameplay loops now implemented. Our progress and motivation has slowed with some minigames due to a bottleneck in asset creation,
+as we have limited artists in our group. Many developers, including myself, have begun working on art for the game and I would say most of it
+is pretty good though.
 
-[p] For the remainder of this article I want to take you through the development of one the games I have worked on now called "Perplexing Pawthways".
-It was the game I developed during the initial gameJam under the demo name "Maze Race Game", but it has had many iterations since initial development. 
+[p] For the remainder of this article I want to take you through the development of one the games I have worked on. Now called "Perplexing Pawthways",
+it was the game I developed during the initial game jam under the demo name "MazeRaceGame". It has had many iterations since we started development.
 
 [p] <#h,MazeRaceGame - The initial concept#>
 
-[p] In Chaotic Cats we embraced uniform control scheme. That means that regardless of the minigame, players have the same controls:
-one control stick or directional keys , alongside a single action button. For example, players might use [WASD] for movement and spacebar to perform an action, or a control stick for movement and the B button for actions.
+[p] In Chaotic Cats we embraced a uniform control scheme. This means that regardless of the minigame, players have the same controls:
+a control stick or set of directional keys, alongside a single action button. For example, players might use [WASD] for movement and space bar to perform an action, or a control stick for movement and the B button for actions.
 
-[p] <#l,207#> The core concept of the Maze Race Game is simple: 4 players race through a top down 2D environment, navigating a randomly generated maze. Starting on
+[p] <#l,207#> The core concept of the Maze Race Game is simple: 4 players race through a topdown 2D environment, navigating a randomly generated maze. Starting on
 the left size of the maze, their goal is to reach the right side. But here's the twist: the maze is shrouded in darkness and each player is only 
-illuminated within a small radius around them. This means you could think you on the right track to solving the maze, only to reach a dead end. The radius
+illuminated within a small radius around them. This means you could think you are on the right track to solving the maze, only to reach a dead end. The radius
 of light around the player can be temporarily increased by pressing the action button. My intention was to create a risk-reward dynamic.
-Venturing into the darkness alone could lead to a quick victory or a dead end. However, by following another player, you gain valuable information about the
- maze layout. But beware: if you follow blindly, you might miss out on the chance to find a faster route.
+Venturing into the darkness alone could lead to a quick victory or a dead end. However, by following another player you can gain valuable information about the
+maze layout without putting yourself at risk. But beware: if you follow blindly, you might miss out on the chance to find a faster route.
 
 
-[p] <#r,208#>I think the inspiration for this game came from a minigame in Mario Party 7 called "Ghost in the Hall". In "Ghost in the Hall", 4 players race through a series of dimly lit corridors,
+[p] <#r,208#>I think the idea for this game came from a minigame in Mario Party 7 called "Ghost in the Hall". In "Ghost in the Hall", 4 players race through a series of dimly lit corridors,
 you can't really see where you are going and so often stumble into dead ends. The main distinction of "Ghost in the Hall" from the 
-maze race game is that it's top down 2D. This allows players to see each other's positions. This hopefully could add a layer of strategy,
-players can observe each other's movements and potentially find alternative paths by following someone else's lead. 
+MazeRaceGame is that it's top down 2D. This allows players to see each other's positions. Which, as mentioned, hopefully adds a layer of extra strategy.
 
 
 [p] <#h,Maze Generation#>
@@ -45,10 +46,10 @@ players can observe each other's movements and potentially find alternative path
 [p] A big hurdle to begin with was generating the maze. I opted for a simple tile-based system
 to represent my maze, each maze would consist of X mazeTiles in width and Y mazeTiles in height, where each mazeTile could either be a wall
 or a floor tile. While this approach limited the possibility of incorporating non-square walls or unique structures, it allowed me to 
-start with a straightforward data structure for my first prototype, avoiding potential headaches early on.
+start with a straightforward data structure for my first minigame, avoiding potential headaches early on.
 
 [p] <#l,256#>With the tile-based system in place, I needed to choose a maze generation algorithm.
-My requirements for the maze generation algorithm were: the algorithm needs to be efficient. My mazes were not going to be too large in dimension but, since
+I had a few key requirements. Firstly, the algorithm needs to be efficient. My mazes were not going to be too large in dimension but, since
 the maze generation algorithm needs to run at start time, I couldn't have any noticeable delay.
 There should be a unique path between any two cells, this is needed to ensure there are no locked off areas of the maze
 that players wouldn't be able to access. However, the maze should still have some level of complexity to allow for winding paths, loops and dead ends...
@@ -74,101 +75,97 @@ void Start()
 [p] Implementing Prim's Algorithm in Unity was relatively straightforward. Unity's use of Prefabs allowed me to represent each maze tile
 as a prefab, which I could then instantiate as either a mazeFloor or mazeWall after the maze generation. 
 One aspect that required attention was scaling the tile sizes. To add variety to the game, I wanted the dimensions of the maze to be random.
-As a result, I had to scale the mazeTile prefabs dynamically to fit the maze's dimensions.
-
-
+As a result, I had to scale the mazeTile prefabs to fit the maze's dimensions.
 
 [p] <#h,First round of Play Testing#>
 
-[p] Initial Play Testing did reveal that the dynamic I hoped for was present in gameplay. Players were stalking each other to find the right path.
-In some of my initial playtests I set the size of the maze to ridiculous sizes, stuff like 100 * 100 maps. Watching players spend ages lurking through the darkness, 
-so close to the end, only to reach a dead end and have to backtrack so far, felt like such an abuse of power as a developer (in a good way).
+[p] Play testing did reveal that the risk reward dynamic I hoped for had some potential. Players were stalking each other to find the right path.
+In a few play tests I set the size of the maze to ridiculous sizes, stuff like 100 * 100 maps. Watching players spend ages lurking through the darkness,
+so close to the end, only to reach a dead end and have to backtrack so far, felt like such an awesome abuse of power as a developer.
 
  
-[p] <#v,257#>There were multiple issues that were brought up by the initial playtesting. For one, as this was a simple demo, I hadn't handled the game end state.
-Unlike in Mario Party, where only one player wins, each player in our minigames receives a placing from 1st to 4th, earning points accordingly. 
-This led to situations where one player would finish far ahead of the others, leaving them waiting for the game to end.
+[p] <#r,257#>There were multiple issues that were brought up by the play testing. For one, as this was a simple demo, I hadn't handled the game end state.
+Unlike in Mario Party, where only one player wins, each player in any given minigame in Chaotic Cats receives a placing from 1st to 4th, earning points accordingly.
+This led to situations where one player would finish far ahead of the others, but they would have to wait a while for the others to finish.
 
-[p] At first, I thought there might be some merit to adding a timer to force the game to end. I ultimately felt that idea lacked a sense
-of jeopardy and tension. And if some players reached a dead end close to time up - they just might give up and be forced to wait out the clock.
-Instead I decided to introduce a threat that would "chase" the players if they took too long to finish. 
+[p] At first, I thought there might be some merit to adding a timer to force the game to end. Though I felt that approach lacked a sense
+of jeopardy and tension. If some players reached a dead end close to time up then they just might give up and be forced to wait out the clock.
+We needed a more interactive approach. A popular idea was introducing a threat that would "chase" the players if they took too long to finish.
 
 [p] <#h,Maze Solver Approaches#>
 
-[p] In considering a threat that might chase players I first thought about adding an A.I threat in the form of a snake that would grow
-as the game progress, akin to the class "snake" game. I had handled A.I pathfinding through tile based environments before with my small
- prototype game I made in Java, there I used A* pathfinding to efficiently find routes to the player. I scrapped this
+[p] <#r,406#>In considering a threat that might chase players I first thought about adding an A.I threat in the form of a snake that would grow
+as the game progress, akin to the class "snake" game. I had handled A.I pathfinding through tile based environments before with my ##small
+ prototype game I made in Java,https://github.com/Gabriel-Wright/CursorDemoGame##, there I used A* pathfinding to efficiently find routes to the player. I scrapped this
  idea. I wasn't sure how to handle the snake's "aggro", what player would the snake aim to attack? If the snake was to aim for the player in
  last place, I would need an algorithm to calculate which player had the shortest path to the snake. Even then, I wasn't convinced that
- targetting the player in last place would be the most fun approach.
+ targeting the player in last place would be the most fun approach.
 
-[p] <#y,https://www.youtube.com/embed/KcpRyIFU7Eg?si=JyEjbCP0FWBkRVQO#>
+[p] <#y,https://www.youtube-nocookie.com/embed/KcpRyIFU7Eg?si=JyEjbCP0FWBkRVQO#>
 
 [p] I settled on threatening the players by having the maze fill up with water. Although implementing a water system with gravity and physics would have been interesting,
 I used a simpler approach where the water would move into adjacent tiles, like the water and lava systems in minecraft. 
-I decided the water would fill up discretely, occupying newly adjacent tiles each time an update tick was called for the maze solver.
+I decided the water would fill up discretely, occupying newly adjacent tiles each time an update tick was called from the maze solver.
 
 [p] While preloading the maze's solution could have reduced computational load during gameplay and improved performance,
-it would have required a complex data structure to store the steps in advance, especially since I wanted the water to branch off into all available paths at junctions. 
+it would have required a complex data structure to store the steps in advance, especially since I wanted the water to branch off into all available paths at any given junction.
 Managing pre-calculated maze solutions during runtime would have been memory-intensive, and adjusting the solving path dynamically would have been complicated.
 
-[p] Especially because of the scope of my minigame, handling the maze solving dynamically during gameplay was not something that would not be too intensive on Unity's engine.
-This approach was easier to implement and would allow for easier extension of gameplay.  
+[p] Especially because of the scope of my minigame (small maze, simple textures and limited lighting/shading), I judged that handling the maze solving during gameplay would not be too intensive on Unity's engine.
+Handling the maze solving during gameplay would be easier to implement and allow for easier extension of gameplay.
 Since the water would flow discretely, there was no need for continuous calculations. The water tiles would update into adjacent tiles after a 
-certain number of ticks within fixed update, with the calculations of future paths being distributed between those update calls, which saved on performance.
-
-
+certain number of ticks within fixed update, with the calculations of future paths being distributed between those update calls.
 
 [p] <#h,Play Testing with new Water Threat#>
 
 [p] <#r,258#>The water threat did add a sense of urgency to the rounds, and prevented them from dragging on unnecessarily.
 There were moments of palpable tension when players would catch a glimpse of the water creeping up on them from the darkness.
 From a developer stand point, there was again a weird pleasure in watching my play testers squirm to get out.
-Some of my fellow devs even raged a few times. As funny as the play session was to me, I didn't feel the game was inherently fun yet. 
+Some of my fellow devs even raged a few times. As funny as the play sessions were to me, I didn't feel the game was inherently fun.
 The issue of reaching a dead end and having to wait out the timer still remained, the water essentially became the timer. 
-So I needed to find a way to counter act the dead ends.
+So I needed to find a way to counteract the dead ends.
 
 [p] <#h,Defeating the Dead Ends#>
 
-[p] I first thought of reducing the number of dead ends by tweaking my maze generation algorithm. This approach did not work, I tried
-to randomly drop walls - but this rarely lead to better generation. Another idea was to buff or nerf other gameplay mechanics to make the
-dead ends less of an issue. The action button at this point of development was used to increase the lighting around the player for a short time.
-I experimented with buffing the radius of the player's light, if players could see further perhaps running into dead ends would be less of an issue.
-While this did somewhat reduce that issue, it inadvertently damaged the push pull risk reward dynamic I had intended. Players could see to far ahead... which kind of
+[p] I first thought of reducing the number of dead ends by tweaking my maze generation algorithm. This approach did not work. I tried
+to randomly drop walls - but this rarely lead to better generation. I tried to buff or nerf other gameplay mechanics to make the
+dead ends less of an issue. The action button at this point of development was used to increase the lighting around the player for a short time,
+so I experimented with buffing the radius of the player's light. If players could see further then perhaps running into dead ends would be less of an issue?
+This did somewhat reduce that issue but it inadvertently damaged the risk reward dynamic I had intended. Players could see too far ahead... which kind of
 ruins the point of the minigame.
 
 [p] During the early rounds of play testing, some friends suggested adding a feature to destroy walls using the action button.
-I was hesitant to make this change at that point, I didn't want players to mine their way through the maze and destroy the whole purpose of the game.
+I was hesitant to make this change at that point. I didn't want players to mine their way through the maze and destroy the whole purpose of the game.
 However, having now implemented the water,  I realised it offered players a chance to escape from a dead end if they were getting chased by the water.
-also made it so, if I balanced how long it took to break mazeWalls appropriately, if players focused on breaking too many mazeWalls the water would catch up to them.
-Moreover, I came to realise that it introduced an new push pull dynamic where players had to balance between breaking walls to find shortcuts and risking falling behind as others found faster routes.
+The ability to break blocks could improve the risk reward dynamic. Players would now have to balance between spending time breaking walls to find shortcuts and searching the maze normally to find faster routes.
 
-[p] <#l,306#> Adding the ability to destory the mazeBlocks, while keeping the maze solver algorithm adapted to it was not as complicated as I expected.
+[p] <#l,306#> Adding the ability to destroy the walls, while keeping the maze solver algorithm adapted to it was not as complicated as I expected.
 Since I hadn't precalculated the maze solving paths, and my code was modular, I could easily incorporate a mechanism for water to flow into newly destroyed blocks. 
-also integrated a dash mechanic, previously developed by Ollie, our head developer, to break mazeWall. 
+I integrated a dash mechanic, previously developed by Ollie (our head developer), to break mazeWall.
 Balancing this feature was done based on the number of times a player dashed into a mazeWall.
-
-Trying to capture the impact of the collision with a mazeWall during a dash has been difficult, I have added
-a little collision animation but I think it still needs some work. Better sound effects will probably improve the "feel" of it too.
+Trying to capture the impact of the collision with a wall during a dash has been difficult, I have added
+a little collision animation, but I think it still needs some work. Better sound effects will probably improve the "feel" of it too.
 
 [p] Following these changes, the feedback from play testing was significantly more positive.
-There were suggestions to improve the interaction between dashing and wall breaking, but overall, play testers felt that the game loop finally felt more fleshed out and complete.
+There were suggestions to improve the interaction between dashing and wall breaking, but overall, play testers felt that the game loop finally was more fleshed out and complete.
 
 
 [p] <#h,Water Sprites#>
 
-[p] <#l,356#>As of writing, Maze Race Game, now known as Perplexing Pawthways, is nearing completion. We have a dedicated playtesting session organised for May 29th, and we are
-focusing on polishing all aspects of the game. In line with this I have been trying to make up for the lack of sprites and animations in Maze Game. 
-A few weeks ago one of our artists offered to create some water textures needed for my water objects, which I greatly appreciated. I expected to receive a single uniform
+[p] <#r,356#> I have generally off adding unique textures to MazeRaceGame. When we started the game jam, we had not committed to the cat theme.
+Because of this, MazeRaceGame does not directly fit the cat theme. Recently, we have decided on either setting the game within a dimly lit bathroom, or within
+an ancient cat temple of some kind.
+A few weeks ago one of our artists offered to create some water textures needed for my water objects to fit these aesthetics, which I greatly appreciated.
+I expected to receive a single uniform
 water texture that could be applied to every water tile within the maze. However, this artist exceeded my expectations and created water block
 textures for each possible positioning within the maze.
 On one hand, this is fantastic because it means the game will look much better than I had anticipated. 
-On the other hand, implementing these sprites for appropriate positions in the maze will be more complex than I had hoped. 
-It seems the artist knew this might be the case but assumed I could handle it, which I don't mind, but it's still funny to find myself with more work to do.
+On the other hand, implementing these sprites for different positioning combinations in the maze will be more complex than I had hoped.
+It seems the artist knew this might be the case but assumed I could handle it? Which, for the record, I am glad about, but it's still funny to find myself with more work to do.
 
 [p]Breaking down the problem, we need to display a different sprite for water based on its location within the maze.
 If the water reaches a dead end, the dead end sprite should be used. If it reaches a corner, then the corner sprite is appropriate. 
-Determining which sprite to use depends on the number of adjacent walls the floor tile is touching. 
+I approached this issue by considering the number of adjacent walls. Determining which sprite to use depends on the number of adjacent walls the floor tile is touching.
 For example, if the floor tile is not touching any walls, the water can flow in all directions, so the 4-way flow tile is used. 
 Conversely, if the floor tile has only one edge touching another floor tile, it is a dead end tile.
 
@@ -177,4 +174,24 @@ Based on this count, we select the appropriate sprite and rotation using simple 
 
 [p] <#h, Current State of Perplexing Pawthways#>
 
-[p] <#v,357#>
+[p] <#l,357#> As of writing, MazeRaceGame, now known as Perplexing Pawthways, is nearing completion. We are gearing up for a play testing session on May 29th. Our focus
+ is on polishing all aspects of the game. For Perplexing Pawthways alot of that will be with visual changes and sound effects. However, this minigame still
+ needs balancing and gameplay refinements. The dash mechanic can be a bit awkward with detecting which block you intended to hit.
+ Currently players can hit multiple blocks at once during a single dash. This is fine for now but it does
+cause a  headache with the sound effects, since a different crash sound effect is played for each unique collision.
+
+[p] I still need to balance how many dashes it takes to destroy any given wall. As it stands
+ mashing your way through the maze destroying all blocks in your path is the best way to win.
+ My friends have suggested having the blocks take longer to break the further you progress into the maze, or alternatively introducing different types of blocks in the maze
+ that have more or less health. This is not a bad idea and may be what I end up implementing, though I do have concerns of making my minigames too bloated.
+ During play testing, I tend to approach the game from the perspective of a "tryhard" player. Since I obsess over the micro mechanics to make the game as polished as possible, I can't see it from the
+ perspective of a player trying the game from the first time.
+ I recognize that most players will approach the game casually and may not even notice these mechanics and nuances I am worried about.
+ So I understand the necessity to balance attention to detail with focusing on more visible elements like graphics and art style.
+ But since our game will most likely have a very small player base, I do want to make an effort to make the games as replayable as possible.
+
+[p] If you are interested in keeping updated on the game, we have recently opened up some social media pages. Please consider supporting us here:
+
+[p] ##Twitter/X - HeadBounceGames, https://twitter.com/HeadbounceGames##
+[p] ##Instagram - HeadBounceGames, https://www.instagram.com/headbouncegames/##
+
