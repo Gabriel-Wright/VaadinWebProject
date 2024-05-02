@@ -68,7 +68,7 @@ public class DashboardView extends AppLayout implements TagFilterListener {
         navigationBar.setDrawToggleRight(true);
         dashboardUIChangeListener.setDashboardView(this);
         DrawerToggle toggle = new DrawerToggle();
-        addToNavbar(navigationBar.createNavBarContent(toggle));
+        addToNavbar(navigationBar.createNavBarContent(toggle, "Gabriel's Projects & Thoughts"));
         addToDrawer(mainDrawer.createDrawerContent());
         addToDrawer(createDivider());
         addToDrawer(tagFilter.createTagFilterDropDown());
