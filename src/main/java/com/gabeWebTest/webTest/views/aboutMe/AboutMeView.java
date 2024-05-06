@@ -181,7 +181,7 @@ public class AboutMeView extends AppLayout {
         H1 cvTitle = new H1("CV");
         H1 cvNote = new H1();
         String introText = "Attached is a copy of my current ";
-        Html htmlContent = new Html("<a href=\"/pdf/CVGabrielWrightOct2023.pdf\" target=\"_blank\">CV</a>");
+        Html htmlContent = new Html("<a href=\"/pdf/CV May 2024 Gabriel Wright.pdf\" target=\"_blank\">CV</a>");
         String addOnText = ", for queries contact me at:";
         cvNote.add(introText);
         cvNote.add(htmlContent);
@@ -202,7 +202,7 @@ public class AboutMeView extends AppLayout {
     }
 
     private Html getPdfViewer() {
-        Html pdfViewer = new Html("<embed src='pdf/CVGabrielWrightOct2023.pdf' type='application/pdf' width='50%' height='600px' />");
+        Html pdfViewer = new Html("<embed src='pdf/CV May 2024 Gabriel Wright.pdf' type='application/pdf' width='50%' height='600px' />");
         pdfViewer.addClassName("pdf-viewer");
         return pdfViewer;
     }
