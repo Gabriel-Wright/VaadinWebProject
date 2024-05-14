@@ -4,10 +4,10 @@ This combined with the bank statement conversion project not being too inspiring
 
 [p]For my next project I wanted to develop something that I would get immediate, tangible feedback from.
 With game development, you are forced to figure out the interaction between back end game logic and front end visuals pretty early on. 
-I also started working on ##Chaotic Cats,https://gabrielwright.xyz/article/301## at the same time. Developing a 2d java game from scratch would
-support my understanding of interacting systems within game loops and engines in separate engines I would use as well.
+I also started working on ##Chaotic Cats,https://gabrielwright.xyz/article/301## at the same time. Developing a game demo from scratch would
+support my understanding of interacting systems within game loops and engines in general.
 
-[p]This java game demo I made was much more complex to develop compared to any minigame I have worked on for Chaotic Cats.
+[p]This Java game project I made was much more complex to develop compared to any minigame I have worked on for Chaotic Cats.
  With Chaotic Cats, Unity handles most of the heavy lifting behind the scenes.
  Therefore, in this article, I will focus less on the specifics of the game's content and instead
  provide an overview of the main game loop. This loop governs the update of game logic and rendering, ensuring smooth
@@ -67,7 +67,7 @@ responsiveness. Multithreading, where different tasks run concurrently on differ
 
 [p]Despite the drawbacks, I chose to begin with the single threaded approach.
 My university assignments in High Performance Computing with C++ gave me confidence in handling multithreading.
-I understood from this experience the potential for additional complications from multithreading,
+But I also understood from my HPC module that implementing multi threading would add extra complications,
 such as synchronisation and race conditions. Given that the game demo I was creating was a very simple 2D game, I deemed multithreading overkill.
 I felt that delving into multithreading might have diverted my focus from learning other essential concepts of game loop and software architecture creation, especially as I was just starting out.
 Additionally, most online resources I found for 2D game development did not mention multithreading.
@@ -131,8 +131,8 @@ a player character, a displayable map, a simple collision system, background eve
 
 [p]<#h,Entities, Levels and the interaction between the two#>
 
-[p] To simplify development for my first demo, I chose a tile-based level system, similar to the approach I took for the maze game
-I created for Chaotic Cats. A level in the game is defined as X tiles in width by Y tiles in height. 
+[p] To simplify development for this demo, I chose a tile based level system, similar to the approach I took for the maze game
+I created in Chaotic Cats. A level in the game is defined as X tiles in width by Y tiles in height.
 Each tile is represented by a Tile class I created.
 
 [p]<#c,
@@ -155,7 +155,7 @@ public class Tile {
 [p]<#l,457#>Every tile stores an image representing its appearance and a boolean indicating whether it’s solid, meaning entities cannot pass through it.
 For my purposes, all tiles have the same properties except for solidity. 
 I did have a small test before settling on a topdown view, where I made a platformer with tiles that had different
-tiles such as slanted tiles, though implementing the gravity proved problematic. 
+properties such as slanted tiles, though implementing the gravity proved problematic.
 Instead of storing levels as 2D arrays of Tile objects, I represented them as 2D arrays of integers, with 
 each integer corresponding to a specific tile template enumeration. This approach was chosen to save memory.
 
@@ -181,8 +181,8 @@ each integer corresponding to a specific tile template enumeration. This approac
    TRANSPARENT(3);#>
 
 [p]Entities, like the player or NPCs, continuously store their positions (x and y).
-However, for collision handling with both the level and other game objects, such as other entities, positional events, and items, 
-I implemented a tile grid data structure. The concept behind this approach is ##Spatial Hash Mapping., https://www.gamedev.net/tutorials/programming/general-and-gameplay-programming/spatial-hashing-r2697/##
+However, in order to support collision handling with both the level and other game objects, such as other entities, positional events, and items,
+game objects are stored within a grid data structure. The concept behind this approach is ##Spatial Hash Mapping., https://www.gamedev.net/tutorials/programming/general-and-gameplay-programming/spatial-hashing-r2697/##
 
 [p]<#r,458#>I developed features individually, creating the tile system to load levels and sprites, followed by the entity system.
 Collision detection between the player object and solid tiles within the level was handled by passing the level's properties and 
@@ -190,7 +190,8 @@ tiles directly as an object to each player. When both of these systems were crea
 and the entities together. When considering collisions between game objects I discovered
 the need to integrate the two systems together. My game has an update rate of 120 ticks per second. 
 That means 120 times every second update will be called. If in the game state, this means iterating over each game object, checking 
-for collisions, and updating game logic. If done linearly this could result in O(n^2) complexity. 
+for collisions, and updating game logic. If done linearly this could result in O(n^2) complexity for collision handling, each game object
+comparing its collide state with every other game object.
 A spatial hash map is a data structure that partitions the game world into cells, with each cell containing entities 
 or objects located within it. By grouping entities into cells based on their positions, collisions only need to be 
 checked between entities within the same or adjacent cells.
@@ -305,12 +306,12 @@ and the TaskRunner is updated:
     #>
 
 
-[p]The wave manager uses an integer tick, which is incremented every time the TaskRunner
-UpdateTasks() method is called.
+[p]The wave task uses an integer tick, which is incremented every time the TaskRunner
+UpdateTasks() method is called, to track how much time has passed.
 
 
 [p]<#y, https://www.youtube.com/embed/7T-MTo8Uaio?si=132C00xMgjy8SBGk#>
-In my demo, I used a shop-based wave approach. Each wave has a certain number of points, and each possible spawn
+In my demo, I used a shop based wave approach. Each wave has a certain number of points, and each possible spawn
 (e.g., spawn a bomb, spawn entities) has an associated cost (number of waypoints it will take) and enforced cooldown 
 of ticks before the next spawn. The intention was to make spawns worth more points less likely and include rarer spawns 
 that would significantly change gameplay. However, for the prototype, I simplified this to randomly selecting events from 
@@ -339,7 +340,19 @@ implement some multithreading.
 [p]The whole process deepened my appreciation for the quality of games I get to enjoy. I worked solo on this project,
 imagine the extra complexities of working in a huge studio team. It's an entirely different level being part of a team where 
 developers build upon the core codebase. Development is not just about creating scientific systems; it's about considering 
-real-world use for those systems by other collaborators as well. With the rest of Headbounce, the team I am working with to create 
+real world use for those systems by other collaborators as well. With the rest of Headbounce, the team I am working with to create
 Chaotic Cats, I get amateur experience with that. I look forward to having professional experience as a Software Developer.
 
 [p] References:
+
+[p] ##This project's repo page, https://github.com/Gabriel-Wright/CursorDemoGame##
+
+[p] ## RyiSnow's Java Game Development Series that I used at the start fo the initial game loop, https://www.youtube.com/playlist?list=PL_QPQmz5C6WUF-pOQDsbsKbaBZqXj4qSq##
+
+[p] ##vanZeben's Java Game Engine Development Series that inspired by level and tile system, https://www.youtube.com/watch?v=VE7ezYCTPe4&list=PL8CAB66181A502179##
+
+[p] ##CodeNMore's 2d game programming series that I followed for his approach to game states and event managers, https://www.youtube.com/watch?v=dEKs-3GhVKQ&list=PLah6faXAgguMnTBs3JnEJY0shAc18XYQZ##
+
+[p] ##Really helpful Tutorial on tile based systems from Rodrigo Monteiro, https://www.gamedev.net/tutorials/_/technical/game-programming/the-guide-to-implementing-2d-platformers-r2936/##
+
+[p] ##Explanation of Spatial HashMapping from Tristam MacDonald, https://www.gamedev.net/tutorials/programming/general-and-gameplay-programming/spatial-hashing-r2697/##
