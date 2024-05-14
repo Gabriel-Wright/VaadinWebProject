@@ -204,24 +204,6 @@ simplifies collision detection to cO((n/4)^2).
 The grid-like structure of the tile system aligned well with the concept of partitioning the game world into cells. 
 Each tile could act as a cell boundary, and entities within each cell could be efficiently managed using the existing grid structure.
 
-[p] <#c,public void update(Level level, GameObjectGrid gameObjectGrid) {
-   //Verify states/positions based on collisions within level post movement
-   move(level);
-   //If entity has moved in this update - reassign its grid position
-   if (Math.abs(xMove) > 0.001 || Math.abs(yMove) > 0.001) {
-       // Do something when xMove or yMove is not close to 0
-       gameObjectGrid.reassignEntityCells(this, -xMove, -yMove);
-   }
-
-
-   //Check entity collisions
-   handleLocalEntityCollisions(gameObjectGrid);
-   //Update action state of the entity
-   updateAction();
-   //Adjust the entity animation based on its action state
-   updateAnimationTick();
-}#>
-
 [p]My GameObjectGrid stores all cells within a 2d map, effectively allowing efficient lookup and scalability.
 This spatial hashmap system also extended comfortably to my entity pathfinding. 
 In game development it is common to group entities together, especially if they follow similar paths. 
