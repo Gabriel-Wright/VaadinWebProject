@@ -1,21 +1,21 @@
 [p]<#v,456#>One of my earlier Java Projects was creating a small 2D demo game.
-Towards the end of my previous project, ##a console based bank statement conversion project, https://gabrielwright.xyz/article/201##, I realised that I had
-left considerations of my front end interaction with the conversion software until the end of the project. 
+Towards the end of my previous project, ##a console based bank statement conversion project, https://gabrielwright.xyz/article/201##, I realised that I had left considerations of my front end interaction with the conversion software until the end of the project.
 This combined with the bank statement conversion project not being too inspiring in terms of content, affected my motivation. 
-So for my next project I wanted to develop something that I would get immediate, tangible feedback from. 
-With game development, you are forced to figure out the interaction between back end game logic and front end visuals pretty early on. 
-I also started working on ##Chaotic Cats,https://gabrielwright.xyz/article/301## at the same time and developing a 2d java game from scratch would
-support my understanding of interacting systems within game loops and engines if I had to create my own.
 
-[p]This java game demo I made was much more complex to develop compared to the minigame I discussed in my previous article about Chaotic Cats.
- In the latter case, Unity handled most of the heavy lifting behind the scenes. 
- Therefore, in this article, I will focus less on the specifics of the game's content and mechanics and instead 
- provide an overview of the main game loop. This loop governs the update of in-game logic and rendering, ensuring smooth 
+[p]For my next project I wanted to develop something that I would get immediate, tangible feedback from.
+With game development, you are forced to figure out the interaction between back end game logic and front end visuals pretty early on. 
+I also started working on ##Chaotic Cats,https://gabrielwright.xyz/article/301## at the same time. Developing a 2d java game from scratch would
+support my understanding of interacting systems within game loops and engines in separate engines I would use as well.
+
+[p]This java game demo I made was much more complex to develop compared to any minigame I have worked on for Chaotic Cats.
+ With Chaotic Cats, Unity handles most of the heavy lifting behind the scenes.
+ Therefore, in this article, I will focus less on the specifics of the game's content and instead
+ provide an overview of the main game loop. This loop governs the update of game logic and rendering, ensuring smooth
  operation and visual representation. 
 
 [p] <#h,My First Questions#>
 
-At the outset of my project, I was confronted with two primary questions: 
+At the outset of my project, I was confronted with two questions:
 How do I ensure the game continuously updates, and how do I create a distinct window to display my game world? 
 Unlike previous projects I've worked on, both personally and academically, where code executed only at program 
 start or in response to user input via command line, games require constant code execution to update visuals 
@@ -60,19 +60,20 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 [p]This approach has some downsides and limitations regarding efficiency and concurrency.
-With a single-threaded implementation, the game operates on one thread, which can be inefficient, 
+With a single threaded implementation, the game operates on one thread, which can be inefficient,
 especially when other parts of the program, such as input handling, rendering, and background tasks, could be running concurrently. 
-A single threaded approach can also lead to blocking. If any part of the game loop takes a significant amount of time to execute 
-this can cause a block in the thread. If I were to make a more complex game, a single threaded approach may not provide the best 
+A single threaded approach can also lead to blocking. If I were to make a more complex game, a single threaded approach may not provide the best
 responsiveness. Multithreading, where different tasks run concurrently on different threads would be optimal in such cases.
 
-[p]Despite the drawbacks, I chose to begin with the single-threaded approach.
-My university assignments in High-Performance Computing in C++ gave me confidence in handling multithreading. 
-However, I also understood the complexities of multithreading, such as synchronisation and race conditions, which could affect productivity. Given that the game demo I was creating was a very simple 2D game, I deemed multithreading overkill. Moreover, delving into multithreading might have diverted my focus from other essential concepts of game loops, especially as I was just starting out. Additionally, most online resources I found for 2D game development did not mention multithreading.
+[p]Despite the drawbacks, I chose to begin with the single threaded approach.
+My university assignments in High Performance Computing with C++ gave me confidence in handling multithreading.
+I understood from this experience the potential for additional complications from multithreading,
+such as synchronisation and race conditions. Given that the game demo I was creating was a very simple 2D game, I deemed multithreading overkill.
+I felt that delving into multithreading might have diverted my focus from learning other essential concepts of game loop and software architecture creation, especially as I was just starting out.
+Additionally, most online resources I found for 2D game development did not mention multithreading.
 
 
-[p]<#c,
-       public void paintComponent(Graphics g) {
+[p]<#c,public void paintComponent(Graphics g) {
           super.paintComponent(g);
           checkFullScreenToggle();
           currentState.render(g);
@@ -84,14 +85,12 @@ text fields, images, and more. It's commonly used for creating GUIs in Java appl
 
 
 [p]By extending the JPanel class, a paintComponent(Graphics g) method is called anytime the panel needs to be repainted.
-Within paintComponent, you can use the Graphics object to draw graphics to a panel. 
+Within paintComponent you can use the Graphics object to draw graphics to a panel.
 Graphics object can be utilized to draw graphics to the panel. 
 This includes drawing sprites, text from certain fonts, or generic shapes such as circles or rectangles.
 
-
-
-[p] In my demo program, I structured different game states (e.g., menu, in-game, game over) as objects within GameState objects.
-These objects then delegate rendering tasks to various sub-components within my architecture, such as the LevelManager and TaskRunner.
+[p] In my demo program, I structured different game states (e.g., menu, gameplay, game over) as objects within GameState objects.
+These objects then delegate rendering tasks to various sub components within my architecture, such as the LevelManager and TaskRunner.
 
 
 [p] <#c,
@@ -127,8 +126,8 @@ This setup ensures smooth and continuous rendering of the game's visuals.
 
 [p]<#h,Setting Milestones#>
 
-<#v,461#>With this project I did not start with a main gameplay conception, but merely a set of milestones I wanted to create for my gameplay loop:
-a player character, displayable map, a simple collision system, background events like ui and sound, loading/switching between gameStates i.e. navigating a menu, pausing etc.
+[p] <#v,461#>With this project I did not start with a main gameplay conception, but merely a set of features I wanted to create for my gameplay loop:
+a player character, a displayable map, a simple collision system, background events like ui and sound, loading/switching between gameStates i.e. navigating a menu, pausing etc.
 
 [p]<#h,Entities, Levels and the interaction between the two#>
 
@@ -183,12 +182,12 @@ each integer corresponding to a specific tile template enumeration. This approac
 
 [p]Entities, like the player or NPCs, continuously store their positions (x and y).
 However, for collision handling with both the level and other game objects, such as other entities, positional events, and items, 
-I implemented a tile grid data structure. The concept behind this approach is Spatial Hash Mapping. 
+I implemented a tile grid data structure. The concept behind this approach is ##Spatial Hash Mapping., https://www.gamedev.net/tutorials/programming/general-and-gameplay-programming/spatial-hashing-r2697/##
 
 [p]<#r,458#>I developed features individually, creating the tile system to load levels and sprites, followed by the entity system.
 Collision detection between the player object and solid tiles within the level was handled by passing the level's properties and 
-tiles directly as an object to each player. There was no greater architecture that cohesively linked the level tile based system 
-and the entities together, when both of these systems were created. When considering collisions between game objects I discovered 
+tiles directly as an object to each player. When both of these systems were created, there was no greater architecture that cohesively linked the level tile based system
+and the entities together. When considering collisions between game objects I discovered
 the need to integrate the two systems together. My game has an update rate of 120 ticks per second. 
 That means 120 times every second update will be called. If in the game state, this means iterating over each game object, checking 
 for collisions, and updating game logic. If done linearly this could result in O(n^2) complexity. 
@@ -198,7 +197,7 @@ checked between entities within the same or adjacent cells.
 
 [p]Dividing the level into smaller sections and calculating collisions within each section significantly reduces the
 number of collision checks. If we were to simply divide the map into 4 quadrant, this, in the best case scenario, 
-simplifies collision detection to cO((n/4)^2).
+simplifies the complexity of collision handling to O((n/4)^2).
 
 [p] <#v,459#>Given that I already had a tile based system in place, integrating a spatial hash map based on this system seemed like a natural choice.
 The grid-like structure of the tile system aligned well with the concept of partitioning the game world into cells. 
@@ -214,18 +213,18 @@ In my game A* pathfinding calculates paths between the player cells and associat
 For each cell containing an entity, the next step for heading towards the player is stored, and this process continues until 
 the target is reached. 
 
-[p]<#l,406#>While this approach provides a natural way to handle pathfinding within my grid-based system,
+[p]While this approach provides a natural way to handle pathfinding within my grid based system,
 there's room for improvement in future iterations. Grouping entities into cells improves performance compared to 
 calculating each entity individually but the cells are usually too small a space to contain multiple enemies. 
 To address this, I could explore implementing hierarchical pathfinding, which involves dividing the map into larger regions 
-for broader pathfinding calculations. Or alternatively a lead-follower method could be employed if entities spawn in similar 
+for broader pathfinding calculations. Or alternatively a leader/follower method could be employed if entities spawn in similar
 locations and have the same end destination.
 
 [p]<#h,Background Tasks#>
 
 I knew early on that I would need to have a separate piece of architecture handling background tasks. 
-Examples of  background tasks  include: spawning game objects, tracking-in game timers, playing sounds or UI prompts. 
-To handle these tasks effectively for my 2d top-down game I developed a robust background task handler.
+Examples of  background tasks  include: spawning game objects, tracking game timers, playing sounds or UI prompts.
+To handle these tasks effectively for my demo I developed a robust background task handler.
 
 [p] At the core of this system is the TaskRunner class, which acts as a conductor, managing the execution of various tasks.
 The TaskRunner maintains two lists: 'activeTasks' for tasks that are currently running and 'queuedTasks' for tasks waiting to be executed.
@@ -236,6 +235,8 @@ public abstract class Task {
         protected boolean complete = false;
 
         public abstract void runTask();
+
+        //Getters & Setters...
 }
 #>
 
@@ -245,12 +246,12 @@ time the updateTask() method is called. This task handler provides a structured 
 For example, to spawn entities, trigger timers, play sounds, or show UI prompts, I simply create instances of the corresponding task 
 classes and add them to the TaskRunner. 
 
-[p]As I crept closer towards my milestones, I decided to create a score-based arcade demo involving enemies and events spawning indefinitely.
+[p]As I crept closer towards my milestones, I decided to create a score based arcade demo involving enemies and events spawning indefinitely.
  To accomplish this, I developed a "Wave" task responsible for loading and selecting these events and tasks.
  
-In the next section I will attempt to link the architecture I have touched over together, showing the relationship between the different systems.
+In the next section I will attempt to link together the pieces of my software architecture that I have mentioned so far.
 
-[p]<#h, An example of implementation#>
+[p]<#h, Example from States to Wave Task#>
 
 When the game starts, it boots into the main menu, represented by the ‘MenuState’ class:
 
@@ -290,6 +291,10 @@ The level is initialised using this ID, and a random seed for this round is gene
        TaskRunner.addTask(waveManager);
 #>
 
+[p]Using the newly initialised level, a new wave spawn task is initialised and added to the background TaskRunner.
+From here, every update, the LevelManager is updated, which contains the GameObjectHandler and updates all game objects therein,
+and the TaskRunner is updated:
+
 [p] <#c,
         @Override
             public void update() {
@@ -298,9 +303,6 @@ The level is initialised using this ID, and a random seed for this round is gene
             taskHandler.updateTasks();
         }
     #>
-Using the newly initialised level, a new wave spawn task is initialised and added to the background TaskRunner.
-From here, every update, the LevelManager is updated, which contains the GameObjectHandler and updates all game objects therein, 
-and the TaskRunner is updated:
 
 
 [p]The wave manager uses an integer tick, which is incremented every time the TaskRunner
