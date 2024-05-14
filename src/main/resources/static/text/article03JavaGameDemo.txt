@@ -152,7 +152,7 @@ public class Tile {
     //Getters & Setters ...
 }#>
 
-[p]<#l,457#>Every tile stores an image representing its appearance and a boolean indicating whether it’s solid, meaning entities cannot pass through it.
+[p]<#l,457#>Every tile stores an image representing its appearance and a boolean indicating whether it's solid, meaning entities cannot pass through it.
 For my purposes, all tiles have the same properties except for solidity. 
 I did have a small test before settling on a topdown view, where I made a platformer with tiles that had different
 properties such as slanted tiles, though implementing the gravity proved problematic.
@@ -254,11 +254,11 @@ In the next section I will attempt to link together the pieces of my software ar
 
 [p]<#h, Example from States to Wave Task#>
 
-When the game starts, it boots into the main menu, represented by the ‘MenuState’ class:
+When the game starts, it boots into the main menu, represented by the 'MenuState' class:
 
 [p]<#c, public class MenuState extends State{
 	
-    //… instantiating constants for menu
+    //... instantiating constants for menu
 
     @Override
     public void initialiseState() {
@@ -330,16 +330,16 @@ Before settling on top down 2d games I even started different repos a few times.
 
 [p]<#l,460#>The demo I made does have bugs and definitely does not play as smoothly as any of my minigames in Chaotic Cats.
 I focused much more on the game loop than the mechanics, and while this is definitely still playable and fun if you know how to play, 
-it isn’t ideal. There is a cliche online of aspiring game devs being stuck in game engine design hell, and I can definitely see how that 
+it isn't ideal. There is a cliche online of aspiring game devs being stuck in game engine design hell, and I can definitely see how that
 is possible. But it was still invaluable to me to have worked to define my own. 
 From what I see online, most AAA studios build upon their previously designed in house engines. 
 There are areas of improvement, such as refining the pathfinding system and implementing more flexible events and wave spawns, 
-but I intend in the future to build something in a new way from what i’ve learnt, maybe in 3d or with a new language like C++, 
+but I intend in the future to build something in a new way from what I've learnt, maybe in 3d or with a new language like C++,
 implement some multithreading. 
 
 [p]The whole process deepened my appreciation for the quality of games I get to enjoy. I worked solo on this project,
-imagine the extra complexities of working in a huge studio team. It's an entirely different level being part of a team where 
-developers build upon the core codebase. Development is not just about creating scientific systems; it's about considering 
+imagine the extra complexities of working in a huge studio team. It is an entirely different level being part of a team where
+developers build upon the core codebase. Development is not just about creating scientific systems; it is about considering
 real world use for those systems by other collaborators as well. With the rest of Headbounce, the team I am working with to create
 Chaotic Cats, I get amateur experience with that. I look forward to having professional experience as a Software Developer.
 
