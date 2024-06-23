@@ -86,7 +86,7 @@ I could interact with the database layer in a more intuitive and efficient manne
 
 [p] <#l,109#>
 I used Vaadin for the front end of this site. While I think highly of Vaadin's capabilities, I sometimes wonder whether I should
-have bit the bullet and created the front end entirely in JavaScript, since Vaadin is far more niche than using JavaScript for front end development.
+have created the front end entirely in JavaScript, since Vaadin is far more niche than using JavaScript for front end development.
 For now it doesn't really matter, I can even switch over to writing some sections of this site in a JavaScript framework at some point if it is helpful.
 
 Having never worked on any web development related projects, there was a somewhat steep learning curve at some points. Once I decided
