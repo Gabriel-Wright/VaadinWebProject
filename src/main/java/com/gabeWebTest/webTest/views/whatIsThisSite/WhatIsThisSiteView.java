@@ -55,8 +55,8 @@ public class WhatIsThisSiteView extends AppLayout {
         Div div = new Div();
         div.addClassName("tech-stack");
         div.add(createTitle("What is this site?"));
-        String introText = "This website serves as a hub for me to showcase personal projects I am working on and discuss separate areas of interest."+
-                " I intend to continually update this site with new entries/articles covering a range of topics, such as Software development, gaming and film.";
+        String introText = "This website is a legacy project. It acted as a hub for me to showcase personal projects I am working on and discuss separate areas of interest."+
+                "It is no longer updated - but was intend to continually update this site with new entries/articles covering a range of topics, such as Software development, gaming and film.";
         div.add(createParagraph(introText));
         return div;
     }
