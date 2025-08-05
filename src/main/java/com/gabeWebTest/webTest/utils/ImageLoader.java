@@ -32,10 +32,10 @@ public class ImageLoader {
     }
 
     private StreamResource returnDefaultResource() {
-        VisualSource defaultVisualSource = visualSourceService.findVisualSource(0).get();
-        StreamResource streamResource = new StreamResource(defaultVisualSource.getFileName(), () -> {
+//        VisualSource defaultVisualSource = visualSourceService.findVisualSource(0).get();
+        StreamResource streamResource = new StreamResource("memoriesOfMurderThumbnail.jpg", () -> {
             try {
-                return new FileInputStream(BASE_PATH + defaultVisualSource.getImagePath());
+                return new FileInputStream(BASE_PATH + DEFAULT_IMAGE_PATH);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 return null;

@@ -22,11 +22,11 @@ public class ArticleParagraphParser {
 
 //    private static Pattern pattern = Pattern.compile("<([vh]),\\s*\\w+\\/\\w+\\.\\w+>");
     //SINGLE INT SHOULD BE AFTER THE ,
-    private static Pattern PATTERN_INT = Pattern.compile("<¬([a-z]),(\\s*\\d*)¬>");
+    private static Pattern PATTERN_INT = Pattern.compile("<#([a-z]),(\\s*\\d*)#>");
     //ANY STRING CAN BE AFTER THE ,
-    private static Pattern PATTERN_STRING = Pattern.compile("<¬([a-z]),([^¬>]*)¬>");
+    private static Pattern PATTERN_STRING = Pattern.compile("<#([a-z]),([^¬>]*)#>");
     //LINK PATTERN
-    private static Pattern PATTERN_LINK  = Pattern.compile("¬¬([^,]+),([^¬]+)¬¬");
+    private static Pattern PATTERN_LINK  = Pattern.compile("##([^,]+),([^¬]+)##");
     private static Matcher matcher;
     public static int GET_FORMAT(String paragraphText) {
         matcher = PATTERN_STRING.matcher(paragraphText);
@@ -78,7 +78,7 @@ public class ArticleParagraphParser {
     }
 
     public static String REMOVE_PATTERN(String paragraphText) {
-        return paragraphText.replaceAll("<¬[^>]+¬>", "");
+        return paragraphText.replaceAll("<#[^>]+#>", "");
     }
 
     public static String[] SPLIT_TEXT(String rawText) {

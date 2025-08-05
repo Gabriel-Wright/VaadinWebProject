@@ -13,7 +13,6 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.InputStream;
 
 @Route("what-is-this-site")
 @PageTitle("What is this site?")
@@ -76,14 +75,17 @@ public class WhatIsThisSiteView extends AppLayout {
         return title;
     }
 
-    private Html createYoutubeEmbed(String url) {
+    private Div createYoutubeEmbed(String url) {
+        Div youtubeContainer = new Div();
+        youtubeContainer.addClassName("youtube-container");
         String iframeHtml = "<iframe width=\"560\" height=\"315\" src=\""+url+"\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>";
         // Create an Html component and set the HTML content
         Html html = new Html(iframeHtml);
         html.addClassName("youtube-embed");
-        html.getStyle().set("margin","auto");
+//        html.getStyle().set("margin","auto");
 
-        return html;
+        youtubeContainer.add(html);
+        return youtubeContainer;
     }
 
     private Paragraph createParagraph(String text) {

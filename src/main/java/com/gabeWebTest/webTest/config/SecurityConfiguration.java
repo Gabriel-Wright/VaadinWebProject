@@ -33,36 +33,38 @@ public class SecurityConfiguration extends VaadinWebSecurity {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/","/about-me",
-                        "/article/**",
-                        "/what-is-this-site",
-                        "/api/v1/auth/**",
-                        "/handleFadeOutCompletion",
-                        // Vaadin Flow static resources //
-                        "/VAADIN/**",
-
-                        // the standard favicon URI
-                        "/favicon.ico",
-
-                        // the robots exclusion standard
-                        "/robots.txt",
-
-                        // web application manifest //
-                        "/manifest.webmanifest",
-                        "/sw.js",
-                        "/offline-page.html",
-
-                        // (development mode) static resources //
-                        "/frontend/**",
-
-                        // (development mode) webjars //
-                        "/webjars/**",
-
-                        // (production mode) static resources //
-                        "/frontend-es5/**", "/frontend-es6/**")
-                .permitAll()
-                .anyRequest()
+                .requestMatchers("/api/v1/upload/**")
                 .authenticated()
+//                .requestMatchers("/","/about-me",
+//                        "/article/**",
+//                        "/what-is-this-site",
+//                        "/api/v1/auth/**",
+//                        "/handleFadeOutCompletion",
+//                        // Vaadin Flow static resources //
+//                        "/VAADIN/**",
+//
+//                        // the standard favicon URI
+//                        "/favicon.ico",
+//
+//                        // the robots exclusion standard
+//                        "/robots.txt",
+//
+//                        // web application manifest //
+//                        "/manifest.webmanifest",
+//                        "/sw.js",
+//                        "/offline-page.html",
+//
+//                        // (development mode) static resources //
+//                        "/frontend/**",
+//
+//                        // (development mode) webjars //
+//                        "/webjars/**",
+//
+//                        // (production mode) static resources //
+//                        "/frontend-es5/**", "/frontend-es6/**")
+//                .permitAll()
+                .anyRequest()
+                .permitAll()
                 .and()
 //                .formLogin()
 //                .permitAll()
@@ -75,6 +77,7 @@ public class SecurityConfiguration extends VaadinWebSecurity {
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 
@@ -84,6 +87,10 @@ public class SecurityConfiguration extends VaadinWebSecurity {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().requestMatchers(
+                //Icons
+                "/icons/**",
+                //Fonts
+                "/font/**",
                 //Images
                 "/img/**",
                 //PDFs
