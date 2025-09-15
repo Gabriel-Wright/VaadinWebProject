@@ -21,8 +21,8 @@ public class VisualSource {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idgenerator")
-    @SequenceGenerator(name = "idgenerator", sequenceName = "your_sequence_name", initialValue = 5)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "visualsource_seq")
+    @SequenceGenerator(name = "visualsource_seq", sequenceName = "visualsource_seq", initialValue = 5)
     @Column(name = "SOURCE_ID")
     private int id;
 

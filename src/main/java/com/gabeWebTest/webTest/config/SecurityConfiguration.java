@@ -32,9 +32,14 @@ public class SecurityConfiguration extends VaadinWebSecurity {
         http
                 .csrf()
                 .disable()
+                .headers()
+                .frameOptions().sameOrigin() // <-- allow H2 console to render in iframe
+                .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/upload/**")
                 .authenticated()
+                .requestMatchers("/h2-console/**")
+                .permitAll() // <-- allow H2 console
 //                .requestMatchers("/","/about-me",
 //                        "/article/**",
 //                        "/what-is-this-site",

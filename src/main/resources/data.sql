@@ -1,52 +1,54 @@
-INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE) VALUES (1, 'GMW', '$2a$12$lOfOaW4b5ngvxdsKnQCy5umEgXWZW2/Is8Xmzsb5laX0sh7RRXpJa', 'ADMIN');
+-- H2 compatible schema + data
 
-INSERT INTO TAG (ID, TAGNAME, COLOR_HEX, ICON) VALUES (1, 'Gaming', '#ff0000', 'GAMEPAD');
-INSERT INTO TAG (ID, TAGNAME, COLOR_HEX, ICON) VALUES (2, 'Travel', '#edd000', 'FLIGHT_TAKEOFF');
-INSERT INTO TAG (ID, TAGNAME, COLOR_HEX, ICON) VALUES (3, 'Art', '#3deeed', 'PAINTBRUSH');
--- Insert sample tags
-INSERT INTO TAG (ID, TAGNAME, COLOR_HEX, ICON) VALUES (-1, 'Tag1', '#ff0000', 'EYE');
-INSERT INTO TAG (ID, TAGNAME, COLOR_HEX, ICON) VALUES (-2, 'Tag2', '#ff0000', 'EYE');
-INSERT INTO TAG (ID, TAGNAME, COLOR_HEX, ICON) VALUES (-3, 'Tag3', '#ff0000', 'EYE');
+-- Tags
+INSERT INTO TAG (ID, COLOR_HEX, TAGNAME, ICON) VALUES
+  (151,'#ff0000','Development',NULL),
+  (152,'#FFA500','Springboot',NULL),
+  (251,'#A020F0','Game Jam',NULL);
 
--- Insert sample article formats
---INSERT INTO ARTICLE_FORMAT (ARTICLE_FORMAT_ID, NAME) VALUES (1, 'Format A');
---INSERT INTO ARTICLE_FORMAT (ARTICLE_FORMAT_ID, NAME) VALUES (2, 'Format B');
+-- Users
+INSERT INTO USERS (ID, USERNAME, PASSWORD, ROLE) VALUES
+  (1,'GMW','$2a$12$lOfOaW4b5ngvxdsKnQCy5umEgXWZW2/Is8Xmzsb5laX0sh7RRXpJa','ADMIN');
 
--- Insert sample web pages
-INSERT INTO WEB_PAGE (ID, VERSION, TITLE) VALUES (1000, 0, 'Memories Of Murder: Analysis and Ending explained');
-INSERT INTO WEB_PAGE (ID, VERSION, TITLE) VALUES (1001, 0, 'JFrame Game Development');
-INSERT INTO WEB_PAGE (ID, VERSION, TITLE) VALUES (1002, 0, 'A.I Pathfinding approaches');
+-- Visual Sources
+INSERT INTO VISUAL_SOURCE (SOURCE_ID, FILE_NAME, IMAGE_PATH) VALUES
+  (56,'webAppThumbnail.png','/static/img/webAppThumbnail.png'),
+  (106,'bankstatementGitPage.PNG','/static/img/bankstatementGitPage.PNG'),
+  (107,'contributions.png','/static/img/contributions.png'),
+  (108,'excelPicture.PNG','/static/img/excelPicture.PNG'),
+  (109,'verticallayoutvaadin.png','/static/img/verticallayoutvaadin.png'),
+  (156,'thumbnailMaze.png','/static/img/thumbnailMaze.png'),
+  (206,'chaoticCatsPreview.png','/static/img/chaoticCatsPreview.png'),
+  (207,'mazeConcept.png','/static/img/mazeConcept.png'),
+  (208,'ghostinthehall.png','/static/img/ghostinthehall.png'),
+  (256,'mazeExample.png','/static/img/mazeExample.png'),
+  (257,'scoringExample.png','/static/img/scoringExample.png'),
+  (258,'waterPlayTest.png','/static/img/waterPlayTest.png'),
+  (306,'mazeBlockBreakGif.gif','/static/img/mazeBlockBreakGif.gif'),
+  (356,'waterSprites.png','/static/img/waterSprites.png'),
+  (357,'mazeWaterFill.gif','/static/img/mazeWaterFill.gif'),
+  (406,'javaGamePathFinding.gif','/static/img/javaGamePathFinding.gif'),
+  (456,'javaThumbnail.png','/static/img/javaThumbnail.png'),
+  (457,'javaSlopeDemo.gif','/static/img/javaSlopeDemo.gif'),
+  (458,'spatial drawing.png','/static/img/spatial drawing.png'),
+  (459,'gridExample.png','/static/img/gridExample.png'),
+  (460,'gameplay preview gif.gif','/static/img/gameplay preview gif.gif'),
+  (461,'milestones view.png','/static/img/milestones view.png');
 
--- Insert sample dates for the web pages
-UPDATE WEB_PAGE SET TIME_CREATED = '2023-01-01T10:00:00', TIME_LAST_UPDATED = '2023-01-01T10:00:00' WHERE id = 1000;
-UPDATE WEB_PAGE SET TIME_CREATED = '2024-08-03T18:49:00', TIME_LAST_UPDATED = '2024-08-03T18:49:00' where id = 1001;
-UPDATE WEB_PAGE SET TIME_CREATED = '2024-02-15T15:23:00', TIME_LAST_UPDATED = '2024-02-15T15:23:00' where id = 1002;
+-- Articles
+INSERT INTO WEB_PAGE (ARTICLE_ACTIVE, THUMBNAIL, VERSION, ID, TIME_CREATED, TIME_LAST_UPDATED,
+            ARTICLE_PREVIEW, ARTICLE_TEXT_PATH, TITLE) VALUES
+  (true,56,1,201,'2024-04-26 17:47:21.126825','2024-04-26 17:47:21.126825',
+   'An overview of the process it took to build this website.','/text/article01.txt','Full Stack Web Application Project using Springboot'),
+  (true,156,1,301,'2024-04-29 00:16:11.029441','2024-04-29 00:16:11.029441',
+   'Detailing the development of Perplexing Pawthways, a minigame within "Chaotic Cats".','/text/article02Maze.txt','Tile Based Maze Multiplayer Minigame'),
+  (true,456,1,351,'2024-05-14 01:05:56.562163','2024-05-14 01:05:56.562163',
+   'Explanation of the architecture behind my small arcade Java game.','/text/article03JavaGameDemo.txt','Simple 2D Game Engine in Java');
 
--- Insert sample tags for the web pages
-INSERT INTO WEBPAGE_TAG (WEBPAGE_ID, TAG_ID) VALUES (1000, 1);
-INSERT INTO WEBPAGE_TAG (WEBPAGE_ID, TAG_ID) VALUES (1000, 2);
-INSERT INTO WEBPAGE_TAG (WEBPAGE_ID, TAG_ID) VALUES (1001, 1);
-INSERT INTO WEBPAGE_TAG (WEBPAGE_ID, TAG_ID) VALUES (1002, 1);
-INSERT INTO WEBPAGE_TAG (WEBPAGE_ID, TAG_ID) VALUES (1002, 3);
-
--- Insert thumbnail
-
-UPDATE WEB_PAGE SET THUMBNAIL = 0 WHERE id = 1000;
-UPDATE WEB_PAGE SET THUMBNAIL = 1 WHERE id = 1001;
-UPDATE WEB_PAGE SET THUMBNAIL = 1 where id = 1002;
-
---Insert Text of articles
-UPDATE WEB_PAGE SET Article_Text_Path = 'text/test.txt' WHERE id = 1000;
-UPDATE WEB_PAGE SET Article_Text_Path = 'text/test.txt' WHERE id = 1001;
-UPDATE WEB_PAGE SET Article_Text_Path = 'text/test.txt' WHERE id = 1002;
-
---UPDATE WEB_PAGE SET article_preview_text = '<v,1>"Memories of Murder" is a South Korean crime-drama film directed by Bong Joon-ho, released in 2003. [p] <l,>brahHello welcome to this article brahHello welcome to this article brah[p] <r,>Hello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brah' WHERE id = 1000;
---UPDATE WEB_PAGE SET article_preview_text = '<v,0>Developing games using JFrame in Java provides a versatile platform for creating 2D graphical applications with user interaction.[p]<,>o this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brahHello welcome to this article brah' WHERE id = 1001;
---UPDATE WEB_PAGE SET article_preview_text = 'Artificial intelligence (AI) pathfinding approaches are fundamental in various fields, including robotics, video games, logistics, and more. [p] <l,>These approaches aim to find the most efficient path from a starting point to a goal location, navigating through obstacles and constraints. Here are some common AI pathfinding approaches:test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test' WHERE id = 1002;
-UPDATE WEB_PAGE SET ARTICLE_PREVIEW = '<v,2>"Memories of Murder"' WHERE id = 1000;
-UPDATE WEB_PAGE SET ARTICLE_PREVIEW = '<v,0>Developing games using JFRAME' WHERE id =1001;
-UPDATE WEB_PAGE SET ARTICLE_PREVIEW = '<l,2> Artificial Intelligent (AI)' where id = 1002;
-
-
-INSERT INTO VISUAL_SOURCE (SOURCE_ID, FILE_NAME, IMAGE_PATH) VALUES (0,'memoriesOfMurderThumbnail.jpg','/static/img/thumbnails/memoriesOfMurderThumbnail.jpg');
-INSERT INTO VISUAL_SOURCE (SOURCE_ID, FILE_NAME, IMAGE_PATH) VALUES (1, 'gameTest.png','/static/img/thumbnails/gameTest.png');
+-- Tags
+INSERT INTO WEBPAGE_TAG (TAG_ID, WEBPAGE_ID) VALUES
+  (151,201),
+  (152,201),
+  (151,301),
+  (251,301),
+  (151,351);

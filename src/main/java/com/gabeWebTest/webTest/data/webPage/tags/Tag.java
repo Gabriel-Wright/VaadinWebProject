@@ -34,8 +34,8 @@ public class Tag {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idgenerator")
-    @SequenceGenerator(name = "idgenerator", initialValue = 1000)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tag_seq")
+    @SequenceGenerator(name = "tag_seq", sequenceName = "tag_seq", initialValue = 1000)
     private int id;
 
     @Column(name = "TAGNAME")

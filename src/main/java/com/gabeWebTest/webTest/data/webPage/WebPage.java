@@ -39,8 +39,8 @@ public class WebPage {
     //This defines how the primary key Id is handled in the database.
     //Basically just increments by 1, starting at Id = 1000
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idgenerator")
-    @SequenceGenerator(name = "idgenerator", initialValue = 0)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "webpage_seq")
+    @SequenceGenerator(name = "webpage_seq", sequenceName = "webpage_seq", initialValue = 0)
     private Long id;
 
 //    @Column(name ="Article_Active")
