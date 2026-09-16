@@ -92,3 +92,5 @@ This was a web app I intended to use, but it was also a learning opportunity for
 
 I have sunsetted this site because of these issues: I have since developed a lighter-weight for my personal portfolio here
 https://gabriel-wright.github.io/Personal-website/
+
+But you can still read a legacy writeup about this project here: https://gabriel-wright.com/projects/springboot-vaadin-site/ 
